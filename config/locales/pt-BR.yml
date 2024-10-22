@@ -1,0 +1,4 @@
+pt-BR:
+  register: 'Cadastrar'
+  login: 'Entrar'
+  logout: 'Sair'

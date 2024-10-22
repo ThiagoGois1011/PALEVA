@@ -1,11 +1,26 @@
-<h2>Sign up</h2>
+<h2><% t(:register) %> </h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autocomplete: "last_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cpf %><br />
+    <%= f.number_field :cpf, autocomplete: "cpf" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">
@@ -22,7 +37,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t(:register) %>
   </div>
 <% end %>
 
