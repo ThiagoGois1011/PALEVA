@@ -1,0 +1,48 @@
+<%= form_with url: establishment_opening_hours_path do |f| %>
+    <div class="dias_comerciais">
+        <h2> <%= t(:business_days) %> </h2>
+        <div>
+            <%= f.label :opening_business_hour, t(:open_hour) %>
+            <%= f.time_field :opening_business_hour %>
+        </div>
+        <div>
+            <%= f.label :closing_business_hour, t(:close_hour) %>
+            <%= f.time_field :closing_business_hour %>
+        </div>
+    </div>
+
+    <div class="sabado">
+        <h2> <%= t(:saturday) %> </h2>
+        <div>
+            <%= f.label :saturday_opening_time, t(:open_hour) %>
+            <%= f.time_field :saturday_opening_time %>
+        </div>
+        <div>
+            <%= f.label :saturday_closing_time, t(:close_hour) %>
+            <%= f.time_field :saturday_closing_time %>
+        </div>
+
+        <div>
+            <%= f.label :closed_on_saturday, :closed%>
+            <%= f.check_box :closed_on_saturday %>
+        </div>
+    </div>
+
+    <div class="domingo">
+        <h2><%= t(:sunday)%> </h2>
+        <div>
+            <%= f.label :sunday_opening_time, t(:open_hour) %>
+            <%= f.time_field :sunday_opening_time %>
+        </div>
+        <div>
+            <%= f.label :sunday_closing_time, t(:close_hour) %>
+            <%= f.time_field :sunday_closing_time %>
+        </div>
+
+        <div>
+            <%= f.label :closed_on_sunday, :closed%>
+            <%= f.check_box :closed_on_sunday %>
+        </div>
+    </div>
+    <%= f.submit t(:save) %>
+<% end %>

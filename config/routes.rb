@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   root to: 'home#index'
+
+  resources :establishment, only: [:new, :create, :show] do
+    resources :opening_hours, only: [:new, :create]
+  end
+  
 end

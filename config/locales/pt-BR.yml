@@ -2,3 +2,8 @@ pt-BR:
   register: 'Cadastrar'
   login: 'Entrar'
   logout: 'Sair'
+  register_establishment: 'Cadastrar Estabelecimento'
+  open_hour: 'Horário de abertura'
+  close_hour: 'Horário de fechamento'
+  closed: 'Fechado'
+  save: 'Salvar'

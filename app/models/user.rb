@@ -1,4 +1,3 @@
-require "cpf_cnpj"
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -9,6 +8,7 @@ class User < ApplicationRecord
   validates :name, :last_name, :cpf, presence: true 
   validates :cpf, uniqueness: true
   validate :valida_cpf
+  has_one :establishment
 
   private 
 

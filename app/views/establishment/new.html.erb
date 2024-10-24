@@ -1,0 +1,29 @@
+<h1> <%= t(:register_establishment)%> </h1>
+
+<%= form_with model: @establishment, url: establishment_index_path do |f| %>
+    <div>
+        <%= f.label :corporate_name %>
+        <%= f.text_field :corporate_name %>
+    </div>
+    <div>
+        <%= f.label :brand_name %>
+        <%= f.text_field :brand_name %>
+    </div>
+    <div>
+        <%= f.label :restration_number %>
+        <%= f.text_field :restration_number %>
+    </div>
+    <div>
+        <%= f.label :full_address %>
+        <%= f.text_field :full_address %>
+    </div>
+    <div>
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number %>
+    </div>
+    <div>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+    </div>
+    <%= f.submit t(:register_establishment)%>
+<% end %>
