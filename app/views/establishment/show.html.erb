@@ -1,2 +1,6 @@
 <%= @establishment.brand_name %>
 <%= @establishment.email %>
+
+<div>
+    <%= link_to t(:dishes), establishment_dishes_path(@establishment) %>
+</div>

@@ -5,6 +5,7 @@ class Establishment < ApplicationRecord
   validate :valida_telefone, :valida_cnpj, :valida_email
   before_validation :generate_code, on: :create
   has_many :opening_hours
+  has_many :dishes
 
   private 
 

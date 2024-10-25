@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cadastra um restaurante' do
+describe 'Usuário cadastra um estabelecimento' do
   it 'com sucesso' do
     user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
 

@@ -1,0 +1,20 @@
+<%= form_with model: @dish, url: establishment_dishes_path do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+    </div>
+    <div>
+        <%= f.label :calorie %>
+        <%= f.text_field :calorie %>
+    </div>
+    <div>
+        <%= f.label :dish_picture %>
+        <%= f.file_field :dish_picture %>
+    </div>
+
+    <%= f.submit t(:register_dish) %>
+<% end %>

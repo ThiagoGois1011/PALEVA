@@ -7,3 +7,7 @@ pt-BR:
   close_hour: 'Horário de fechamento'
   closed: 'Fechado'
   save: 'Salvar'
+  dishes: 'Pratos'
+  register_dish: 'Cadastrar Prato'
+  edit: 'Editar'
+  delete: 'Deletar'

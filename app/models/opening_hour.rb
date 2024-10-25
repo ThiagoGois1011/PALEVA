@@ -7,9 +7,6 @@ class OpeningHour < ApplicationRecord
     horario_de_abertura = horario_do_dia.open_hour.strftime("%H:%M")
     horario_de_fechamento = horario_do_dia.close_hour.strftime("%H:%M")
 
-    puts hour
-    puts horario_de_abertura
-    puts horario_de_fechamento
     if hour >= horario_de_abertura  && hour <= horario_de_fechamento
       return false
     end

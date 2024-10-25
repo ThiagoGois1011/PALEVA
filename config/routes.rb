@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :establishment, only: [:new, :create, :show] do
     resources :opening_hours, only: [:new, :create]
+    resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update]
   end
   
 end
