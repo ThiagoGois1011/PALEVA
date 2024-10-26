@@ -9,6 +9,7 @@ describe 'Usuário cadastra uma bebida' do
                                           
     login_as user
     visit root_path
+    click_on 'Estabelecimento'
     click_on 'Bebidas'
     click_on 'Cadastrar Bebida'
     fill_in 'Nome', with: 'Suco de Laranja'

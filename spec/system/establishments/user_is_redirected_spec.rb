@@ -7,7 +7,8 @@ describe 'Usuário é redirecionado' do
 
       login_as user
       visit root_path
-
+      click_on 'Estabelecimento'
+      
       expect(page).to have_content('Cadastrar Estabelecimento')
       expect(current_path).to eq(new_establishment_path)
     end

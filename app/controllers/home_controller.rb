@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
+  skip_before_action :check_if_establishment_is_nil
+  skip_before_action :authenticate_user!
+  
   def index
-    redirect_to establishment_path(current_user.establishment) if user_signed_in? && !current_user.establishment.nil?
   end
 end

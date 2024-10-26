@@ -17,21 +17,30 @@
   </head>
 
   <body>
-    <nav>
-      <% if user_signed_in?%>
-      <%= button_to t(:logout), destroy_user_session_path, method: :delete %>
-      <%else%>
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <%= button_to t(:logout), destroy_user_session_path, method: :delete %>|
+          <% if current_user.establishment.nil? %>
+            <%= link_to t('activerecord.models.establishment'), new_establishment_path %>
+          <% else %>
+            <%= link_to t('activerecord.models.establishment'), establishment_path(current_user.establishment.id) %>
+          <% end %>
+          <%= form_with url: search_establishment_index_path, method: :get do |f| %>
+          <%= f.label :search, t(:search) %>
+          <%= f.text_field :search %>
+          <%= f.submit t(:search) %>
+        <% end %>
+        <% else %>
           <%= link_to t(:register), new_user_registration_path %> |
           <%= link_to t(:login), new_user_session_path %> 
-      <% end %>
-      <%= form_with url: search_establishment_index_path, method: :get do |f| %>
-        <%= f.label :search, t(:search) %>
-        <%= f.text_field :search %>
-        <%= f.submit t(:search) %>
-      <%end%>
-    </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+        <% end %>
+      </nav>
+    </header>
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>

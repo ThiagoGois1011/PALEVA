@@ -1,20 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário pesquisa um prato ou bebida' do
-  it 'mas precisa estar autenticado' do
-    user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
-    establishment = Establishment.create!(corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
-                                          restration_number: CNPJ.generate, full_address: 'Av Presindete Cabral', 
-                                          phone_number: '11981545874', email: 'contato@ifood.com', user: user)
-    Dish.create!(name: 'Miojo', description: 'Da Nissin', calorie: 400, establishment: establishment)   
-    
-    visit root_path
-    fill_in 'Pesquisar', with: 'Miojo'
-    click_on 'Pesquisar'
-
-    expect(current_path).to eq(new_user_session_path)
-    expect(page).to have_content('Para continuar, faça login ou registre-se.')
-  end
 
   it 'mas precisa ter um estabelecimento' do
     user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')

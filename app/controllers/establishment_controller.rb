@@ -1,6 +1,6 @@
 class EstablishmentController < ApplicationController
-  before_action :authenticate_user!
   before_action :check_if_exist_establishment, only: [:new]
+  skip_before_action :check_if_establishment_is_nil, only: [:new, :create]
   
   def new
     @establishment = Establishment.new

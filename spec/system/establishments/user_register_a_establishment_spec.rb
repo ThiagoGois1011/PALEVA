@@ -6,6 +6,7 @@ describe 'Usuário cadastra um estabelecimento' do
 
     login_as user
     visit root_path
+    click_on 'Estabelecimento'
     fill_in 'Nome Fantasia', with: 'Distribuidora Alimentícia Ifood'
     fill_in 'Razão Social', with: 'Ifood'
     fill_in 'CNPJ', with: CNPJ.generate
