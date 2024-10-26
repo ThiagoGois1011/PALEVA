@@ -8,6 +8,8 @@ pt-BR:
   closed: 'Fechado'
   save: 'Salvar'
   dishes: 'Pratos'
+  beverages: 'Bebidas'
   register_dish: 'Cadastrar Prato'
+  register_beverage: 'Cadastrar Bebida'
   edit: 'Editar'
   delete: 'Deletar'

@@ -6,6 +6,7 @@ class Establishment < ApplicationRecord
   before_validation :generate_code, on: :create
   has_many :opening_hours
   has_many :dishes
+  has_many :beverages
 
   private 
 

@@ -2,7 +2,7 @@
 
 <% @dishes.each do |dish| %>
     <div>
-        <%= image_tag(url_for(dish.dish_picture), alt: 'Foto do Prato', width: 200, height: 200) if dish.dish_picture.attached?%>
+        <%= image_tag(url_for(dish.dish_picture), alt: 'Foto do prato', width: 200, height: 200) if dish.dish_picture.attached?%>
         <p><%= t('activerecord.attributes.dish.name')%>: <%= dish.name%> </p>
         <p><%= t('activerecord.attributes.dish.description')%>: <%= dish.description%> </p>
         <p><%= t('activerecord.attributes.dish.calorie')%>: <%= dish.calorie%> </p>

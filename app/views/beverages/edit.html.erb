@@ -1,0 +1,20 @@
+<%= form_with model: @beverage , url:establishment_beverage_path(@beverage.establishment.id)  do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+    </div>
+    <div>
+        <%= f.label :calorie %>
+        <%= f.text_field :calorie %>
+    </div>
+    <div>
+        <%= f.label :beverage_picture %>
+        <%= f.file_field :beverage_picture %>
+    </div>
+
+    <%= f.submit t(:save) %>
+<% end %>

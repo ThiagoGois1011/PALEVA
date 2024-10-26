@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      beverage: Bebida
+    attributes:
+      beverage:
+        name: 'Nome'
+        description: 'Descrição'
+        calorie: 'Calorias'
+        beverage_picture: 'Foto da bebida'
