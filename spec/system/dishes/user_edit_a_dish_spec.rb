@@ -11,13 +11,14 @@ describe 'Usuário edita um prato' do
     login_as user
     visit root_path
     click_on 'Pratos'
+    click_on 'Miojo'
     click_on 'Editar'
     fill_in 'Descrição', with: 'Do tipo Talharim'
     fill_in 'Calorias', with: '400'
     attach_file 'Foto do prato', Rails.root.join('spec', 'fixtures', 'miojo.jpg')
     click_on 'Salvar'
 
-    expect(current_path).to eq(establishment_dishes_path(establishment.id))
+    expect(page).to have_content('Nome: Miojo')
     expect(page).to have_content('Descrição: Do tipo Talharim')
     expect(page).to have_content('Calorias: 400')
   end

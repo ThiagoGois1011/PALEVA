@@ -1,15 +1,9 @@
-<%= link_to t(:register_beverage), new_establishment_beverage_path%>
+<%= link_to t(:register_beverage), new_establishment_beverage_path %>
 
 <% @beverages.each do |beverage| %>
     <div>
-        <%= image_tag(url_for(beverage.beverage_picture), alt: 'Foto da bebida', width: 200, height: 200) if beverage.beverage_picture.attached?%>
-        <p><%= t('activerecord.attributes.beverage.name')%>: <%= beverage.name%> </p>
-        <p><%= t('activerecord.attributes.beverage.description')%>: <%= beverage.description%> </p>
-        <p><%= t('activerecord.attributes.beverage.calorie')%>: <%= beverage.calorie%> </p>
-
-        <div>
-            <%= link_to t(:edit), edit_establishment_beverage_path(establishment_id: beverage.establishment.id, id: beverage.id)%>
-            <%= button_to t(:delete), establishment_beverage_path(establishment_id: beverage.establishment.id, id: beverage.id), method: :delete %>
-        </div>
+        <%= image_tag(url_for(beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if beverage.picture.attached? %>
+        <p><%= t('activerecord.attributes.beverage.name')%>: <%= link_to beverage.name, establishment_beverage_path(establishment_id: beverage.establishment.id, id: beverage.id) %> </p>
+        <p><%= t('activerecord.attributes.beverage.description')%>: <%= beverage.description %> </p>
     </div>
 <% end %>

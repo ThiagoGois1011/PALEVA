@@ -10,7 +10,9 @@ describe 'Usuário se cadastra' do
     fill_in 'Email', with: 'thiago@email.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    click_on 'Cadastrar'
+    within('div.actions') do
+      click_on 'Cadastrar'
+    end
   
     expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
     current_user = User.last
@@ -27,7 +29,9 @@ describe 'Usuário se cadastra' do
     fill_in 'Email', with: 'thiago@email'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    click_on 'Cadastrar'
+    within('div.actions') do
+      click_on 'Cadastrar'
+    end
 
     expect(page).to have_content('Não foi possível salvar usuário')
     expect(page).to have_content('Email não é válido')
@@ -42,7 +46,9 @@ describe 'Usuário se cadastra' do
     fill_in 'Email', with: 'thiago@email.com'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
-    click_on 'Cadastrar'
+    within('div.actions') do
+      click_on 'Cadastrar'
+    end
 
     expect(page).to have_content('Não foi possível salvar usuário')
     expect(page).to have_content('Senha é muito curto')
@@ -57,7 +63,9 @@ describe 'Usuário se cadastra' do
     fill_in 'Email', with: 'thiago@email.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    click_on 'Cadastrar'
+    within('div.actions') do
+      click_on 'Cadastrar'
+    end
      
     expect(page).to have_content('Não foi possível salvar usuário')
     expect(page).to have_content('CPF inválido')
@@ -74,7 +82,9 @@ describe 'Usuário se cadastra' do
     fill_in 'Email', with: 'thiago@email.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    click_on 'Cadastrar'
+    within('div.actions') do
+      click_on 'Cadastrar'
+    end
 
     expect(page).to have_content('Não foi possível salvar usuário')
     expect(page).to have_content('CPF já está em uso')

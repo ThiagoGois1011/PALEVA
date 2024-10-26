@@ -10,13 +10,13 @@ class BeveragesController < ApplicationController
   end
 
   def create
-    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :beverage_picture)
+    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture)
 
     @beverage = Beverage.new(beverage_params)
     @beverage.establishment = Establishment.find(params[:establishment_id])
 
     @beverage.save!
-    redirect_to establishment_beverages_path, notice: 'Bebida cadastrada com sucesso.'
+    redirect_to establishment_beverage_path(establishment_id: params[:establishment_id], id: @beverage.id), notice: 'Bebida cadastrada com sucesso.'
   end
 
   def edit
@@ -24,15 +24,19 @@ class BeveragesController < ApplicationController
   end
 
   def update
-    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :beverage_picture)
+    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture)
     @beverage = Beverage.find(params[:id])
     @beverage.update(beverage_params)
-    redirect_to establishment_beverages_path(params[:establishment_id])
+    redirect_to establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id)
   end
 
   def destroy
     Establishment.find(params[:establishment_id]).beverages.destroy(params[:id])
     redirect_to establishment_beverages_path(params[:establishment_id])
+  end
+
+  def show
+    @beverage = current_user.establishment.beverages.find(params[:id])
   end
 
   private

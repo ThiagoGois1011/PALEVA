@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :establishment, only: [:new, :create, :show] do
+    get 'search', on: :collection
     resources :opening_hours, only: [:new, :create]
-    resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update]
-    resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update]
+    resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update, :show]
+    resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update, :show]
   end
   
 end

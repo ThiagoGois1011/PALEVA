@@ -10,13 +10,13 @@ class DishesController < ApplicationController
   end
 
   def create
-    dish_params = params.require(:dish).permit(:name, :description, :calorie, :dish_picture)
+    dish_params = params.require(:dish).permit(:name, :description, :calorie, :picture)
 
     @dish = Dish.new(dish_params)
     @dish.establishment = Establishment.find(params[:establishment_id])
 
     @dish.save!
-    redirect_to establishment_dishes_path, notice: 'Prato cadastrado com sucesso.'
+    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id ), notice: 'Prato cadastrado com sucesso.'
   end
 
   def edit
@@ -24,15 +24,19 @@ class DishesController < ApplicationController
   end
 
   def update
-    dish_params = params.require(:dish).permit(:name, :description, :calorie, :dish_picture)
+    dish_params = params.require(:dish).permit(:name, :description, :calorie, :picture)
     @dish = Dish.find(params[:id])
     @dish.update(dish_params)
-    redirect_to establishment_dishes_path(params[:establishment_id])
+    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id )
   end
 
   def destroy
     Establishment.find(params[:establishment_id]).dishes.destroy(params[:id])
     redirect_to establishment_dishes_path(params[:establishment_id])
+  end
+
+  def show
+    @dish = current_user.establishment.dishes.find(params[:id])
   end
 
   private

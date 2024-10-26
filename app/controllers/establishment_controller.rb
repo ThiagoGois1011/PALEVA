@@ -25,6 +25,13 @@ class EstablishmentController < ApplicationController
     @establishment = Establishment.find(params[:id])
   end
 
+  def search
+    establishment = current_user.establishment
+    dishes = establishment.dishes.where("name LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    beverages = establishment.beverages.where("name LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    @result = [dishes, beverages].map(&:to_a).flatten
+  end
+
   private 
 
   def check_if_exist_establishment

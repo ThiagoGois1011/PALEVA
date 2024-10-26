@@ -11,13 +11,15 @@ describe 'Usuário edita uma bebida' do
     login_as user
     visit root_path
     click_on 'Bebidas'
+    click_on 'Suco de Laranja'
     click_on 'Editar'
     fill_in 'Descrição', with: 'Feito com Tang de Laranja'
     fill_in 'Calorias', with: '400'
     attach_file 'Foto da bebida', Rails.root.join('spec', 'fixtures', 'suco de laranja.jpg')
     click_on 'Salvar'
 
-    expect(current_path).to eq(establishment_beverages_path(establishment.id))
+
+    expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Descrição: Feito com Tang de Laranja')
     expect(page).to have_content('Calorias: 400')
   end

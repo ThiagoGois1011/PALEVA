@@ -7,4 +7,4 @@ pt-BR:
         name: 'Nome'
         description: 'Descrição'
         calorie: 'Calorias'
-        dish_picture: 'Foto do prato'
+        picture: 'Foto do prato'

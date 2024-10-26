@@ -1,15 +1,9 @@
-<%= link_to t(:register_dish), new_establishment_dish_path%>
+<%= link_to t(:register_dish), new_establishment_dish_path %>
 
 <% @dishes.each do |dish| %>
     <div>
-        <%= image_tag(url_for(dish.dish_picture), alt: 'Foto do prato', width: 200, height: 200) if dish.dish_picture.attached?%>
-        <p><%= t('activerecord.attributes.dish.name')%>: <%= dish.name%> </p>
-        <p><%= t('activerecord.attributes.dish.description')%>: <%= dish.description%> </p>
-        <p><%= t('activerecord.attributes.dish.calorie')%>: <%= dish.calorie%> </p>
-
-        <div>
-            <%= link_to t(:edit), edit_establishment_dish_path(establishment_id: dish.establishment.id, id: dish.id)%>
-            <%= button_to t(:delete), establishment_dish_path(establishment_id: dish.establishment.id, id: dish.id), method: :delete %>
-        </div>
+        <%= image_tag(url_for(dish.picture), alt: 'Foto do prato', width: 200, height: 200) if dish.picture.attached? %>
+        <p><%= t('activerecord.attributes.dish.name')%>: <%= link_to dish.name, establishment_dish_path(establishment_id: dish.establishment.id, id: dish.id) %> </p>
+        <p><%= t('activerecord.attributes.dish.description')%>: <%= dish.description %> </p>
     </div>
 <% end %>
