@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Usuário vê os seus pratos' do
-  it 'e não vê o dos outros estabelecimento' do
+describe 'Usuário vê o seu estabelecimento' do
+  it 'e não vê outros' do
     user_1 = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
-    establishment_1 = Establishment.create!(corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
+    establishment_1 = Establishment.create!(corporate_name: 'Distribuidora Mc lanches', brand_name: 'Mc lanches', 
                                           restration_number: CNPJ.generate, full_address: 'Av Presindete Cabral', 
-                                          phone_number: '11981545874', email: 'contato@ifood.com', user: user_1)
+                                          phone_number: '11981545874', email: 'contato@mclanches.com', user: user_1)
     7.times do |day| 
       OpeningHour.create!(establishment: establishment_1, open_hour: '08:00', 
                           close_hour: '18:00', day_of_week: day)               
@@ -18,13 +18,13 @@ describe 'Usuário vê os seus pratos' do
       OpeningHour.create!(establishment: establishment_2, open_hour: '08:00', 
                           close_hour: '18:00', day_of_week: day)               
     end
-    Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment_1)
-    Dish.create!(name: 'Espaguete', description: 'Macarrão com muito molho', establishment: establishment_2)
 
     login_as user_1
-    visit establishment_dishes_path(establishment_2.id)
+    visit establishment_path(establishment_2.id)
 
     expect(page).to have_content('Você não tem permissão de ver essa página')
+    expect(page).not_to have_content('Ifood')
+    expect(page).not_to have_content('vendas@ifood.com')
     expect(current_path).to eq(establishment_path(establishment_1))
   end
 end

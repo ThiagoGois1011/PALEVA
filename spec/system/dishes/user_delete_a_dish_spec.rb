@@ -6,6 +6,10 @@ describe 'Usuário deleta um prato' do
     establishment = Establishment.create!(corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
                                           restration_number: CNPJ.generate, full_address: 'Av Presindete Cabral', 
                                           phone_number: '11981545874', email: 'contato@ifood.com', user: user)
+    7.times do |day| 
+      OpeningHour.create!(establishment: establishment, open_hour: '08:00', 
+                          close_hour: '18:00', day_of_week: day)               
+    end
     Dish.create!(name: 'Miojo', description: 'Da Nissin', calorie: 400, establishment: establishment)
 
     login_as user

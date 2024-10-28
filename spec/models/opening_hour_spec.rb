@@ -9,7 +9,7 @@ RSpec.describe OpeningHour, type: :model do
                             code: '45668', user_id: user.id)
       7.times do |day| 
         OpeningHour.create!(establishment: e, open_hour: '08:00', 
-                            close_hour: '18:00', day_of_week: :monday)               
+                            close_hour: '18:00', day_of_week: day)               
       end
 
       result = OpeningHour.closed?(:monday, '06:00')
@@ -24,7 +24,7 @@ RSpec.describe OpeningHour, type: :model do
                             code: '45668', user_id: user.id)
       7.times do |day| 
         OpeningHour.create!(establishment: e, open_hour: '08:00', 
-                            close_hour: '18:00', day_of_week: :monday)               
+                            close_hour: '18:00', day_of_week: day)               
       end
 
       result = OpeningHour.closed?(:monday, '19:00')
@@ -39,7 +39,7 @@ RSpec.describe OpeningHour, type: :model do
                             code: '45668', user_id: user.id)
       7.times do |day| 
         OpeningHour.create!(establishment: e, open_hour: '08:00', 
-                            close_hour: '18:00', day_of_week: :monday)               
+                            close_hour: '18:00', day_of_week: day)               
       end
 
       result = OpeningHour.closed?(:monday, '08:00')
@@ -54,7 +54,7 @@ RSpec.describe OpeningHour, type: :model do
                             code: '45668', user_id: user.id)
       7.times do |day| 
         OpeningHour.create!(establishment: e, open_hour: '08:00', 
-                            close_hour: '18:00', day_of_week: :monday)               
+                            close_hour: '18:00', day_of_week: day)               
       end
 
       result = OpeningHour.closed?(:monday, '16:00')

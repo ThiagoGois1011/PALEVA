@@ -1,7 +1,8 @@
 class EstablishmentController < ApplicationController
-  before_action :check_if_exist_establishment, only: [:new]
-  skip_before_action :check_if_establishment_is_nil, only: [:new, :create]
-  
+  before_action :check_if_exist_establishment, only: [:new, :create]
+  skip_before_action :check_if_establishment_or_opening_hour_is_nil, only: [:new, :create]
+  before_action :check_current_user, only: [:show]
+
   def new
     @establishment = Establishment.new
   end
@@ -10,13 +11,12 @@ class EstablishmentController < ApplicationController
     establishment_params = params.require(:establishment).permit(:corporate_name, :brand_name, :restration_number,
                                                                  :full_address, :phone_number, :email)
     @establishment = Establishment.new(establishment_params)
-    @establishment.code = '125478'
     @establishment.user_id = current_user.id
 
     if @establishment.save
-      redirect_to @establishment, notice: 'Restaurante cadastrado com sucesso.'
+      redirect_to new_establishment_opening_hour_path(@establishment.id), notice: 'Estabelecimento cadastrado com sucesso.'
     else
-      flash[:notice] = 'Algo ocorreu'
+      flash[:notice] = 'Não foi cadastrar o estabelecimento.'
       render :new
     end
   end
@@ -35,6 +35,10 @@ class EstablishmentController < ApplicationController
   private 
 
   def check_if_exist_establishment
-    redirect_to current_user.establishment, notice: 'Cada usuário só pode ter um estabelecimento cadastrado' unless current_user.establishment.nil?
+    redirect_to current_user.establishment, notice: 'Cada usuário só pode ter um estabelecimento cadastrado.' unless current_user.establishment.nil?
+  end
+
+  def check_current_user
+    redirect_to establishment_path(current_user.establishment.id), notice: 'Você não tem permissão de ver essa página.' if Integer(params[:id]) != current_user.establishment.id
   end
 end

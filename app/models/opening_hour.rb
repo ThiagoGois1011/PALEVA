@@ -2,6 +2,11 @@ class OpeningHour < ApplicationRecord
   belongs_to :establishment
   enum :day_of_week, {monday: 0, tuesday: 1, wednesday: 2, thursday: 3, friday: 4, saturday: 5, sunday: 6}
 
+  
+  def translated_status
+    I18n.t("activerecord.attributes.opening_hour.day_of_week.#{day_of_week}")
+  end
+
   def self.closed?(day, hour)
     horario_do_dia = OpeningHour.find_by(day_of_week: day) 
     horario_de_abertura = horario_do_dia.open_hour.strftime("%H:%M")

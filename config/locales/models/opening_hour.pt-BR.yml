@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      opening_hour: Horário de Funcionamento
+    attributes:
+      opening_hour:
+        day_of_week:
+          monday: 'Segunda'
+          tuesday: 'Terça'
+          wednesday: 'Quarta'
+          thursday: 'Quinta'
+          friday: 'Sexta'
+          saturday: 'Sabado'
+          sunday: 'Domingo'
+

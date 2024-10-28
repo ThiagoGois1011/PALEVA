@@ -2,6 +2,7 @@ class Establishment < ApplicationRecord
   belongs_to :user
   validates :corporate_name, :brand_name, :restration_number,
   :full_address, :phone_number, :email, :code, :user_id, presence: true
+  validates :email, :phone_number, :restration_number, uniqueness: true
   validate :valida_telefone, :valida_cnpj, :valida_email
   before_validation :generate_code, on: :create
   has_many :opening_hours

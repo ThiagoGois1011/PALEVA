@@ -1,5 +1,17 @@
 <h1> <%= t(:register_establishment)%> </h1>
 
+
+<% if @establishment.errors.any? %>
+<p>Verifique os erros abaixo:</p>
+
+<ul>
+    <% @establishment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+</ul>
+
+<% end %>
+
 <%= form_with model: @establishment, url: establishment_index_path do |f| %>
     <div>
         <%= f.label :corporate_name %>

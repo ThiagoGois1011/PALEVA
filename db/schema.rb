@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_25_235546) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_28_135717) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,16 +61,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_235546) do
   end
 
   create_table "establishments", force: :cascade do |t|
-    t.string "corporate_name"
-    t.string "brand_name"
-    t.string "restration_number"
-    t.string "full_address"
-    t.string "phone_number"
-    t.string "email"
-    t.string "code"
+    t.string "corporate_name", null: false
+    t.string "brand_name", null: false
+    t.string "restration_number", null: false
+    t.string "full_address", null: false
+    t.string "phone_number", null: false
+    t.string "email", null: false
+    t.string "code", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email", "phone_number", "restration_number", "code"], name: "idx_on_email_phone_number_restration_number_code_7039483612", unique: true
+    t.index ["email"], name: "index_establishments_on_email", unique: true
+    t.index ["phone_number"], name: "index_establishments_on_phone_number", unique: true
+    t.index ["restration_number"], name: "index_establishments_on_restration_number", unique: true
     t.index ["user_id"], name: "index_establishments_on_user_id"
   end
 
@@ -78,7 +82,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_235546) do
     t.integer "establishment_id", null: false
     t.time "open_hour"
     t.time "close_hour"
-    t.integer "day_of_week"
+    t.integer "day_of_week", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["establishment_id"], name: "index_opening_hours_on_establishment_id"
@@ -90,11 +94,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_235546) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.string "last_name"
-    t.string "cpf"
+    t.string "name", null: false
+    t.string "last_name", null: false
+    t.string "cpf", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cpf"], name: "index_users_on_cpf", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
