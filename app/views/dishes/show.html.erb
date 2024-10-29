@@ -1,4 +1,9 @@
 <div>
+    <div>
+        <%= link_to t(:edit), edit_establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id) %>
+        <%= button_to t(:delete), establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id), method: :delete %>
+    </div>
+
     <%= image_tag(url_for(@dish.picture), alt: 'Foto do prato', width: 200, height: 200) if @dish.picture.attached? %>
     <p><%= @dish.translated_name %>: <%= @dish.name %></p>
     <p><%= @dish.translated_description %>: <%= @dish.description %></p>
@@ -13,8 +18,28 @@
         <% end %>
     </div>
 
-    <div>
-        <%= link_to t(:edit), edit_establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id) %>
-        <%= button_to t(:delete), establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id), method: :delete %>
-    </div>
 </div>
+
+<section>
+    <div>
+        <h3><%= t(:portions) %></h3>
+        <%= link_to t(:register_portion), new_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id )%>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th><%= t(:description) %></th>
+                <th><%= t(:price) %></th>
+                <th><%= t(:historical) %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @portions.each do |p| %>
+                <tr>
+                    <td><%= p.description %></p>
+                    <td><%= format("%.2f", p.price) %></p>
+                </tr>
+            <% end %>
+        </tbody>
+    <table>
+</section>

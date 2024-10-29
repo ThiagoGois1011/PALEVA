@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :opening_hours, only: [:new, :create]
     resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
+      resources :portions, only: [:create, :new]
     end
     resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member

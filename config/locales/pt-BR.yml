@@ -19,3 +19,8 @@ pt-BR:
   home_banner_p: 'Aqui você pode cadastrar o seu estabelecimento e gerir seus produtos, trazendo uma melhor organização para o seu negócio.'
   register_opening_hour: 'Cadastrar Horário de Funcionamento'
   status: 'Status'
+  register_portion: 'Cadastrar uma porção'
+  portions: 'Porções'
+  description: 'Descrição'
+  price: 'Preço'
+  historical: 'historical'

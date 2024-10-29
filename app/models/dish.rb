@@ -2,6 +2,7 @@ class Dish < ApplicationRecord
   has_one_attached :picture
   validates :name, :description, presence: true
   belongs_to :establishment
+  has_many :portions, as: :portionable
   enum :status, {disabled: 0, active: 2}
 
   def translated_status

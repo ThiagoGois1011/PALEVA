@@ -37,6 +37,7 @@ class DishesController < ApplicationController
 
   def show
     @dish = current_user.establishment.dishes.find(params[:id])
+    @portions = @dish.portions
   end
 
   def status
