@@ -3,7 +3,8 @@
 <% @beverages.each do |beverage| %>
     <div>
         <%= image_tag(url_for(beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if beverage.picture.attached? %>
-        <p><%= t('activerecord.attributes.beverage.name')%>: <%= link_to beverage.name, establishment_beverage_path(establishment_id: beverage.establishment.id, id: beverage.id) %> </p>
-        <p><%= t('activerecord.attributes.beverage.description')%>: <%= beverage.description %> </p>
+        <p><%= beverage.translated_name %>: <%= link_to beverage.name, establishment_beverage_path(establishment_id: beverage.establishment.id, id: beverage.id) %></p>
+        <p><%= beverage.translated_description %>: <%= beverage.description %></p>
+        <p><%= t(:status) %>: <%= beverage.translated_status %></p>
     </div>
 <% end %>

@@ -39,6 +39,18 @@ class BeveragesController < ApplicationController
     @beverage = current_user.establishment.beverages.find(params[:id])
   end
 
+  def status
+    beverage = Beverage.find(params[:id])
+
+    if beverage.active?
+      beverage.disabled!
+    else
+      beverage.active!
+    end
+
+    redirect_to establishment_beverage_path(establishment_id: params[:establishment_id], id: params[:id])
+  end
+
   private
 
   def check_current_user
