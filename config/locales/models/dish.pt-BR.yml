@@ -8,3 +8,6 @@ pt-BR:
         description: 'Descrição'
         calorie: 'Calorias'
         picture: 'Foto do prato'
+        status:
+          active: 'Ativo'
+          disabled: 'Desativado'

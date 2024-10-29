@@ -1,4 +1,4 @@
-class EstablishmentController < ApplicationController
+class EstablishmentsController < ApplicationController
   before_action :check_if_exist_establishment, only: [:new, :create]
   skip_before_action :check_if_establishment_or_opening_hour_is_nil, only: [:new, :create]
   before_action :check_current_user, only: [:show]

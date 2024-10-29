@@ -23,7 +23,8 @@ describe 'Usuário cadastra um prato' do
     click_on "Cadastrar Prato"
 
     expect(page).to have_content('Prato cadastrado com sucesso.')
-    expect(page).to have_content('Miojo')
-    expect(page).to have_content('Feito da marca Nissin')
+    expect(page).to have_content('Nome: Miojo')
+    expect(page).to have_content('Descrição: Feito da marca Nissin')
+    expect(page).to have_content('Status: Ativo')
   end
 end

@@ -1,8 +1,17 @@
 <div>
     <%= image_tag(url_for(@dish.picture), alt: 'Foto do prato', width: 200, height: 200) if @dish.picture.attached? %>
-    <p><%= t('activerecord.attributes.dish.name')%>: <%= @dish.name %> </p>
-    <p><%= t('activerecord.attributes.dish.description')%>: <%= @dish.description %> </p>
-    <p><%= t('activerecord.attributes.dish.calorie')%>: <%= @dish.calorie %> </p>
+    <p><%= @dish.translated_name %>: <%= @dish.name %> </p>
+    <p><%= @dish.translated_description %>: <%= @dish.description %> </p>
+    <p><%= @dish.translated_calorie %>: <%= @dish.calorie %> </p>
+    <div>
+        <p><%= t(:status) %>: <%= @dish.translated_status %> </p>
+
+        <% if @dish.active?%>
+            <%= button_to 'Desativar', status_establishment_dish_path(@dish.establishment.id, @dish.id) %>
+        <% else %>
+            <%= button_to 'Ativar', status_establishment_dish_path(@dish.establishment.id, @dish.id) %>
+        <% end %>
+    </div>
 
     <div>
         <%= link_to t(:edit), edit_establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id) %>

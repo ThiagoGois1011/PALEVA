@@ -8,3 +8,6 @@ pt-BR:
         description: 'Descrição'
         calorie: 'Calorias'
         picture: 'Foto da bebida'
+        status:
+          active: 'Ativo'
+          disabled: 'Desativado'

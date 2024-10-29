@@ -8,7 +8,7 @@ describe 'Usuário tenta enviar uma requisição para o controller do estabeleci
                                           phone_number: '11981545274', email: 'vendas@mclanches.com', user: user)
 
     login_as user
-    post(establishment_index_path, params: {establishment: {corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
+    post(establishments_path, params: {establishment: {corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
                                             restration_number: CNPJ.generate, full_address: 'Av Presindete Cabral', 
                                             phone_number: '11981545874', email: 'contato@ifood.com'}})
 

@@ -39,6 +39,18 @@ class DishesController < ApplicationController
     @dish = current_user.establishment.dishes.find(params[:id])
   end
 
+  def status
+    dish = Dish.find(params[:id])
+
+    if dish.active?
+      dish.disabled!
+    else
+      dish.active!
+    end
+
+    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: params[:id])
+  end
+
   private
 
   def check_current_user
