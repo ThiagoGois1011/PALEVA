@@ -1,0 +1,7 @@
+<%= form_with model: [@establishment, @dish, @portion] do |f| %>
+    <div>
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+    </div>
+    <%= f.submit t(:save)%>
+<% end %>

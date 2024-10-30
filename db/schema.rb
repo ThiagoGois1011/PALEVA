@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_191902) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_141823) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -80,6 +80,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_191902) do
     t.index ["user_id"], name: "index_establishments_on_user_id"
   end
 
+  create_table "historicals", force: :cascade do |t|
+    t.datetime "date_of_change", null: false
+    t.decimal "price", precision: 15, scale: 2, null: false
+    t.integer "portion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portion_id"], name: "index_historicals_on_portion_id"
+  end
+
   create_table "opening_hours", force: :cascade do |t|
     t.integer "establishment_id", null: false
     t.time "open_hour"
@@ -121,5 +130,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_191902) do
   add_foreign_key "beverages", "establishments"
   add_foreign_key "dishes", "establishments"
   add_foreign_key "establishments", "users"
+  add_foreign_key "historicals", "portions"
   add_foreign_key "opening_hours", "establishments"
 end

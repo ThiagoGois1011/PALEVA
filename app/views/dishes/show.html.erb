@@ -23,23 +23,28 @@
 <section>
     <div>
         <h3><%= t(:portions) %></h3>
-        <%= link_to t(:register_portion), new_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id )%>
+        <%= link_to t(:register_portion), new_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id) %>
     </div>
-    <table>
+    <table class="hitorical_table">
         <thead>
             <tr>
                 <th><%= t(:description) %></th>
                 <th><%= t(:price) %></th>
-                <th><%= t(:historical) %></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <% @portions.each do |p| %>
                 <tr>
-                    <td><%= p.description %></p>
-                    <td><%= format("%.2f", p.price) %></p>
+                    <td><%= p.description %></td>
+                    <td><%= format("%.2f", p.price) %></td>
+                    <td><%= link_to t(:edit),  edit_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id) %></td>
+                    <% if p.historicals.any?%>
+                        <td><%= link_to t(:view_historical),  establishment_dish_portion_historicals_path(establishment_id: @dish.establishment.id, dish_id: @dish.id, portion_id: p.id)%></td>
+                    <% end %>
                 </tr>
             <% end %>
         </tbody>
-    <table>
+    </table>
 </section>

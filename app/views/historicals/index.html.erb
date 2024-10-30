@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th><%= t(:date_of_change)%></th>
+            <th><%= t(:price)%></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @historicals.each do |historical| %>
+            <tr>
+                <td><%= l(historical.date_of_change) %></td>
+                <td><%= format("%.2f", historical.price) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

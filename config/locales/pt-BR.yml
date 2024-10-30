@@ -23,4 +23,6 @@ pt-BR:
   portions: 'Porções'
   description: 'Descrição'
   price: 'Preço'
-  historical: 'historical'
+  historical: 'Histórico'
+  view_historical: 'Ver Histórico'
+  date_of_change: 'Data da Alteração'
