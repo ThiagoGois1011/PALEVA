@@ -37,6 +37,7 @@ class BeveragesController < ApplicationController
 
   def show
     @beverage = current_user.establishment.beverages.find(params[:id])
+    @portions = @beverage.portions
   end
 
   def status

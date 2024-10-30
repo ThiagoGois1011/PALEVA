@@ -1,4 +1,9 @@
 <div>
+    <div>
+        <%= link_to t(:edit), edit_establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id) %>
+        <%= button_to t(:delete), establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id), method: :delete %>
+    </div>
+
     <%= image_tag(url_for(@beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if @beverage.picture.attached? %>
     <p><%= @beverage.translated_name %>: <%= @beverage.name %></p>
     <p><%= @beverage.translated_description %>: <%= @beverage.description %></p>
@@ -14,8 +19,33 @@
         <% end %>
     </div>
 
-    <div>
-        <%= link_to t(:edit), edit_establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id) %>
-        <%= button_to t(:delete), establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id), method: :delete %>
-    </div>
 </div>
+
+<section>
+    <div>
+        <h3><%= t(:portions) %></h3>
+        <%= link_to t(:register_portion), new_establishment_beverage_portion_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id) %>
+    </div>
+    <table class="hitorical_table">
+        <thead>
+            <tr>
+                <th><%= t(:description) %></th>
+                <th><%= t(:price) %></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @portions.each do |p| %>
+                <tr>
+                    <td><%= p.description %></td>
+                    <td><%= format("%.2f", p.price) %></td>
+                    <td><%= link_to t(:edit),  edit_establishment_beverage_portion_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id) %></td>
+                    <% if p.historicals.any?%>
+                        <td><%= link_to t(:view_historical),  establishment_beverage_portion_historicals_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id, portion_id: p.id)%></td>
+                    <% end %>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</section>

@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     end
     resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
+      resources :portions, only: [:create, :new, :edit, :update] do
+        resources :historicals, only: [:index]
+      end
     end
   end
   

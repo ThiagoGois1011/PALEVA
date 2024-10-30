@@ -1,18 +1,31 @@
 class PortionsController < ApplicationController
   def new
     @establishment = Establishment.find(params[:establishment_id])
-    @dish = Dish.find(params[:dish_id])
+    if params[:dish_id].present?
+      @product = Dish.find(params[:dish_id])
+    else params[:beverage_id].present?
+      @product = Beverage.find(params[:beverage_id])
+    end
+    
     @portion = Portion.new
   end
 
   def create
     @establishment = Establishment.find(params[:establishment_id])
-    @dish = Dish.find(params[:dish_id])
+    path_for_redirect = ''
+    if params[:dish_id].present?
+      @product = Dish.find(params[:dish_id])
+      path_for_redirect = establishment_dish_path(establishment_id: params[:establishment_id], id: params[:dish_id])
+    else params[:beverage_id].present?
+      @product = Beverage.find(params[:beverage_id])
+      path_for_redirect = establishment_beverage_path(establishment_id: params[:establishment_id], id: params[:beverage_id])
+    end
     portion_params = params.require(:portion).permit(:description, :price)
-    @portion = @dish.portions.new(portion_params)
+    @portion = @product.portions.new(portion_params)
     @portion.save!
 
-    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: params[:dish_id])
+    
+    redirect_to path_for_redirect
   end
 
   def edit
