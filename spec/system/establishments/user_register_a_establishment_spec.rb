@@ -35,7 +35,7 @@ describe 'Usuário cadastra um estabelecimento' do
     fill_in 'Endereço', with: ''
     click_on 'Cadastrar Estabelecimento'
     
-    expect(page).to have_content('Não foi cadastrar o estabelecimento.')
+    expect(page).to have_content('O estabelecimento não foi cadastrado.')
     expect(page).to have_content('Nome Fantasia não pode ficar em branco')
     expect(page).to have_content('Razão Social não pode ficar em branco')
     expect(page).to have_content('CNPJ não pode ficar em branco')
@@ -57,7 +57,7 @@ describe 'Usuário cadastra um estabelecimento' do
     fill_in 'Email', with: 'contato@ifood.com'
     click_on 'Cadastrar Estabelecimento'
     
-    expect(page).to have_content('Não foi cadastrar o estabelecimento.')
+    expect(page).to have_content('O estabelecimento não foi cadastrado.')
     expect(page).to have_content('CNPJ já está em uso')
     expect(page).to have_content('Telefone já está em uso')
     expect(page).to have_content('Email já está em uso')

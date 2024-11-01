@@ -12,7 +12,9 @@ class Establishment < ApplicationRecord
   private 
 
   def valida_telefone
-    errors.add(:phone_number, 'é muito curto') unless phone_number.length == 10 || phone_number.length == 11
+    errors.add(:phone_number, 'é muito curto') if phone_number.length < 10 
+    errors.add(:phone_number, 'é muito longo') if phone_number.length > 11
+    errors.add(:phone_number, 'deve ter somente números') unless phone_number.match?(/\A\d+\z/)
   end
 
   def valida_cnpj
@@ -21,7 +23,7 @@ class Establishment < ApplicationRecord
 
   def valida_email
     regra = /\A[^@\s]+@[^@\s]+\.[a-z]{2,}\z/
-    errors.add(:restration_number, 'inválido') unless regra.match(email)
+    errors.add(:email, 'inválido') unless regra.match(email)
   end
 
   def generate_code

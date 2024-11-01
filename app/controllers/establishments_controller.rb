@@ -16,7 +16,7 @@ class EstablishmentsController < ApplicationController
     if @establishment.save
       redirect_to new_establishment_opening_hour_path(@establishment.id), notice: 'Estabelecimento cadastrado com sucesso.'
     else
-      flash[:notice] = 'Não foi cadastrar o estabelecimento.'
+      flash[:notice] = 'O estabelecimento não foi cadastrado.'
       render :new
     end
   end
