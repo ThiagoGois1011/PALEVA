@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     resources :opening_hours, only: [:new, :create]
     resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
+      get 'filter', on: :collection
       resources :portions, only: [:create, :new, :edit, :update] do
         resources :historicals, only: [:index]
       end
     end
+    resources :markers, only: [:create, :new]
     resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
       resources :portions, only: [:create, :new, :edit, :update] do

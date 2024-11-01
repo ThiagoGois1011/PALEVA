@@ -3,10 +3,16 @@ class DishesController < ApplicationController
 
   def index
     @dishes = Establishment.find(params[:establishment_id]).dishes
+    @markers = Marker.all
   end
 
   def new
     @dish = Dish.new
+    @markers = Marker.all
+  end
+
+  def filter
+    @dishes = Establishment.find(params[:establishment_id]).dishes.where(marker_id: params[:marker])
     @markers = Marker.all
   end
 

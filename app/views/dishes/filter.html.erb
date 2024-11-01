@@ -1,6 +1,3 @@
-<%= link_to t(:register_dish), new_establishment_dish_path %>
-<%= link_to t(:register_marker), new_establishment_marker_path %>
-
 <%= form_with url: filter_establishment_dishes_path, method: :get do |f| %>
     <div>
         <%= f.label :marker, t(:filter_by_marker) %>

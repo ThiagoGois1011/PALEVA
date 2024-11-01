@@ -1,0 +1,7 @@
+<%= form_with model: [@establishment, @marker] do |f| %>
+    <div>
+        <%= f.label :description, t(:description) %>
+        <%= f.text_field :description %>
+    </div>
+    <%= f.submit t(:save) %>
+<% end %>
