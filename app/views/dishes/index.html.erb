@@ -6,5 +6,8 @@
         <p><%= dish.translated_name %>: <%= link_to dish.name, establishment_dish_path(establishment_id: dish.establishment.id, id: dish.id) %></p>
         <p><%= dish.translated_description %>: <%= dish.description %></p>
         <p><%= t(:status) %>: <%= dish.translated_status %></p>
+        <% if !dish.marker.nil? %>
+            <p><%= dish.marker.description %></p>
+        <% end %>
     </div>
 <% end %>

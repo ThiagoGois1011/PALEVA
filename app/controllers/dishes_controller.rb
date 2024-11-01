@@ -7,6 +7,7 @@ class DishesController < ApplicationController
 
   def new
     @dish = Dish.new
+    @markers = Marker.all
   end
 
   def create
@@ -15,17 +16,35 @@ class DishesController < ApplicationController
     @dish = Dish.new(dish_params)
     @dish.establishment = Establishment.find(params[:establishment_id])
 
+    value_select = params[:dish][:marker_select]
+    create_value = params[:dish][:marker_create]
+    
+    if create_value.empty?
+      @dish.marker_id = value_select
+    else
+      @dish.marker = Marker.create!(description: create_value)
+    end
+
     @dish.save!
     redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id ), notice: 'Prato cadastrado com sucesso.'
   end
 
   def edit
     @dish = Establishment.find(params[:establishment_id]).dishes.find(params[:id])
+    @markers = Marker.all
   end
 
   def update
     dish_params = params.require(:dish).permit(:name, :description, :calorie, :picture)
     @dish = Dish.find(params[:id])
+    value_select = params[:dish][:marker_select]
+    create_value = params[:dish][:marker_create]
+    
+    if create_value.empty?
+      dish_params[:marker_id] = value_select
+    else
+      dish_params[:marker] = Marker.create!(description: create_value)
+    end
     @dish.update(dish_params)
     redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id )
   end

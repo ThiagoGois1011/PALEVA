@@ -15,6 +15,16 @@
         <%= f.label :picture %>
         <%= f.file_field :picture %>
     </div>
+    <div>
+        <%= f.label :marker_select, t(:marker) %>
+        <%= f.collection_select :marker_select, @markers, :id, :description %>
+    </div> 
+    <div>
+        <%= f.label :marker_create, t(:create_marker) %>
+        <%= f.text_field :marker_create%>
+        <p>Caso não for criar, deixe em branco</p>
+    </div>   
+
 
     <%= f.submit t(:register_dish) %>
 <% end %>

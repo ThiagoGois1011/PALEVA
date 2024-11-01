@@ -8,6 +8,9 @@
     <p><%= @dish.translated_name %>: <%= @dish.name %></p>
     <p><%= @dish.translated_description %>: <%= @dish.description %></p>
     <p><%= @dish.translated_calorie %>: <%= @dish.calorie %></p>
+    <% if !@dish.marker.nil? %>
+            <p><%= @dish.marker.description %></p>
+    <% end %>
     <div>
         <p><%= t(:status) %>: <%= @dish.translated_status %></p>
 
