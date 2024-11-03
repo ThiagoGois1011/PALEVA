@@ -8,27 +8,44 @@ class OpeningHoursController < ApplicationController
 
   def create
     establishment = Establishment.find(params[:establishment_id])
-    5.times do |day| 
+
+    if params[:check_separate_days] == '0'
+      days_of_week = {business_day: params.require(:opening_hour).require(:business_day).permit(:open_hour, :close_hour, :closed)}
+      days_of_week[:saturday] = params.require(:opening_hour).require(:saturday).permit(:open_hour, :close_hour, :closed)
+      days_of_week[:sunday] = params.require(:opening_hour).require(:sunday).permit(:open_hour, :close_hour, :closed)
       
-      OpeningHour.create!(establishment: establishment, open_hour: params[:opening_business_hour], 
-                          close_hour: params[:closing_business_hour], day_of_week: day)               
-    end
-
-    if params[:closed_on_saturday] != '0'
-      OpeningHour.create!(establishment: establishment, day_of_week: :saturday)
-    else params[:closed_on_saturday] 
-      OpeningHour.create!(establishment: establishment, open_hour: params[:saturday_opening_time], 
-                          close_hour: params[:saturday_closing_time], day_of_week: :saturday)
-    end
-
-    if params[:closed_on_sunday] != '0'
-      OpeningHour.create!(establishment: establishment, day_of_week: :sunday)
-    else params[:closed_on_sunday]
-      OpeningHour.create!(establishment: establishment, open_hour: params[:sunday_opening_time], 
-                          close_hour: params[:sunday_closing_time], day_of_week: :sunday)
+      days_of_week.each do |chave, valor|
+        if chave == :business_day
+          5.times do |day|
+            if valor[:closed] == '0'
+              OpeningHour.create!(establishment: establishment, open_hour: valor[:open_hour], close_hour: valor[:close_hour], day_of_week: day)
+            elsif valor[:closed] == '1'
+              OpeningHour.create!(establishment: establishment, day_of_week: day)
+            end
+          end
+        else
+          if valor[:closed] == '0'
+            OpeningHour.create!(establishment: establishment, open_hour: valor[:open_hour], close_hour: valor[:close_hour], day_of_week: chave.to_sym)
+          elsif valor[:closed] == '1'
+            OpeningHour.create!(establishment: establishment, day_of_week: chave.to_sym)
+          end
+        end
+      end
+    elsif params[:check_separate_days] == '1'
+      days_of_week = params.require(:opening_hour).require(:separate_days)
+      days_of_week[:saturday] = params.require(:opening_hour).require(:saturday).permit(:open_hour, :close_hour, :closed)
+      days_of_week[:sunday] = params.require(:opening_hour).require(:sunday).permit(:open_hour, :close_hour, :closed)
+      
+      days_of_week.each do |chave, valor|
+        
+        if valor[:closed] == '0'
+          OpeningHour.create!(establishment: establishment, open_hour: valor[:open_hour], close_hour: valor[:close_hour], day_of_week: chave.to_sym)
+        elsif valor[:closed] == '1'
+          OpeningHour.create!(establishment: establishment, day_of_week: chave.to_sym)
+        end
+      end
     end
     
-
     redirect_to establishment, notice: 'Horário de abertura cadastrado com sucesso.'
   end
 

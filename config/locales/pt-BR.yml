@@ -31,3 +31,7 @@ pt-BR:
   register_marker: 'Cadastrar Marcador'
   filter_by_marker: 'Filtrar pelo marcador'
   filter: 'Filtrar'
+  business_days: 'Dias Comerciais'
+  saturday: 'Sábado'
+  sunday: 'Domingo'
+  config_separate_days: 'Configurar os dias separadamente'

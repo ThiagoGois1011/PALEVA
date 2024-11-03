@@ -1,10 +1,11 @@
 class OpeningHour < ApplicationRecord
   belongs_to :establishment
   enum :day_of_week, {monday: 0, tuesday: 1, wednesday: 2, thursday: 3, friday: 4, saturday: 5, sunday: 6}
+  validate :validate_uniqueness_of_day_of_week 
 
   
   def translated_day_of_week
-    I18n.t("activerecord.attributes.opening_hour.day_of_week.#{day_of_week}")
+    I18n.t("activerecord.attributes.opening_hour.day_of_week.#{day_of_week}.one")
   end
 
   def self.closed?(day, hour)
@@ -18,4 +19,10 @@ class OpeningHour < ApplicationRecord
 
     true
   end
+
+  private 
+
+  def validate_uniqueness_of_day_of_week
+    errors.add(:day_of_week, 'já está em uso') if Establishment.find(establishment_id).opening_hours.where(day_of_week: day_of_week).any?
+  end 
 end
