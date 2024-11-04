@@ -16,6 +16,7 @@ class OpeningHoursController < ApplicationController
       
       days_of_week.each do |chave, valor|
         if chave == :business_day
+          
           5.times do |day|
             if valor[:closed] == '0'
               OpeningHour.create!(establishment: establishment, open_hour: valor[:open_hour], close_hour: valor[:close_hour], day_of_week: day)

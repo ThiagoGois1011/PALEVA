@@ -7,7 +7,7 @@
 </div>
 <div>
     <% @establishment.opening_hours.each do |day| %>
-        <% if day.open_hour.nil? %>
+        <% if day.open_hour.nil? || day.close_hour.nil? %>
             <p><%= day.translated_day_of_week %>: <%= t(:closed) %></p>
         <% else %>
             <p><%= day.translated_day_of_week %>: <%= day.open_hour.strftime("%H:%M") %> - <%= day.close_hour.strftime("%H:%M") %></p>

@@ -2,7 +2,7 @@
 
 <%= form_with url: establishment_opening_hours_path do |f| %>
     <div class="business_days">
-        <h2> <%= t(:business_days) %> </h2>
+        <h2><%= t(:business_days) %></h2>
         <div>
             <%= f.label :opening_business_hour, t(:open_hour) %>
             <%= f.time_field :opening_business_hour, name: 'opening_hour[business_day][open_hour]' %>
@@ -22,6 +22,7 @@
     </div>
     <div class="separate_days">
         <div class="monday">
+            <h2><%= t(:monday) %></h2>
             <div>
                 <%= f.label :monday_opening_hour, t(:open_hour) %>
                 <%= f.time_field :monday_opening_hour, name: 'opening_hour[separate_days][monday][open_hour]' %>
@@ -36,6 +37,7 @@
             </div>
         </div>
         <div class="tuesday">
+            <h2><%= t(:tuesday) %></h2>
             <div>
                 <%= f.label :tuesday_opening_hour, t(:open_hour) %>
                 <%= f.time_field :tuesday_opening_hour, name: 'opening_hour[separate_days][tuesday][open_hour]' %>
@@ -50,6 +52,7 @@
             </div>
         </div>
         <div class="wednesday">
+            <h2><%= t(:wednesday) %></h2>
             <div>
                 <%= f.label :wednesday_opening_hour, t(:open_hour) %>
                 <%= f.time_field :wednesday_opening_hour, name: 'opening_hour[separate_days][wednesday][open_hour]' %>
@@ -64,6 +67,7 @@
             </div>
         </div>
         <div class="thursday">
+            <h2><%= t(:thursday) %></h2>
             <div>
                 <%= f.label :thursday_opening_hour, t(:open_hour) %>
                 <%= f.time_field :thursday_opening_hour, name: 'opening_hour[separate_days][thursday][open_hour]' %>
@@ -78,6 +82,7 @@
             </div>
         </div>
         <div class="friday">
+            <h2><%= t(:friday) %></h2>
             <div>
                 <%= f.label :friday_opening_hour, t(:open_hour) %>
                 <%= f.time_field :friday_opening_hour, name: 'opening_hour[separate_days][friday][open_hour]' %>
@@ -94,7 +99,7 @@
     </div>
 
     <div class="saturday">
-        <h2> <%= t(:saturday) %> </h2>
+        <h2><%= t(:saturday) %></h2>
         <div>
             <%= f.label :saturday_opening_time, t(:open_hour) %>
             <%= f.time_field :saturday_opening_time, name: 'opening_hour[saturday][open_hour]' %>
@@ -111,7 +116,7 @@
     </div>
 
     <div class="sunday">
-        <h2><%= t(:sunday)%> </h2>
+        <h2><%= t(:sunday)%></h2>
         <div>
             <%= f.label :sunday_opening_time, t(:open_hour) %>
             <%= f.time_field :sunday_opening_time, name: 'opening_hour[sunday][open_hour]' %>
@@ -128,3 +133,78 @@
     </div>
     <%= f.submit t(:save) %>
 <% end %>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const checkBoxSepareteDays = document.getElementById("check_separate_days");
+        const divSeparateDays = document.querySelector(".separate_days");
+        const divBusinessDays = document.querySelector(".business_days");
+        const inputsSepareteDays = divSeparateDays.querySelectorAll("input");
+        const inputsBusinessDay = divBusinessDays.querySelectorAll("input");
+        const checkBoxFechado = document.querySelectorAll("input[type=checkbox]:not(#check_separate_days)");
+        
+        divSeparateDays.style.display = "none";
+        inputsSepareteDays.forEach(element => {
+            element.disabled = true;
+        });
+
+        checkBoxFechado.forEach(element =>{
+            const divContainer = element.parentElement.parentElement;
+            const InputsDates = divContainer.querySelectorAll("input[type=time]")
+
+            element.addEventListener('click', (event) =>{
+                if(event.target.checked){
+                    InputsDates.forEach(element => {
+                        element.disabled = true;
+                    });
+                }else{
+                    InputsDates.forEach(element => {
+                        element.disabled = false;
+                    });
+                }
+            })
+        })
+
+        checkBoxSepareteDays.addEventListener("click", () => {
+            if (checkBoxSepareteDays.checked) {
+                divSeparateDays.style.display = "block";
+                divBusinessDays.style.display = "none";
+
+                inputsSepareteDays.forEach(element => {
+                    const divContainer = element.parentElement.parentElement;
+                    const checkBox = divContainer.querySelector("input[type=checkbox]")
+                    
+                    if (checkBox.checked && element.type != 'checkbox'){
+                        element.disabled = true;
+                    }else{
+                        element.disabled = false;
+                    } 
+                });
+
+                inputsBusinessDay.forEach(element => {
+                    element.disabled = true;
+                });
+            } else {
+                divSeparateDays.style.display = "none";
+                divBusinessDays.style.display = "block";
+
+                inputsSepareteDays.forEach(element => {
+                    element.disabled = true;
+                });
+
+                inputsBusinessDay.forEach(element => {
+                    const divContainer = element.parentElement.parentElement;
+                    const checkBox = divContainer.querySelector("input[type=checkbox]")
+                    
+                    if (checkBox.checked && element.type != 'checkbox'){
+                        element.disabled = true;
+                    }else{
+                        element.disabled = false;
+                    }
+                });
+            }
+        });
+    });
+</script>
