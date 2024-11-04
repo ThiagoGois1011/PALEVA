@@ -5,11 +5,11 @@
         <h2><%= t(:business_days) %></h2>
         <div>
             <%= f.label :opening_business_hour, t(:open_hour) %>
-            <%= f.time_field :opening_business_hour, name: 'opening_hour[business_day][open_hour]' %>
+            <%= f.time_field :opening_business_hour, name: 'opening_hour[business_day][open_hour]', required: true %>
         </div>
         <div>
             <%= f.label :closing_business_hour, t(:close_hour) %>
-            <%= f.time_field :closing_business_hour, name: 'opening_hour[business_day][close_hour]' %>
+            <%= f.time_field :closing_business_hour, name: 'opening_hour[business_day][close_hour]', required: true %>
         </div>
         <div>
             <%= f.label :closed, t(:closed) %>
@@ -25,11 +25,11 @@
             <h2><%= t(:monday) %></h2>
             <div>
                 <%= f.label :monday_opening_hour, t(:open_hour) %>
-                <%= f.time_field :monday_opening_hour, name: 'opening_hour[separate_days][monday][open_hour]' %>
+                <%= f.time_field :monday_opening_hour, name: 'opening_hour[separate_days][monday][open_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :monday_closing_hour, t(:close_hour) %>
-                <%= f.time_field :monday_closing_hour, name: 'opening_hour[separate_days][monday][close_hour]' %>
+                <%= f.time_field :monday_closing_hour, name: 'opening_hour[separate_days][monday][close_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :closed_on_monday, t(:closed)%>
@@ -40,11 +40,11 @@
             <h2><%= t(:tuesday) %></h2>
             <div>
                 <%= f.label :tuesday_opening_hour, t(:open_hour) %>
-                <%= f.time_field :tuesday_opening_hour, name: 'opening_hour[separate_days][tuesday][open_hour]' %>
+                <%= f.time_field :tuesday_opening_hour, name: 'opening_hour[separate_days][tuesday][open_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :tuesday_closing_hour, t(:close_hour) %>
-                <%= f.time_field :tuesday_closing_hour, name: 'opening_hour[separate_days][tuesday][close_hour]' %>
+                <%= f.time_field :tuesday_closing_hour, name: 'opening_hour[separate_days][tuesday][close_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :closed_on_tuesday, t(:closed)%>
@@ -55,26 +55,26 @@
             <h2><%= t(:wednesday) %></h2>
             <div>
                 <%= f.label :wednesday_opening_hour, t(:open_hour) %>
-                <%= f.time_field :wednesday_opening_hour, name: 'opening_hour[separate_days][wednesday][open_hour]' %>
+                <%= f.time_field :wednesday_opening_hour, name: 'opening_hour[separate_days][wednesday][open_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :wednesday_closing_hour, t(:close_hour) %>
-                <%= f.time_field :wednesday_closing_hour, name: 'opening_hour[separate_days][wednesday][close_hour]' %>
+                <%= f.time_field :wednesday_closing_hour, name: 'opening_hour[separate_days][wednesday][close_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :closed_on_wednesday, t(:closed)%>
-                <%= f.check_box :closed_on_wednesday, name: 'opening_hour[separate_days][wednesday][closed]' %>
+                <%= f.check_box :closed_on_wednesday, name: 'opening_hour[separate_days][wednesday][closed]', required: true %>
             </div>
         </div>
         <div class="thursday">
             <h2><%= t(:thursday) %></h2>
             <div>
                 <%= f.label :thursday_opening_hour, t(:open_hour) %>
-                <%= f.time_field :thursday_opening_hour, name: 'opening_hour[separate_days][thursday][open_hour]' %>
+                <%= f.time_field :thursday_opening_hour, name: 'opening_hour[separate_days][thursday][open_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :thursday_closing_hour, t(:close_hour) %>
-                <%= f.time_field :thursday_closing_hour, name: 'opening_hour[separate_days][thursday][close_hour]' %>
+                <%= f.time_field :thursday_closing_hour, name: 'opening_hour[separate_days][thursday][close_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :closed_on_thursday, t(:closed)%>
@@ -85,11 +85,11 @@
             <h2><%= t(:friday) %></h2>
             <div>
                 <%= f.label :friday_opening_hour, t(:open_hour) %>
-                <%= f.time_field :friday_opening_hour, name: 'opening_hour[separate_days][friday][open_hour]' %>
+                <%= f.time_field :friday_opening_hour, name: 'opening_hour[separate_days][friday][open_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :friday_closing_hour, t(:close_hour) %>
-                <%= f.time_field :friday_closing_hour, name: 'opening_hour[separate_days][friday][close_hour]' %>
+                <%= f.time_field :friday_closing_hour, name: 'opening_hour[separate_days][friday][close_hour]', required: true %>
             </div>
             <div>
                 <%= f.label :closed_on_friday, t(:closed)%>
@@ -102,11 +102,11 @@
         <h2><%= t(:saturday) %></h2>
         <div>
             <%= f.label :saturday_opening_time, t(:open_hour) %>
-            <%= f.time_field :saturday_opening_time, name: 'opening_hour[saturday][open_hour]' %>
+            <%= f.time_field :saturday_opening_time, name: 'opening_hour[saturday][open_hour]', required: true %>
         </div>
         <div>
             <%= f.label :saturday_closing_time, t(:close_hour) %>
-            <%= f.time_field :saturday_closing_time, name: 'opening_hour[saturday][close_hour]' %>
+            <%= f.time_field :saturday_closing_time, name: 'opening_hour[saturday][close_hour]', required: true %>
         </div>
 
         <div>
@@ -119,11 +119,11 @@
         <h2><%= t(:sunday)%></h2>
         <div>
             <%= f.label :sunday_opening_time, t(:open_hour) %>
-            <%= f.time_field :sunday_opening_time, name: 'opening_hour[sunday][open_hour]' %>
+            <%= f.time_field :sunday_opening_time, name: 'opening_hour[sunday][open_hour]', required: true %>
         </div>
         <div>
             <%= f.label :sunday_closing_time, t(:close_hour) %>
-            <%= f.time_field :sunday_closing_time, name: 'opening_hour[sunday][close_hour]' %>
+            <%= f.time_field :sunday_closing_time, name: 'opening_hour[sunday][close_hour]', required: true %>
         </div>
 
         <div>

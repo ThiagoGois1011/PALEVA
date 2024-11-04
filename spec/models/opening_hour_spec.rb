@@ -15,6 +15,35 @@ RSpec.describe OpeningHour, type: :model do
       expect(result).to be(false)
       expect(hours.last.errors.full_messages).to include('Dia da semana já está em uso')
     end
+
+    it 'com sucesso' do
+      user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+      e = Establishment.create!(corporate_name: 'Ifood Distribuidora', brand_name: 'Ifood', restration_number: CNPJ.generate,
+                                full_address: 'Av Presidente Medice', phone_number: '11981546985', email: 'contato@ifood.com', user_id: user.id)
+      hours = []
+      7.times do |day| 
+        hours.push(OpeningHour.new(establishment: e, open_hour: '08:00', 
+                                       close_hour: '18:00', day_of_week: day))  
+      end
+      result = hours.all? {|hour| hour.valid?}
+      expect(hours.length).to eq(7)
+      expect(result).to be(true)
+    end
+
+    it 'o horário de abertura não pode ser depois do horário de fechamento' do
+      user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+      e = Establishment.create!(corporate_name: 'Ifood Distribuidora', brand_name: 'Ifood', restration_number: CNPJ.generate,
+                                full_address: 'Av Presidente Medice', phone_number: '11981546985', email: 'contato@ifood.com', user_id: user.id)
+      hours = []
+
+      7.times do |day| 
+        hours.push(OpeningHour.new(establishment: e, open_hour: '16:00', 
+                                       close_hour: '8:00', day_of_week: day))  
+      end
+      result = hours.all? {|hour| hour.valid?}
+      expect(result).to be(false)
+      expect(hours.first.errors.full_messages).to include('Horário de fechamento não pode ser antes do horário de abertura')
+    end
   end
 
   describe '#closed?' do 

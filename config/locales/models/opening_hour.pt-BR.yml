@@ -4,26 +4,28 @@ pt-BR:
       opening_hour: Horário de Funcionamento
     attributes:
       opening_hour:
+        open_hour: 'Horário de abertura'
+        close_hour: 'Horário de fechamento'
         day_of_week:
-          one: "Dia da semana"
+          one: 'Dia da semana'
           monday:
-            one: "Segunda"
-            other: "Segundas"
+            one: 'Segunda'
+            other: 'Segundas'
           tuesday:
-            one: "Terça"
-            other: "Terças"
+            one: 'Terça'
+            other: 'Terças'
           wednesday:
-            one: "Quarta"
-            other: "Quartas"
+            one: 'Quarta'
+            other: 'Quartas'
           thursday:
-            one: "Quinta"
-            other: "Quintas"
+            one: 'Quinta'
+            other: 'Quintas'
           friday:
-            one: "Sexta"
-            other: "Sextas"
+            one: 'Sexta'
+            other: 'Sextas'
           saturday:
-            one: "Sábado"
-            other: "Sábados"
+            one: 'Sábado'
+            other: 'Sábados'
           sunday:
-            one: "Domingo"
-            other: "Domingos"
+            one: 'Domingo'
+            other: 'Domingos'
