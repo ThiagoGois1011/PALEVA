@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'capybara/cuprite'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -37,6 +38,21 @@ RSpec.configure do |config|
   config.before(type: :system) do
     driven_by(:rack_test)
   end
+
+  config.before(type: :system, js: true) do
+    driven_by(:cuprite ) 
+  end
+  
+  Capybara.register_driver :cuprite do |app|
+    Capybara::Cuprite::Driver.new(app, {
+      headless: true, # Para modo headless; coloque como `false` se quiser ver o navegador.
+      window_size: [1920, 1080],
+      timeout: 10, # Ajuste o tempo limite conforme necessário
+      browser_options: { 'no-sandbox': nil }, # Configuração recomendada para ambientes WSL
+    })
+  end
+  
+  Capybara.javascript_driver = :cuprite
 
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')

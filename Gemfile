@@ -42,6 +42,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'cuprite'
 end
 
 group :development do

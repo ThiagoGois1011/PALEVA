@@ -35,3 +35,8 @@ pt-BR:
   saturday: 'Sábado'
   sunday: 'Domingo'
   config_separate_days: 'Configurar os dias separadamente'
+  menus: 'Cardápios'
+  create_new_menu: 'Criar novo cardápio'
+  create_menu: 'Criar Cardápio'
+  menu_product: 'Produtos do Cardápio'
+  add_product: 'Adicionar Produto'

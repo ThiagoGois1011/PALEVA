@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resources :establishments, only: [:new, :create, :show] do
     get 'search', on: :collection
+
     resources :opening_hours, only: [:new, :create]
+
     resources :dishes, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
       get 'filter', on: :collection
@@ -22,13 +24,17 @@ Rails.application.routes.draw do
         resources :historicals, only: [:index]
       end
     end
+
     resources :markers, only: [:create, :new]
+
     resources :beverages, only: [:index, :create, :new, :edit, :destroy, :update, :show] do
       post 'status', on: :member
       resources :portions, only: [:create, :new, :edit, :update] do
         resources :historicals, only: [:index]
       end
     end
+
+    resources :menus, only: [:index, :create, :new, :show]
   end
   
 end

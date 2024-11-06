@@ -1,0 +1,56 @@
+<%= form_with model: [@establishment, @menu] do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <h2><%= t(:menu_product) %></h2>
+        <div>
+            <button id="add_product"><%= t(:add_product) %></button>
+        </div>
+        <div id="select_container">
+        </div>
+    </div>
+
+    <%= f.submit t(:create_menu)%>
+<% end %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const addProduct = document.getElementById("add_product");
+        const selectContainer = document.getElementById("select_container");
+        let countSelects = 1;
+        const itemsData = <%= @product.to_json.html_safe %>;
+        
+        addProduct.addEventListener('click', (event)=>{
+            event.preventDefault();
+            const newSelect = document.createElement("select");
+            const pratos = document.createElement("optgroup");
+            const bebidas = document.createElement("optgroup");
+
+            pratos.label = "<%= t(:dishes) %>";
+            bebidas.label = "<%= t(:beverages) %>";
+            newSelect.id = "produto_" + countSelects;
+            newSelect.name = `menu[select_items][select_${countSelects}]`;
+            countSelects++;
+
+            itemsData.dishes.forEach(element => {
+                const option = document.createElement("option");
+                option.value = "Dish_" + element.id; 
+                option.textContent = element.name;
+                pratos.appendChild(option);
+            });
+
+            itemsData.beverages.forEach(element => {
+                const option = document.createElement("option");
+                option.value = "Beverage_" + element.id; 
+                option.textContent = element.name;
+                bebidas.appendChild(option);
+            });
+
+            newSelect.appendChild(pratos);
+            newSelect.appendChild(bebidas);
+            selectContainer.appendChild(newSelect)
+        })
+    }); 
+</script>

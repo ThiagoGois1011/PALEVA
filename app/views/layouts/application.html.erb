@@ -24,7 +24,8 @@
           <% if current_user.establishment.nil? %>
             <%= link_to t('activerecord.models.establishment'), new_establishment_path %>
           <% else %>
-            <%= link_to t('activerecord.models.establishment'), establishment_path(current_user.establishment.id) %>
+            <%= link_to t('activerecord.models.establishment'), establishment_path(current_user.establishment.id) %> |
+            <%= link_to t(:menus), establishment_menus_path(establishment_id: current_user.establishment.id) %> 
           <% end %>
           <%= form_with url: search_establishments_path, method: :get do |f| %>
           <%= f.label :search, t(:search) %>

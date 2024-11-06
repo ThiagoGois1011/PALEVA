@@ -1,0 +1,14 @@
+<h1><%= @menu.name %></h1>
+
+<div>
+    <h2><%t(:dishes)%></h2>
+    <% @menu.dishes.each do |item| %>
+        <p><%= item.name %></p>
+    <% end %>
+</div>
+<div>
+    <h2><%t(:beverages)%></h2>
+    <% @menu.beverages.each do |item| %>
+        <p><%= item.name %></p>
+    <% end %>
+</div>
