@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_establishment_or_opening_hour_is_nil
     redirect_to new_establishment_path if user_signed_in? && current_user.establishment.nil?
-    redirect_to new_establishment_opening_hour_path(current_user.establishment.id) if user_signed_in? && 
+    redirect_to new_establishment_opening_hour_path(current_user.establishment) if user_signed_in? && 
                                                                                       !current_user.establishment.nil? &&
                                                                                       current_user.establishment.opening_hours.length < 6
   end
@@ -23,11 +22,10 @@ class ApplicationController < ActionController::Base
     if resource.establishment.nil?
       new_establishment_path
     else
-      establishment_path(resource.establishment.id)
+      establishment_menus_path(resource.establishment)
     end
   end
 
-  # Redireciona após o cadastro
   def after_sign_up_path_for(resource)
     new_establishment_path
   end

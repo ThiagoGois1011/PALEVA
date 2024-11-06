@@ -2,13 +2,33 @@
 
 <div>
     <h2><%t(:dishes)%></h2>
-    <% @menu.dishes.each do |item| %>
-        <p><%= item.name %></p>
-    <% end %>
+    <dl>
+        <% @menu.dishes.active.each do |item| %>
+            <dt><%= item.name %></dt>
+            <% if item.portions.any? %>
+                <% item.portions.each do |portion| %>
+                    <dd>
+                        <p><%= t(:description) %>:<%= portion.description %></p>
+                        <p><%= t(:price) %>:<%= portion.price %></p>
+                    </dd>
+                <% end %>
+            <% else %>
+                <dd><%= t(:dont_have_portions) %></dd>
+            <% end %>
+        <% end %>
+    </dl>
 </div>
 <div>
     <h2><%t(:beverages)%></h2>
-    <% @menu.beverages.each do |item| %>
-        <p><%= item.name %></p>
-    <% end %>
+    <dl>
+        <% @menu.beverages.active.each do |item| %>
+            <dt><%= item.name %></dt>
+            <% item.portions.each do |portion| %>
+                <dd>
+                    <p><%= t(:description) %>:<%= portion.description %></p>
+                    <p><%= t(:price) %>:<%= portion.price %></p>
+                </dd>
+            <% end %>
+        <% end %>
+    </dl>
 </div>
