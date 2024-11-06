@@ -8,6 +8,7 @@ class Establishment < ApplicationRecord
   has_many :opening_hours
   has_many :dishes
   has_many :beverages
+  has_many :menus
 
   private 
 

@@ -12,14 +12,20 @@ class MenusController < ApplicationController
 
   def create
     params_menu = params[:menu]
-    @menu = Menu.create!(name: params_menu[:name])
+    @establishment = current_user.establishment
+    @menu = Menu.new(name: params_menu[:name], establishment: @establishment)
 
-    params_menu[:select_items].each do |chave, valor|
-      valor_dividido = valor.split('_')
-      @menu.menu_items.create(item_type: valor_dividido[0] , item_id: valor_dividido[1])
+    if @menu.save
+      params_menu[:select_items].each do |chave, valor|
+        valor_dividido = valor.split('_')
+        @menu.menu_items.create(item_type: valor_dividido[0] , item_id: valor_dividido[1])
+      end
+
+      redirect_to establishment_menu_path(establishment_id: current_user.establishment, id: @menu)
+    else
+      flash.now[:notice] = @menu.errors.full_messages[0]
+      render :new
     end
-
-    redirect_to establishment_menu_path(establishment_id: current_user.establishment, id: @menu)
   end
 
   def show
