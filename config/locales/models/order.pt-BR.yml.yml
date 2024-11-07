@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      order: Pedido
+    attributes:
+      order:
+        name: 'Nome'
+        cpf: 'CPF'
+        email: 'Email'
+        phone_number: 'Telefone'

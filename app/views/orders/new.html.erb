@@ -1,0 +1,22 @@
+<%= form_with model: [current_user.establishment, @order] do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :cpf %>
+        <%= f.text_field :cpf %>
+    </div>
+    <div>
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number %>
+    </div>
+    <div>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+    </div>
+    
+    <%= f.hidden_field :previous_url, value: @previous_url %>
+
+    <%= f.submit t(:create_order) %>
+<% end %>

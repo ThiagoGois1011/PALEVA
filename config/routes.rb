@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     end
 
     resources :menus, only: [:index, :create, :new, :show]
+    resources :orders, only: [:new, :create]
   end
   
 end

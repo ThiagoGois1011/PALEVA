@@ -1,3 +1,11 @@
+<% if !current_user.current_order.nil? %>
+    <p>Pedido Atual: <%= current_user.current_order.name%></p>
+<% end %>
+
+<nav>
+    <%= link_to t(:create_new_order), new_establishment_order_path(current_user.establishment) %>
+</nav>
+
 <h1><%= @menu.name %></h1>
 
 <div>

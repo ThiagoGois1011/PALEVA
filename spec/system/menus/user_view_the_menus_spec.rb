@@ -46,7 +46,6 @@ describe 'Usuário vê os cardápios' do
   
       login_as user
       visit establishment_menus_path(establishment)
-      save_page
       click_on 'Café da Manhã'
   
       expect(current_path).to eq(establishment_menu_path(establishment, menu))
@@ -68,7 +67,6 @@ describe 'Usuário vê os cardápios' do
   
       login_as user
       visit establishment_menus_path(establishment)
-      save_page
       click_on 'Café da Manhã'
   
       expect(page).to have_content(products[0].portions.first.description)
@@ -93,7 +91,6 @@ describe 'Usuário vê os cardápios' do
       
       login_as user
       visit establishment_menus_path(establishment)
-      save_page
       click_on 'Café da Manhã'
   
       expect(page).to have_content(products[0].name)

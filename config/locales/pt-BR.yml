@@ -41,3 +41,5 @@ pt-BR:
   menu_product: 'Produtos do Cardápio'
   add_product: 'Adicionar Produto'
   dont_have_portions: 'Não tem porções.'
+  create_new_order: 'Criar novo pedido'
+  create_order: 'Criar pedido'
