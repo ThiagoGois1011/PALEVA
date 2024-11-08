@@ -2,9 +2,14 @@ require 'rails_helper'
 
 describe 'Usuário registra um pedido' do
   it 'com sucesso' do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
-    products = create_dishes_and_beverages_with_portions(establishment)
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                             dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                             dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    products.concat create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                 beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                 beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
     menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
     products.each do |item|
       menu.menu_items.create(item: item)
@@ -30,9 +35,14 @@ describe 'Usuário registra um pedido' do
   end
 
   it 'com campos inválidos' do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
-    products = create_dishes_and_beverages_with_portions(establishment)
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                               dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                               dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    products.concat create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                   beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                   beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
     menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
     products.each do |item|
       menu.menu_items.create(item: item)

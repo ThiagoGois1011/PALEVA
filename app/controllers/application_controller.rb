@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name, :cpf])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name, :cpf, :type])
   end
 
   def check_if_establishment_or_opening_hour_is_nil

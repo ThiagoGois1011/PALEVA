@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário vê os cardápios' do
   it 'clicando no link para cardápio' do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
     Menu.create!(name: 'Café da Manhã', establishment: establishment)
     Menu.create!(name: 'Almoço', establishment: establishment)
 
@@ -17,8 +17,8 @@ describe 'Usuário vê os cardápios' do
   end
 
   it 'após fazer o login' do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood')
     Menu.create!(name: 'Café da Manhã', establishment: establishment)
     Menu.create!(name: 'Almoço', establishment: establishment)
 
@@ -36,14 +36,19 @@ describe 'Usuário vê os cardápios' do
 
   context 'e entra em um cardápio' do
     it 'com os pratos e bebidas sem porções' do
-      user = create_user
-      establishment = create_establishment_and_opening_hour(user)
-      products = create_dishes_and_beverages(establishment)
+      user = create_owner(name: 'Andre')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+      products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                               dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                               dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+      products.concat create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                   beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                   beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
       menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
       products.each do |item|
         menu.menu_items.create(item: item)
       end
-  
+
       login_as user
       visit establishment_menus_path(establishment)
       click_on 'Café da Manhã'
@@ -57,9 +62,14 @@ describe 'Usuário vê os cardápios' do
     end
 
     it 'com os pratos e bebidas com porções' do
-      user = create_user
-      establishment = create_establishment_and_opening_hour(user)
-      products = create_dishes_and_beverages_with_portions(establishment)
+      user = create_owner(name: 'Andre')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+      products = create_dishes_with_portions(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                                             dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                                             dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+      products.concat create_beverages_with_portions(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                   beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                   beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
       menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
       products.each do |item|
         menu.menu_items.create(item: item)
@@ -80,9 +90,14 @@ describe 'Usuário vê os cardápios' do
     end
 
     it 'e não vê os pratos desativados' do
-      user = create_user
-      establishment = create_establishment_and_opening_hour(user)
-      products = create_dishes_and_beverages(establishment)
+      user = create_owner(name: 'Andre')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+      products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                              dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                              dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+      products.concat create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                   beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                   beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
       menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
       products.each do |item|
         menu.menu_items.create(item: item)
@@ -98,5 +113,4 @@ describe 'Usuário vê os cardápios' do
       expect(page).to have_content(products[2].name)
     end
   end
-
 end

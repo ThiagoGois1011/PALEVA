@@ -18,6 +18,8 @@
     <%= f.number_field :cpf, autocomplete: "cpf" %>
   </div>
 
+  <%= f.hidden_field :type, value: 'Owner' %>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>

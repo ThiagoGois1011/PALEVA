@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra um horário de funcionamento' do
   context 'a partir da tela inicial' do
     it 'com sucesso' do
-      user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+      user = create_owner(name: 'Andre')
       cnpj = CNPJ.generate
   
       login_as user
@@ -41,7 +41,7 @@ describe 'Usuário cadastra um horário de funcionamento' do
     end
 
     it 'com horários comerciais diferentes' do
-      user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+      user = create_owner(name: 'Andre')
       cnpj = CNPJ.generate
   
       login_as user

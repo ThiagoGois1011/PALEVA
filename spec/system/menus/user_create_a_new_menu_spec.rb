@@ -2,9 +2,14 @@ require 'rails_helper'
 
 describe 'Usuário cria um menu' do
   it 'com sucesso', js: true do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
-    produtos = create_dishes_and_beverages(establishment)
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                  dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                  dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                     beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                     beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
 
     login_as user
     visit root_path
@@ -27,9 +32,14 @@ describe 'Usuário cria um menu' do
   end
 
   it 'com o campo nome vazio', js: true do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
-    produtos = create_dishes_and_beverages(establishment)
+   user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                  dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                  dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                     beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                     beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
 
     login_as user
     visit root_path
@@ -48,9 +58,14 @@ describe 'Usuário cria um menu' do
   end
 
   it 'com o campo nome duplicado', js: true do
-    user = create_user
-    establishment = create_establishment_and_opening_hour(user)
-    produtos = create_dishes_and_beverages(establishment)
+   user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                  dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                  dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                     beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                     beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
     Menu.create!(name: 'Almoço', establishment: establishment)
 
     login_as user
