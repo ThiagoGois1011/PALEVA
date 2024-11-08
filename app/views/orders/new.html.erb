@@ -1,3 +1,16 @@
+<h1><%= t(:create_order) %></h1>
+
+<% if @order.errors.any? %>
+<p>Verifique os erros abaixo:</p>
+
+<ul>
+    <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+</ul>
+
+<% end %>
+
 <%= form_with model: [current_user.establishment, @order] do |f| %>
     <div>
         <%= f.label :name %>
@@ -5,11 +18,11 @@
     </div>
     <div>
         <%= f.label :cpf %>
-        <%= f.text_field :cpf %>
+        <%= f.number_field :cpf %>
     </div>
     <div>
         <%= f.label :phone_number %>
-        <%= f.text_field :phone_number %>
+        <%= f.number_field :phone_number %>
     </div>
     <div>
         <%= f.label :email %>
