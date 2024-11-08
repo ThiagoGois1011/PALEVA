@@ -1,0 +1,11 @@
+<%= form_with model: @order_item, url: establishment_menu_order_items_path(current_user.establishment, @menu)  do |f| %>
+    <div>
+        <%= f.label :observation %>
+        <%= f.text_field :observation %>
+    </div>
+    <%= f.hidden_field :previous_url, value: @previous_url %>
+    <%= f.hidden_field :portion_id, value: @portion %>
+    <%= f.hidden_field :order_id, value: @order %>
+
+    <%= f.submit t(:add) %>
+<% end %>

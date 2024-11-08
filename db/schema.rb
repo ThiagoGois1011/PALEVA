@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_07_172314) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_08_130447) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -125,6 +125,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_172314) do
     t.index ["establishment_id"], name: "index_opening_hours_on_establishment_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "portion_id", null: false
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "observation"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["portion_id"], name: "index_order_items_on_portion_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "name"
     t.string "cpf"
@@ -134,6 +144,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_172314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "code"
+    t.integer "status", default: 0
     t.index ["establishment_id"], name: "index_orders_on_establishment_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -174,6 +186,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_172314) do
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menus", "establishments"
   add_foreign_key "opening_hours", "establishments"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "portions"
   add_foreign_key "orders", "establishments"
   add_foreign_key "orders", "users"
 end

@@ -34,8 +34,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :menus, only: [:index, :create, :new, :show]
-    resources :orders, only: [:new, :create]
+    resources :menus, only: [:index, :create, :new, :show] do
+      resources :order_items, only: [:new, :create]
+    end
+    resources :orders, only: [:new, :create] do
+      patch 'finalize', on: :member
+    end
   end
   
 end

@@ -1,9 +1,16 @@
 class Order < ApplicationRecord
   belongs_to :establishment
-  belongs_to :user
+  belongs_to :user, optional: true
   validates :name, presence: true
   validate :validate_cpf, :validate_phone_number_and_email, :validate_phone_number, :validate_email
+  enum :status, {creating_order: 0, waiting_for_confirmation: 2, in_preparation: 4, cancelled: 6, ready: 8, delivered: 10}
+  has_many :order_items
+  has_many :portions, through: :order_items
 
+  def self.generate_code
+    SecureRandom.alphanumeric(8).upcase
+  end
+  
   private 
 
   def validate_cpf
@@ -29,5 +36,9 @@ class Order < ApplicationRecord
       regra = /\A[^@\s]+@[^@\s]+\.[a-z]{2,}\z/
       errors.add(:email, 'inválido') unless regra.match(email)
     end
+  end
+
+  def generate_code
+    self.code = SecureRandom.alphanumeric(6).upcase
   end
 end

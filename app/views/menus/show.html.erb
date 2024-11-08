@@ -1,5 +1,6 @@
 <% if !current_user.current_order.nil? %>
     <p>Pedido Atual: <%= current_user.current_order.name%></p>
+    <%= button_to t(:finalize_order), finalize_establishment_order_path(current_user.establishment, current_user.current_order), method: :patch%>
 <% end %>
 
 <nav>
@@ -15,9 +16,10 @@
             <dt><%= item.name %></dt>
             <% if item.portions.any? %>
                 <% item.portions.each do |portion| %>
-                    <dd>
+                    <dd id="<%= dom_id(item) %>">
                         <p><%= t(:description) %>:<%= portion.description %></p>
                         <p><%= t(:price) %>:<%= portion.price %></p>
+                        <%= link_to t(:add_order),  new_establishment_menu_order_item_path(current_user.establishment, @menu, portion_id: portion.id)%>
                     </dd>
                 <% end %>
             <% else %>
@@ -32,9 +34,10 @@
         <% @menu.beverages.active.each do |item| %>
             <dt><%= item.name %></dt>
             <% item.portions.each do |portion| %>
-                <dd>
+                <dd id="<%= dom_id(item) %>">
                     <p><%= t(:description) %>:<%= portion.description %></p>
                     <p><%= t(:price) %>:<%= portion.price %></p>
+                    <%= link_to t(:add_order),  new_establishment_menu_order_item_path(current_user.establishment, @menu, portion_id: portion.id)%>
                 </dd>
             <% end %>
         <% end %>

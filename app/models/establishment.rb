@@ -9,6 +9,7 @@ class Establishment < ApplicationRecord
   has_many :dishes
   has_many :beverages
   has_many :menus
+  has_many :orders
 
   private 
 

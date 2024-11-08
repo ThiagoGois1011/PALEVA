@@ -43,3 +43,6 @@ pt-BR:
   dont_have_portions: 'Não tem porções.'
   create_new_order: 'Criar novo pedido'
   create_order: 'Criar pedido'
+  add_order: 'Adicionar ao pedido'
+  add: 'Adicionar'
+  finalize_order: 'Finalizar pedido'

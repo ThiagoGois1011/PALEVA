@@ -8,3 +8,11 @@ pt-BR:
         cpf: 'CPF'
         email: 'Email'
         phone_number: 'Telefone'
+        status: 
+          creating_order: 'Criando pedido'
+          waiting_for_confirmation: 'Aguardando confirmação da cozinha'
+          in_preparation: 'Em preparação'
+          cancelled: 'Cancelado'
+          ready: 'Pronto'
+          delivered: 'Entregue'
+
