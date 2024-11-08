@@ -39,6 +39,6 @@ class EstablishmentsController < ApplicationController
   end
 
   def check_current_user
-    redirect_to establishment_path(current_user.establishment.id), notice: 'Você não tem permissão de ver essa página.' if Integer(params[:id]) != current_user.establishment.id
+    redirect_to establishment_path(current_user.establishment), notice: 'Você não tem permissão de ver essa página.' if Integer(params[:id]) != current_user.establishment.id
   end
 end

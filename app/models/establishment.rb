@@ -1,5 +1,5 @@
 class Establishment < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, class_name: 'Owner', foreign_key: 'user_id'
   validates :corporate_name, :brand_name, :restration_number,
   :full_address, :phone_number, :email, :code, :user_id, presence: true
   validates :email, :phone_number, :restration_number, uniqueness: true

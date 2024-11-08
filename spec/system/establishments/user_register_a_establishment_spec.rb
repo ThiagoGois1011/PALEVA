@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um estabelecimento' do
   it 'com sucesso' do
-    user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+    user = create_owner(name: 'Andre')
     cnpj = CNPJ.generate
 
     login_as user
@@ -24,7 +24,7 @@ describe 'Usuário cadastra um estabelecimento' do
   end
 
   it 'e deixa os campos em branco' do 
-    user = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
+    user = create_owner(name: 'Andre')
 
     login_as user
     visit root_path
@@ -43,11 +43,10 @@ describe 'Usuário cadastra um estabelecimento' do
   end
 
   it 'e tenta colocar informações que ja existe' do
-    user_1 = User.create!(name: 'Andre', last_name: 'Silva Lopes', cpf: '44749124621', email: 'andre@email.com', password: 'password5498')
-    establishment_1 = Establishment.create!(corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
-                                            restration_number: '66500520000171', full_address: 'Av Presindete Cabral', 
-                                            phone_number: '11981545874', email: 'contato@ifood.com', user: user_1)
-    user_2 = User.create!(name: 'Thiago', last_name: 'Gois', cpf: CPF.generate, email: 'thiago@email.com', password: 'password1234')
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', 
+                                                          close_hour: '18:00')
+    user_2 = create_secondary_owner(name: 'Thiago')
 
     login_as user_2
     visit root_path

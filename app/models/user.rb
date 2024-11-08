@@ -8,7 +8,6 @@ class User < ApplicationRecord
   validates :name, :last_name, :cpf, presence: true 
   validates :cpf, uniqueness: true
   validate :validate_cpf
-  has_one :establishment
   has_one :current_order, class_name: 'Order'
 
   private 
