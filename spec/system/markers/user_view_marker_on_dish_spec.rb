@@ -9,7 +9,7 @@ describe 'Usuario vê um marcador' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment, marker_id: marker.id)
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
 
     expect(page).to have_content('Nome: Miojo')
     expect(page).to have_content('Descrição: Da Nissin')
@@ -23,7 +23,7 @@ describe 'Usuario vê um marcador' do
     marker = Marker.create!(description: 'Alto em sódio')
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
     click_on 'Cadastrar Prato'
     fill_in 'Nome', with: 'Miojo'
     fill_in 'Descrição', with: 'Feito da marca Nissin'
@@ -42,7 +42,7 @@ describe 'Usuario vê um marcador' do
     marker = Marker.create!(description: 'Alto em sódio')
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
     click_on 'Cadastrar Prato'
     fill_in 'Nome', with: 'Miojo'
     fill_in 'Descrição', with: 'Feito da marca Nissin'
@@ -62,7 +62,7 @@ describe 'Usuario vê um marcador' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment)
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
     click_on 'Editar'
     fill_in 'Nome', with: 'Miojo premium'
@@ -82,7 +82,7 @@ describe 'Usuario vê um marcador' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment)
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
     click_on 'Editar'
     fill_in 'Nome', with: 'Miojo premium'
@@ -100,7 +100,7 @@ describe 'Usuario vê um marcador' do
                                                           close_hour: '18:00')
 
     login_as user
-    visit establishment_dishes_path(establishment_id: establishment.id)
+    visit establishment_dishes_path
     click_on 'Cadastrar Marcador'
     fill_in 'Descrição', with: 'Alto em sódio'
     click_on 'Salvar'

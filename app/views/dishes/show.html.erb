@@ -1,7 +1,7 @@
 <div>
     <div>
-        <%= link_to t(:edit), edit_establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id) %>
-        <%= button_to t(:delete), establishment_dish_path(establishment_id: @dish.establishment.id, id: @dish.id), method: :delete %>
+        <%= link_to t(:edit), edit_establishment_dish_path(@dish) %>
+        <%= button_to t(:delete), establishment_dish_path(@dish), method: :delete %>
     </div>
 
     <%= image_tag(url_for(@dish.picture), alt: 'Foto do prato', width: 200, height: 200) if @dish.picture.attached? %>
@@ -15,9 +15,9 @@
         <p><%= t(:status) %>: <%= @dish.translated_status %></p>
 
         <% if @dish.active?%>
-            <%= button_to 'Desativar', status_establishment_dish_path(@dish.establishment.id, @dish.id) %>
+            <%= button_to 'Desativar', status_establishment_dish_path(@dish) %>
         <% else %>
-            <%= button_to 'Ativar', status_establishment_dish_path(@dish.establishment.id, @dish.id) %>
+            <%= button_to 'Ativar', status_establishment_dish_path(@dish) %>
         <% end %>
     </div>
 
@@ -26,7 +26,7 @@
 <section>
     <div>
         <h3><%= t(:portions) %></h3>
-        <%= link_to t(:register_portion), new_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id) %>
+        <%= link_to t(:register_portion), new_establishment_dish_portion_path(@dish) %>
     </div>
     <table class="hitorical_table">
         <thead>
@@ -42,9 +42,9 @@
                 <tr>
                     <td><%= p.description %></td>
                     <td><%= format("%.2f", p.price) %></td>
-                    <td><%= link_to t(:edit),  edit_establishment_dish_portion_path(establishment_id: @dish.establishment.id, dish_id: @dish.id) %></td>
+                    <td><%= link_to t(:edit),  edit_establishment_dish_portion_path(@dish) %></td>
                     <% if p.historicals.any?%>
-                        <td><%= link_to t(:view_historical),  establishment_dish_portion_historicals_path(establishment_id: @dish.establishment.id, dish_id: @dish.id, portion_id: p.id)%></td>
+                        <td><%= link_to t(:view_historical),  establishment_dish_portion_historicals_path(@dish, p)%></td>
                     <% end %>
                 </tr>
             <% end %>

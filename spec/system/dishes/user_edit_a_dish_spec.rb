@@ -9,7 +9,6 @@ describe 'Usuário edita um prato' do
 
     login_as user
     visit root_path
-    click_on 'Estabelecimento'
     click_on 'Pratos'
     click_on 'Miojo'
     click_on 'Editar'

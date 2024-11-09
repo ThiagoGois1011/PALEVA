@@ -29,7 +29,7 @@ describe 'Usuário vê os cardápios' do
       click_on 'Entrar'
     end
 
-    expect(current_path).to eq(establishment_menus_path(establishment))
+    expect(current_path).to eq(establishment_menus_path)
     expect(page).to have_content('Café da Manhã')
     expect(page).to have_content('Almoço')
   end
@@ -50,10 +50,10 @@ describe 'Usuário vê os cardápios' do
       end
 
       login_as user
-      visit establishment_menus_path(establishment)
+      visit establishment_menus_path
       click_on 'Café da Manhã'
   
-      expect(current_path).to eq(establishment_menu_path(establishment, menu))
+      expect(current_path).to eq(establishment_menu_path(menu))
       expect(page).to have_content(products[0].name)
       expect(page).to have_content(products[1].name)
       expect(page).to have_content(products[3].name)
@@ -76,7 +76,7 @@ describe 'Usuário vê os cardápios' do
       end
   
       login_as user
-      visit establishment_menus_path(establishment)
+      visit establishment_menus_path
       click_on 'Café da Manhã'
   
       expect(page).to have_content(products[0].portions.first.description)
@@ -105,7 +105,7 @@ describe 'Usuário vê os cardápios' do
       products[1].disabled!
       
       login_as user
-      visit establishment_menus_path(establishment)
+      visit establishment_menus_path
       click_on 'Café da Manhã'
   
       expect(page).to have_content(products[0].name)

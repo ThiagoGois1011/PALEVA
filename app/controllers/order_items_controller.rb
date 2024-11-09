@@ -1,4 +1,6 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :check_current_user_type_for_page
+  
   def new
     @order_item = OrderItem.new
     @menu = params[:menu_id]

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_if_establishment_or_opening_hour_is_nil, unless: :devise_controller?
   before_action :authenticate_user!
+  before_action :check_current_user_type_for_page, unless: :devise_controller?
   helper_method :current_establishment
 
   protected
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
     if resource.establishment.nil?
       new_establishment_path
     else
-      establishment_menus_path(resource.establishment)
+      establishment_menus_path
     end
   end
 
@@ -33,5 +34,9 @@ class ApplicationController < ActionController::Base
 
   def current_establishment
     current_user.establishment
+  end
+
+  def check_current_user_type_for_page
+    redirect_to establishment_menus_path, notice: 'Você não tem permissão de entrar nesta página.' unless current_user.type == 'Owner'
   end
 end

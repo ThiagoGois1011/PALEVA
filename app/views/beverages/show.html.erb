@@ -1,7 +1,7 @@
 <div>
     <div>
-        <%= link_to t(:edit), edit_establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id) %>
-        <%= button_to t(:delete), establishment_beverage_path(establishment_id: @beverage.establishment.id, id: @beverage.id), method: :delete %>
+        <%= link_to t(:edit), edit_establishment_beverage_path(@beverage) %>
+        <%= button_to t(:delete), establishment_beverage_path(@beverage), method: :delete %>
     </div>
 
     <%= image_tag(url_for(@beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if @beverage.picture.attached? %>
@@ -13,9 +13,9 @@
         <p><%= t(:status) %>: <%= @beverage.translated_status %></p>
 
         <% if @beverage.active?%>
-            <%= button_to 'Desativar', status_establishment_beverage_path(@beverage.establishment.id, @beverage.id) %>
+            <%= button_to 'Desativar', status_establishment_beverage_path(@beverage) %>
         <% else %>
-            <%= button_to 'Ativar', status_establishment_beverage_path(@beverage.establishment.id, @beverage.id) %>
+            <%= button_to 'Ativar', status_establishment_beverage_path(@beverage) %>
         <% end %>
     </div>
 
@@ -24,7 +24,7 @@
 <section>
     <div>
         <h3><%= t(:portions) %></h3>
-        <%= link_to t(:register_portion), new_establishment_beverage_portion_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id) %>
+        <%= link_to t(:register_portion), new_establishment_beverage_portion_path(@beverage) %>
     </div>
     <table class="hitorical_table">
         <thead>
@@ -40,9 +40,9 @@
                 <tr>
                     <td><%= p.description %></td>
                     <td><%= format("%.2f", p.price) %></td>
-                    <td><%= link_to t(:edit),  edit_establishment_beverage_portion_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id) %></td>
+                    <td><%= link_to t(:edit),  edit_establishment_beverage_portion_path(@beverage) %></td>
                     <% if p.historicals.any?%>
-                        <td><%= link_to t(:view_historical),  establishment_beverage_portion_historicals_path(establishment_id: @beverage.establishment.id, beverage_id: @beverage.id, portion_id: p.id)%></td>
+                        <td><%= link_to t(:view_historical),  establishment_beverage_portion_historicals_path(@beverage, p)%></td>
                     <% end %>
                 </tr>
             <% end %>

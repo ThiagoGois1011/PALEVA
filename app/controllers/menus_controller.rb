@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  skip_before_action :check_current_user_type_for_page, only: [:index, :show]
+
   def index
     @menus = current_establishment.menus
   end

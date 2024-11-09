@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  skip_before_action :check_current_user_type_for_page
+
   def new
     @order = Order.new
     @previous_url = request.referrer

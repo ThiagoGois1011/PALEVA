@@ -2,10 +2,10 @@
     <div>
         <% if item.is_a?(Dish)%>
             <%= image_tag(url_for(item.picture), alt: 'Foto do prato', width: 200, height: 200) if item.picture.attached? %>
-            <p><%= t('activerecord.attributes.dish.name')%>: <%= link_to item.name, establishment_dish_path(establishment_id: item.establishment.id, id: item.id) %> </p>
+            <p><%= t('activerecord.attributes.dish.name')%>: <%= link_to item.name, establishment_dish_path(item) %> </p>
         <% else %>
             <%= image_tag(url_for(item.picture), alt: 'Foto do produto', width: 200, height: 200) if item.picture.attached? %>
-            <p><%= t('activerecord.attributes.dish.name')%>: <%= link_to item.name, establishment_beverage_path(establishment_id: item.establishment.id, id: item.id) %> </p>
+            <p><%= t('activerecord.attributes.dish.name')%>: <%= link_to item.name, establishment_beverage_path(item) %> </p>
         <% end %>
         <p><%= t('activerecord.attributes.dish.description')%>: <%= item.description %> </p>
     </div>

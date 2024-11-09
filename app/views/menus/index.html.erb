@@ -2,6 +2,6 @@
 
 <div>
     <% @menus.each do |menu|%>
-        <%= link_to menu.name, establishment_menu_path(current_establishment, menu) %>
+        <%= link_to menu.name, establishment_menu_path(menu) %>
     <% end %>
 </div>

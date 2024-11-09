@@ -8,7 +8,6 @@ describe 'Usuário cadastra um prato' do
                                           
     login_as user
     visit root_path
-    click_on 'Estabelecimento'
     click_on 'Pratos'
     click_on 'Cadastrar Prato'
     fill_in 'Nome', with: 'Miojo'

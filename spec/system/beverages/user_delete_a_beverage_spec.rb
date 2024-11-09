@@ -9,7 +9,6 @@ describe 'Usuário deleta uma bebida' do
 
     login_as user
     visit root_path
-    click_on 'Estabelecimento'
     click_on 'Bebidas'
     click_on 'Suco de Laranja'
     click_on 'Deletar'

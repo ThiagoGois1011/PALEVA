@@ -16,7 +16,7 @@ describe 'Usuário registra um pedido' do
     end
 
     login_as user
-    visit establishment_menus_path(establishment)
+    visit establishment_menus_path
     click_on 'Café da Manhã'
     click_on 'Criar novo pedido'
     fill_in 'Nome', with: 'João Carlos'
@@ -25,7 +25,7 @@ describe 'Usuário registra um pedido' do
     fill_in 'CPF', with: '48393555094'
     click_on 'Criar pedido'
 
-    expect(current_path).to eq(establishment_menu_path(establishment, menu))
+    expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido registrado com sucesso.')
     expect(user.current_order.name).to eq('João Carlos')
     expect(user.current_order.phone_number).to eq('11988254174')
@@ -49,7 +49,7 @@ describe 'Usuário registra um pedido' do
     end
 
     login_as user
-    visit establishment_menus_path(establishment)
+    visit establishment_menus_path
     click_on 'Café da Manhã'
     click_on 'Criar novo pedido'
     fill_in 'Nome', with: ''

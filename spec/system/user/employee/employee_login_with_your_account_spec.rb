@@ -13,7 +13,7 @@ describe 'Funcionário faz o login' do
       click_on 'Entrar'
     end
 
-    expect(current_path).to eq(establishment_menus_path(establishment))
+    expect(current_path).to eq(establishment_menus_path)
     expect(page).to have_content('Login efetuado com sucesso.')
   end
 
