@@ -1,8 +1,7 @@
 class DishesController < ApplicationController
-  before_action :check_current_user
 
   def index
-    @dishes = Establishment.find(params[:establishment_id]).dishes
+    @dishes = current_establishment.dishes
     @markers = Marker.all
   end
 
@@ -12,7 +11,7 @@ class DishesController < ApplicationController
   end
 
   def filter
-    @dishes = Establishment.find(params[:establishment_id]).dishes.where(marker_id: params[:marker])
+    @dishes = current_establishment.dishes.where(marker_id: params[:marker])
     @markers = Marker.all
   end
 
@@ -20,7 +19,7 @@ class DishesController < ApplicationController
     dish_params = params.require(:dish).permit(:name, :description, :calorie, :picture)
 
     @dish = Dish.new(dish_params)
-    @dish.establishment = Establishment.find(params[:establishment_id])
+    @dish.establishment = current_establishment
 
     value_select = params[:dish][:marker_select]
     create_value = params[:dish][:marker_create]
@@ -32,11 +31,11 @@ class DishesController < ApplicationController
     end
 
     @dish.save!
-    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id ), notice: 'Prato cadastrado com sucesso.'
+    redirect_to establishment_dish_path(@dish), notice: 'Prato cadastrado com sucesso.'
   end
 
   def edit
-    @dish = Establishment.find(params[:establishment_id]).dishes.find(params[:id])
+    @dish = current_establishment.dishes.find(params[:id])
     @markers = Marker.all
   end
 
@@ -52,16 +51,16 @@ class DishesController < ApplicationController
       dish_params[:marker] = Marker.create!(description: create_value)
     end
     @dish.update(dish_params)
-    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: @dish.id )
+    redirect_to establishment_dish_path( id: @dish.id )
   end
 
   def destroy
-    Establishment.find(params[:establishment_id]).dishes.destroy(params[:id])
-    redirect_to establishment_dishes_path(params[:establishment_id])
+    current_establishment.dishes.destroy(params[:id])
+    redirect_to establishment_dishes_path
   end
 
   def show
-    @dish = current_user.establishment.dishes.find(params[:id])
+    @dish = current_establishment.dishes.find(params[:id])
     @portions = @dish.portions
   end
 
@@ -74,12 +73,7 @@ class DishesController < ApplicationController
       dish.active!
     end
 
-    redirect_to establishment_dish_path(establishment_id: params[:establishment_id], id: params[:id])
+    redirect_to establishment_dish_path(params[:id])
   end
 
-  private
-
-  def check_current_user
-    redirect_to establishment_path(current_user.establishment.id), notice: 'Você não tem permissão de ver essa página' if Integer(params[:establishment_id]) != current_user.establishment.id
-  end
 end

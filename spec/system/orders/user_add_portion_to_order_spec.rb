@@ -17,7 +17,7 @@ describe 'Usuário adiciona pedidos após criar pedido' do
     order = Order.create!(name: 'João Carlos', cpf: '48393555094', phone_number: '11988254174', email: 'joão@email.com', establishment: establishment, user: user)
 
     login_as user
-    visit establishment_menu_path(establishment, menu)
+    visit establishment_menu_path(menu)
     within('#dish_1') do
       click_on 'Adicionar ao pedido'
     end
@@ -34,7 +34,7 @@ describe 'Usuário adiciona pedidos após criar pedido' do
 
     user.reload
     order.reload
-    expect(current_path).to eq(establishment_menus_path(establishment))
+    expect(current_path).to eq(establishment_menus_path)
     expect(user.current_order).to be_nil
     expect(order.status).to eq('waiting_for_confirmation')
     expect(order.portions[0].description).to eq('Porção Espaguete')

@@ -1,10 +1,10 @@
 class MenusController < ApplicationController
   def index
-    @menus = current_user.establishment.menus
+    @menus = current_establishment.menus
   end
 
   def new
-    @establishment = current_user.establishment
+    @establishment = current_establishment
     @menu = Menu.new
     dishes = @establishment.dishes
     beverages = @establishment.beverages
@@ -13,7 +13,7 @@ class MenusController < ApplicationController
 
   def create
     params_menu = params[:menu]
-    @establishment = current_user.establishment
+    @establishment = current_establishment
     @menu = Menu.new(name: params_menu[:name], establishment: @establishment)
 
     if @menu.save
@@ -22,7 +22,7 @@ class MenusController < ApplicationController
         @menu.menu_items.create(item_type: valor_dividido[0] , item_id: valor_dividido[1])
       end
 
-      redirect_to establishment_menu_path(establishment_id: current_user.establishment, id: @menu)
+      redirect_to establishment_menu_path(@menu)
     else
       flash.now[:notice] = @menu.errors.full_messages[0]
       render :new

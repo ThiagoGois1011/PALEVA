@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_if_establishment_or_opening_hour_is_nil, unless: :devise_controller?
   before_action :authenticate_user!
+  helper_method :current_establishment
 
   protected
 
@@ -12,10 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_if_establishment_or_opening_hour_is_nil
-    redirect_to new_establishment_path if user_signed_in? && current_user.establishment.nil?
-    redirect_to new_establishment_opening_hour_path(current_user.establishment) if user_signed_in? && 
-                                                                                      !current_user.establishment.nil? &&
-                                                                                      current_user.establishment.opening_hours.length < 6
+    redirect_to new_establishment_path if user_signed_in? && current_establishment.nil?
+    redirect_to new_establishment_opening_hour_path if user_signed_in? && 
+                                                                                      !current_establishment.nil? &&
+                                                                                      current_establishment.opening_hours.length < 6
   end
 
   def after_sign_in_path_for(resource)
@@ -28,5 +29,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_up_path_for(resource)
     new_establishment_path
+  end
+
+  def current_establishment
+    current_user.establishment
   end
 end

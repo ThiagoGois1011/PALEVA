@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'registration', to:'employees#registration', as: 'employees_registration'
   patch 'complete_registration', to:'employees#complete_registration'
 
-  resources :establishments, only: [:new, :create, :show] do
+  resource :establishment, only: [:new, :create, :show] do
     get 'search', on: :collection
 
     resources :opening_hours, only: [:new, :create]

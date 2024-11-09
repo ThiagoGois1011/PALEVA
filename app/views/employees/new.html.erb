@@ -11,7 +11,7 @@
 
 <% end %>
 
-<%= form_with model: [current_user.establishment, @employee] do |f| %>
+<%= form_with model: [current_establishment, @employee] do |f| %>
     <div>
         <%= f.label :cpf %>
         <%= f.number_field :cpf %>

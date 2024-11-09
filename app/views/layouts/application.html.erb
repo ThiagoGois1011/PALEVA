@@ -21,14 +21,14 @@
       <nav>
         <% if user_signed_in? %>
           <%= button_to t(:logout), destroy_user_session_path, method: :delete %>|
-          <% if current_user.establishment.nil? %>
+          <% if current_establishment.nil? %>
             <%= link_to t('activerecord.models.establishment'), new_establishment_path %>
           <% else %>
-            <%= link_to t('activerecord.models.establishment'), establishment_path(current_user.establishment) %> |
-            <%= link_to t(:menus), establishment_menus_path(current_user.establishment) %> |
-            <%= link_to t(:register_new_employee), new_establishment_employee_path(current_user.establishment) %>
+            <%= link_to t('activerecord.models.establishment'), establishment_path %> |
+            <%= link_to t(:menus), establishment_menus_path %> |
+            <%= link_to t(:register_new_employee), new_establishment_employee_path %>
           <% end %>
-          <%= form_with url: search_establishments_path, method: :get do |f| %>
+          <%= form_with url: search_establishment_path, method: :get do |f| %>
           <%= f.label :search, t(:search) %>
           <%= f.text_field :search %>
           <%= f.submit t(:search) %>

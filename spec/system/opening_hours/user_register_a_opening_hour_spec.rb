@@ -30,7 +30,7 @@ describe 'Usuário cadastra um horário de funcionamento' do
       click_on 'Salvar'
   
       expect(page).to have_content('Horário de abertura cadastrado com sucesso.')
-      expect(current_path).to eq(establishment_path(Establishment.last.id))
+      expect(current_path).to eq(establishment_path)
       expect(page).to have_content('Razão Social: Ifood')
       expect(page).to have_content('Email: contato@ifood.com')
       expect(page).to have_content("CNPJ: #{cnpj}" )
@@ -84,7 +84,7 @@ describe 'Usuário cadastra um horário de funcionamento' do
       click_on 'Salvar'
   
       expect(page).to have_content('Horário de abertura cadastrado com sucesso.')
-      expect(current_path).to eq(establishment_path(Establishment.last.id))
+      expect(current_path).to eq(establishment_path)
       expect(page).to have_content('Razão Social: Ifood')
       expect(page).to have_content('Email: contato@ifood.com')
       expect(page).to have_content("CNPJ: #{cnpj}" )

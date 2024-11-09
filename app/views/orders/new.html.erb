@@ -11,7 +11,7 @@
 
 <% end %>
 
-<%= form_with model: [current_user.establishment, @order] do |f| %>
+<%= form_with model: [current_establishment, @order] do |f| %>
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>

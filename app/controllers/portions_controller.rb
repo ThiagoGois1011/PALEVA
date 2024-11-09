@@ -1,6 +1,6 @@
 class PortionsController < ApplicationController
   def new
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = current_establishment
     if params[:dish_id].present?
       @product = Dish.find(params[:dish_id])
     else params[:beverage_id].present?
@@ -11,14 +11,14 @@ class PortionsController < ApplicationController
   end
 
   def create
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = current_establishment
     path_for_redirect = ''
     if params[:dish_id].present?
       @product = Dish.find(params[:dish_id])
-      path_for_redirect = establishment_dish_path(establishment_id: params[:establishment_id], id: params[:dish_id])
+      path_for_redirect = establishment_dish_path( id: params[:dish_id])
     else params[:beverage_id].present?
       @product = Beverage.find(params[:beverage_id])
-      path_for_redirect = establishment_beverage_path(establishment_id: params[:establishment_id], id: params[:beverage_id])
+      path_for_redirect = establishment_beverage_path( id: params[:beverage_id])
     end
     portion_params = params.require(:portion).permit(:description, :price)
     @portion = @product.portions.new(portion_params)
@@ -29,7 +29,7 @@ class PortionsController < ApplicationController
   end
 
   def edit
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = current_establishment
     if params[:dish_id].present?
       @product = Dish.find(params[:dish_id])
     else params[:beverage_id].present?
@@ -39,14 +39,14 @@ class PortionsController < ApplicationController
   end
 
   def update
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = current_establishment
     path_for_redirect = ''
     if params[:dish_id].present?
       @product = Dish.find(params[:dish_id])
-      path_for_redirect = establishment_dish_path(establishment_id: params[:establishment_id], id: params[:dish_id])
+      path_for_redirect = establishment_dish_path( id: params[:dish_id])
     else params[:beverage_id].present?
       @product = Beverage.find(params[:beverage_id])
-      path_for_redirect = establishment_beverage_path(establishment_id: params[:establishment_id], id: params[:beverage_id])
+      path_for_redirect = establishment_beverage_path( id: params[:beverage_id])
     end
     portion_params = params.require(:portion).permit(:price)
     @portion = Portion.find(params[:id])

@@ -7,7 +7,7 @@ class OpeningHoursController < ApplicationController
   end
 
   def create
-    establishment = Establishment.find(params[:establishment_id])
+    establishment = current_establishment
 
     if params[:check_separate_days] == '0'
       days_of_week = {business_day: params.require(:opening_hour).require(:business_day).permit(:open_hour, :close_hour, :closed)}
@@ -47,12 +47,12 @@ class OpeningHoursController < ApplicationController
       end
     end
     
-    redirect_to establishment, notice: 'Horário de abertura cadastrado com sucesso.'
+    redirect_to establishment_path, notice: 'Horário de abertura cadastrado com sucesso.'
   end
 
   private 
 
   def check_if_exist_opening_days
-    redirect_to current_user.establishment, notice: 'Todos os dias já foram cadastrados.' if current_user.establishment.opening_hours.length > 6
+    redirect_to establishment_path, notice: 'Todos os dias já foram cadastrados.' if current_establishment.opening_hours.length > 6
   end
 end

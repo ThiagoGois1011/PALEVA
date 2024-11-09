@@ -23,6 +23,6 @@ describe 'Usuário é redirecionado' do
     visit new_establishment_path
 
     expect(page).to have_content('Cada usuário só pode ter um estabelecimento cadastrado')
-    expect(current_path).to eq(establishment_path(establishment.id))
+    expect(current_path).to eq(establishment_path)
   end
 end

@@ -28,7 +28,7 @@ describe 'Usuário pesquisa um prato ou bebida' do
     fill_in 'Pesquisar', with: 'Miojo'
     click_on 'Pesquisar'
 
-    expect(current_path).to eq(search_establishments_path)
+    expect(current_path).to eq(search_establishment_path)
     expect(page).to have_content('Nome: Miojo')
     expect(page).to have_content('Descrição: Da Nissin')
     expect(page).not_to have_content('Nome: Crepioca')
@@ -51,7 +51,7 @@ describe 'Usuário pesquisa um prato ou bebida' do
     fill_in 'Pesquisar', with: 'Laranja'
     click_on 'Pesquisar'
 
-    expect(current_path).to eq(search_establishments_path)
+    expect(current_path).to eq(search_establishment_path)
     expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Descrição: Feito com laranjas orgânicas')
     expect(page).not_to have_content('Nome: Miojo')
@@ -75,7 +75,7 @@ describe 'Usuário pesquisa um prato ou bebida' do
     fill_in 'Pesquisar', with: 'Suco'
     click_on 'Pesquisar'
 
-    expect(current_path).to eq(search_establishments_path)
+    expect(current_path).to eq(search_establishment_path)
     expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Descrição: Feito com laranjas orgânicas')
     expect(page).to have_content('Nome: Suco de Goiaba')

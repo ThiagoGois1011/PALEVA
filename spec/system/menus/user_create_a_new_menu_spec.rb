@@ -24,7 +24,7 @@ describe 'Usuário cria um menu' do
     select 'Coca Cola', from: 'produto_3'
     click_on 'Criar Cardápio'
 
-    expect(current_path).to eq(establishment_menu_path(establishment.id, Menu.last.id))
+    expect(current_path).to eq(establishment_menu_path(Menu.last))
     expect(page).to have_content('Almoço')
     expect(page).to have_content('Espaguete')
     expect(page).to have_content('Bife Grelhado')

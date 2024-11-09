@@ -8,7 +8,7 @@ describe 'Usuário vê o status da bebida' do
     Beverage.create!(name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas', calorie: 400, establishment: establishment)
 
     login_as user 
-    visit establishment_beverages_path(establishment.id)
+    visit establishment_beverages_path
 
     expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Status: Ativo')
@@ -21,7 +21,7 @@ describe 'Usuário vê o status da bebida' do
     Beverage.create!(name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas', calorie: 400, establishment: establishment)
 
     login_as user 
-    visit establishment_beverages_path(establishment.id)
+    visit establishment_beverages_path
     click_on 'Suco de Laranja'
 
     expect(page).to have_content('Nome: Suco de Laranja')
@@ -35,7 +35,7 @@ describe 'Usuário vê o status da bebida' do
     Beverage.create!(name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas', calorie: 400, establishment: establishment)
 
     login_as user 
-    visit establishment_beverages_path(establishment.id)
+    visit establishment_beverages_path
     click_on 'Suco de Laranja'
     click_on 'Desativar'
 
@@ -50,7 +50,7 @@ describe 'Usuário vê o status da bebida' do
     Beverage.create!(name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas', calorie: 400, establishment: establishment, status: :disabled)
 
     login_as user 
-    visit establishment_beverages_path(establishment.id)
+    visit establishment_beverages_path
     click_on 'Suco de Laranja'
     click_on 'Ativar'
 

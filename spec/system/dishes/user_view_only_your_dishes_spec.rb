@@ -12,9 +12,8 @@ describe 'Usuário vê os seus pratos' do
     Dish.create!(name: 'Espaguete', description: 'Macarrão com muito molho', establishment: establishment_2)
 
     login_as user_1
-    visit establishment_dishes_path(establishment_2.id)
+    visit establishment_dishes_path
 
-    expect(page).to have_content('Você não tem permissão de ver essa página')
-    expect(current_path).to eq(establishment_path(establishment_1))
+    expect(page).not_to have_content('Espaguete')
   end
 end

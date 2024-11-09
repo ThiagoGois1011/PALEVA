@@ -10,11 +10,10 @@ describe 'Usuário vê o seu estabelecimento' do
                                                                       email: 'vendas@mclanche.com', open_hour: '08:00', close_hour: '18:00')
 
     login_as user_1
-    visit establishment_path(establishment_2.id)
+    visit establishment_path
 
-    expect(page).to have_content('Você não tem permissão de ver essa página')
     expect(page).not_to have_content('MC Lanches')
     expect(page).not_to have_content('vendas@mclanche.com')
-    expect(current_path).to eq(establishment_path(establishment_1))
+    expect(current_path).to eq(establishment_path)
   end
 end

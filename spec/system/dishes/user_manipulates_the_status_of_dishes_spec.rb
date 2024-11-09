@@ -8,7 +8,7 @@ describe 'Usuário vê o status do prato' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment)
 
     login_as user 
-    visit establishment_dishes_path(establishment.id)
+    visit establishment_dishes_path
 
     expect(page).to have_content('Nome: Miojo')
     expect(page).to have_content('Status: Ativo')
@@ -21,7 +21,7 @@ describe 'Usuário vê o status do prato' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment)
 
     login_as user 
-    visit establishment_dishes_path(establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
 
     expect(page).to have_content('Nome: Miojo')
@@ -35,7 +35,7 @@ describe 'Usuário vê o status do prato' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment)
 
     login_as user 
-    visit establishment_dishes_path(establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
     click_on 'Desativar'
 
@@ -50,7 +50,7 @@ describe 'Usuário vê o status do prato' do
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment, status: :disabled)
 
     login_as user 
-    visit establishment_dishes_path(establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
     click_on 'Ativar'
 

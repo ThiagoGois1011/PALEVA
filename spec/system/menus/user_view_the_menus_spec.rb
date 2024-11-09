@@ -11,7 +11,7 @@ describe 'Usuário vê os cardápios' do
     visit root_path
     click_on 'Cardápios'
 
-    expect(current_path).to eq(establishment_menus_path(establishment))
+    expect(current_path).to eq(establishment_menus_path)
     expect(page).to have_content('Café da Manhã')
     expect(page).to have_content('Almoço')
   end

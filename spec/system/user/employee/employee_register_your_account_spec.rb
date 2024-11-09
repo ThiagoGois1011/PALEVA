@@ -21,7 +21,7 @@ describe 'Funcionário cadastra sua conta' do
     end
 
     pre_registration.reload
-    expect(current_path).to eq(establishment_menus_path(establishment))
+    expect(current_path).to eq(establishment_menus_path)
     expect(page).to have_content('Cadastro do funcionário realizado com sucesso.')
     expect(pre_registration.pre_registration_status).to eq('registration_complete')
     expect(pre_registration.name).to eq('Junior') 

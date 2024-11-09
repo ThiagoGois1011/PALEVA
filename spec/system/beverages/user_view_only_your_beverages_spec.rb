@@ -12,9 +12,9 @@ describe 'Usuário vê as suas bebidas' do
     Beverage.create!(name: 'Suco de Goiaba', description: 'Feito com goiabas orgânicas', calorie: 600, establishment: establishment_2)
 
     login_as user_1
-    visit establishment_dishes_path(establishment_2)
+    visit establishment_beverages_path
 
-    expect(page).to have_content('Você não tem permissão de ver essa página')
-    expect(current_path).to eq(establishment_path(establishment_1))
+    expect(page).to have_content('Suco de Laranja')
+    expect(page).not_to have_content('Suco de Goiaba')
   end
 end

@@ -11,7 +11,7 @@ describe 'Usuário é redirecionado' do
       click_on 'Estabelecimento'
       
       expect(page).to have_content('Cadastrar Horário de Funcionamento')
-      expect(current_path).to eq(new_establishment_opening_hour_path(establishment.id))
+      expect(current_path).to eq(new_establishment_opening_hour_path)
     end
   end
 
@@ -20,9 +20,9 @@ describe 'Usuário é redirecionado' do
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
     
     login_as user
-    visit new_establishment_opening_hour_path(establishment.id)
+    visit new_establishment_opening_hour_path
 
     expect(page).to have_content('Todos os dias já foram cadastrados.')
-    expect(current_path).to eq(establishment_path(establishment.id))
+    expect(current_path).to eq(establishment_path)
   end
 end

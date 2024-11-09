@@ -17,7 +17,7 @@ describe 'Usuário cadastra um estabelecimento' do
     click_on 'Cadastrar Estabelecimento'
 
     establishment = Establishment.last
-    expect(current_path).to eq(new_establishment_opening_hour_path(establishment.id))
+    expect(current_path).to eq(new_establishment_opening_hour_path)
     expect(establishment.brand_name).to have_content('Ifood')
     expect(establishment.restration_number).to have_content(cnpj)
     expect(establishment.email).to have_content('contato@ifood.com')

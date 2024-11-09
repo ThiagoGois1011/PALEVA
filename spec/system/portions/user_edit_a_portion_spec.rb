@@ -8,7 +8,7 @@ describe 'Usuário edita uma porção' do
     Portion.create!(description: '1kg', price: 20.0, portionable: dish )
 
     login_as user
-    visit establishment_dishes_path(establishment.id)
+    visit establishment_dishes_path
     click_on 'Miojo'
     within('table') do
       click_on 'Editar'
@@ -16,7 +16,7 @@ describe 'Usuário edita uma porção' do
     fill_in 'Preço', with: '30.00'
     click_on 'Salvar'
 
-    expect(current_path).to eq(establishment_dish_path(establishment_id: establishment.id, id: dish.id)) 
+    expect(current_path).to eq(establishment_dish_path(dish)) 
     expect(page).to have_content('Porções')
     expect(page).to have_content('1kg')
     expect(page).to have_content('30.00')
@@ -29,7 +29,7 @@ describe 'Usuário edita uma porção' do
     Portion.create!(description: '250ml', price: 5.0, portionable: beverage )
 
     login_as user
-    visit establishment_beverages_path(establishment.id)
+    visit establishment_beverages_path
     click_on 'Suco de Laranja'
     within('table') do
       click_on 'Editar'
@@ -37,7 +37,7 @@ describe 'Usuário edita uma porção' do
     fill_in 'Preço', with: '7.00'
     click_on 'Salvar'
 
-    expect(current_path).to eq(establishment_beverage_path(establishment_id: establishment.id, id: beverage.id)) 
+    expect(current_path).to eq(establishment_beverage_path(beverage)) 
     expect(page).to have_content('Porções')
     expect(page).to have_content('250ml')
     expect(page).to have_content('7.00')
