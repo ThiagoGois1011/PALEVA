@@ -1,5 +1,6 @@
 pt-BR:
   register: 'Cadastrar'
+  register_as_an_employee: 'Se cadastrar como funcionário'
   login: 'Entrar'
   logout: 'Sair'
   register_establishment: 'Cadastrar Estabelecimento'

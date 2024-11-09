@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   root to: 'home#index'
+  get 'registration', to:'employees#registration'
+  patch 'complete_registration', to:'employees#complete_registration'
 
   resources :establishments, only: [:new, :create, :show] do
     get 'search', on: :collection

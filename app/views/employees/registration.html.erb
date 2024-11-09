@@ -1,0 +1,40 @@
+<h1><%= t(:register_employee)%></h1>
+
+<% if @employee.errors.any? %>
+<p>Verifique os erros abaixo:</p>
+
+<ul>
+    <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+</ul>
+
+<% end %>
+
+<%= form_with model: @employee, url: complete_registration_path, method: :patch do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+    </div>
+    <div>
+        <%= f.label :cpf %>
+        <%= f.number_field :cpf %>
+    </div>
+    <div>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+    </div>
+    <div>
+        <%= f.label :password %>
+        <%= f.email_field :password %>
+    </div>
+    <div>
+        <%= f.label :password_confirmation %>
+        <%= f.email_field :password_confirmation %>
+    </div>
+    <%= f.submit t(:register) %>
+<% end %>

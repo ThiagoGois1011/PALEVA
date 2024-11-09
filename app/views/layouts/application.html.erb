@@ -34,6 +34,7 @@
           <%= f.submit t(:search) %>
         <% end %>
         <% else %>
+          <%= link_to t(:register_as_an_employee), registration_path %> |
           <%= link_to t(:register), new_user_registration_path %> |
           <%= link_to t(:login), new_user_session_path %> 
         <% end %>
