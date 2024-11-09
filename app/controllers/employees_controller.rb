@@ -31,6 +31,8 @@ class EmployeesController < ApplicationController
 
     @employee = Employee.find_by(email: employee_params_search[:email], cpf: employee_params_search[:cpf])
     if @employee.nil?
+      @employee = Employee.new(employee_params.merge(employee_params_search))
+      @employee.valid?
       flash.now[:notice] = 'Email ou CPF incorreto'
       return render :registration
     end

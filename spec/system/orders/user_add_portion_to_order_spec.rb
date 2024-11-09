@@ -18,7 +18,6 @@ describe 'Usuário adiciona pedidos após criar pedido' do
 
     login_as user
     visit establishment_menu_path(establishment, menu)
-    save_page
     within('#dish_1') do
       click_on 'Adicionar ao pedido'
     end

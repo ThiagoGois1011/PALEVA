@@ -17,14 +17,14 @@ describe 'Usuário vê os cardápios' do
   end
 
   it 'após fazer o login' do
-    user = create_owner(name: 'Andre')
+    user = create_owner(name: 'Andre', email: 'andre@email.com' , password: 'password1234')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood')
     Menu.create!(name: 'Café da Manhã', establishment: establishment)
     Menu.create!(name: 'Almoço', establishment: establishment)
 
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
+    fill_in 'Email', with: 'andre@email.com'
+    fill_in 'Senha', with: 'password1234'
     within('form') do
       click_on 'Entrar'
     end

@@ -9,9 +9,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    user = User.find_by(email: params[:user][:email])
+
+    if user.pre_registration_status != 'pre_registration'
+      super
+    else
+      flash[:alert] = 'Email ou senha inválidos.'
+      redirect_to new_user_session_path
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy

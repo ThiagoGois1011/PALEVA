@@ -6,6 +6,11 @@ def create_secondary_owner(name: 'Thiago', last_name: 'Gois', cpf: '31674941072'
   Owner.create!(name: name, last_name: last_name, cpf: cpf, email: email, password: password)
 end
 
+def create_employee(establishment, name: 'João', last_name: 'Almeida', cpf: '09094018020', email: 'joao@email.com', password: 'password9999')
+  Employee.create!(name: name, last_name: last_name, cpf: cpf, email: email, password: password, 
+                   pre_registration_status: :registration_complete, establishment: establishment)
+end
+
 def create_establishment(owner, corporate_name: 'Distribuidora Alimentícia Ifood', brand_name: 'Ifood', 
                         restration_number: '66500520000171', full_address: 'Av Presindete Cabral', 
                         phone_number: '11981545874', email: 'contato@ifood.com')
