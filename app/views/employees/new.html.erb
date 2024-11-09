@@ -1,0 +1,24 @@
+<h1><%= t(:register_new_employee)%></h1>
+
+<% if @employee.errors.any? %>
+<p>Verifique os erros abaixo:</p>
+
+<ul>
+    <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+</ul>
+
+<% end %>
+
+<%= form_with model: [current_user.establishment, @employee] do |f| %>
+    <div>
+        <%= f.label :cpf %>
+        <%= f.number_field :cpf %>
+    </div>
+    <div>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+    </div>
+    <%= f.submit t(:register_employee) %>
+<% end %>

@@ -46,3 +46,5 @@ pt-BR:
   add_order: 'Adicionar ao pedido'
   add: 'Adicionar'
   finalize_order: 'Finalizar pedido'
+  register_new_employee: 'Cadastrar novo Funcionário'
+  register_employee: 'Cadastrar Funcionário'

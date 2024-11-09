@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create] do
       patch 'finalize', on: :member
     end
+
+    resources :employees, only: [:new, :create]
   end
   
 end
