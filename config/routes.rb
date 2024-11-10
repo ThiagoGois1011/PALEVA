@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     resources :menus, only: [:index, :create, :new, :show] do
       resources :order_items, only: [:new, :create]
     end
+    get 'continue_order', to: 'orders#continue_order'
+    patch 'change_current_order', to: 'orders#change_current_order'
     resources :orders, only: [:new, :create] do
       patch 'finalize', on: :member
     end

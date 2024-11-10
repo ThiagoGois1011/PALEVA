@@ -1,4 +1,4 @@
-<%= form_with model: @order_item, url: establishment_menu_order_items_path(current_establishment, @menu)  do |f| %>
+<%= form_with model: @order_item, url: establishment_menu_order_items_path(@menu)  do |f| %>
     <div>
         <%= f.label :observation %>
         <%= f.text_field :observation %>

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :check_if_establishment_or_opening_hour_is_nil, unless: :devise_controller?
   before_action :authenticate_user!
   before_action :check_current_user_type_for_page, unless: :devise_controller?
-  helper_method :current_establishment
+  helper_method :current_establishment, :current_order
 
   protected
 
@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
 
   def current_establishment
     current_user.establishment
+  end
+
+  def current_order
+    current_user.current_order
   end
 
   def check_current_user_type_for_page

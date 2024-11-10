@@ -1,0 +1,9 @@
+<%= form_with url: change_current_order_establishment_path, method: :patch do |f| %>
+    <div>
+        <%= f.label :open_orders, t(:orders_list)%>
+        <%= f.collection_select :open_orders, @orders, :id, :name %>
+    </div>
+    <%= f.hidden_field :previous_url, value: @previous_url %>   
+
+    <%= f.submit t(:select_order)%>
+<% end %>

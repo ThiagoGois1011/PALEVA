@@ -52,3 +52,6 @@ pt-BR:
   employees: 'Funcionários'
   pre_registration_employees: 'Funcionários do Pré Cadastro'
   complete_registration_employees: 'Funcionários com Cadastro Completo'
+  continue_with_open_order: 'Continuar com pedido em aberto'
+  select_order: 'Selecionar pedido'
+  orders_list: 'Lista de pedidos'

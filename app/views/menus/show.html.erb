@@ -1,16 +1,17 @@
-<% if !current_user.current_order.nil? %>
-    <p>Pedido Atual: <%= current_user.current_order.name%></p>
-    <%= button_to t(:finalize_order), finalize_establishment_order_path(current_establishment, current_user.current_order), method: :patch%>
+<% if !current_order.nil? %>
+    <p>Pedido Atual: <%= current_order.name %></p>
+    <%= button_to t(:finalize_order), finalize_establishment_order_path(current_order), method: :patch %>
 <% end %>
 
 <nav>
     <%= link_to t(:create_new_order), new_establishment_order_path %>
+    <%= link_to t(:continue_with_open_order), continue_order_establishment_path %>
 </nav>
 
 <h1><%= @menu.name %></h1>
 
 <div>
-    <h2><%t(:dishes)%></h2>
+    <h2><% t(:dishes) %></h2>
     <dl>
         <% @menu.dishes.active.each do |item| %>
             <dt><%= item.name %></dt>
@@ -19,7 +20,11 @@
                     <dd id="<%= dom_id(item) %>">
                         <p><%= t(:description) %>:<%= portion.description %></p>
                         <p><%= t(:price) %>:<%= portion.price %></p>
-                        <%= link_to t(:add_order),  new_establishment_menu_order_item_path(current_establishment, @menu, portion_id: portion.id)%>
+                        <% if !current_order.nil?%>
+                            <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
+                        <% else %>
+                            <%= link_to t(:add_order),  new_establishment_order_path%>
+                        <% end %>
                     </dd>
                 <% end %>
             <% else %>
@@ -29,7 +34,7 @@
     </dl>
 </div>
 <div>
-    <h2><%t(:beverages)%></h2>
+    <h2><% t(:beverages) %></h2>
     <dl>
         <% @menu.beverages.active.each do |item| %>
             <dt><%= item.name %></dt>
@@ -37,7 +42,11 @@
                 <dd id="<%= dom_id(item) %>">
                     <p><%= t(:description) %>:<%= portion.description %></p>
                     <p><%= t(:price) %>:<%= portion.price %></p>
-                    <%= link_to t(:add_order),  new_establishment_menu_order_item_path(current_establishment, @menu, portion_id: portion.id)%>
+                    <% if !current_order.nil?%>
+                        <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
+                    <% else %>
+                        <%= link_to t(:add_order),  new_establishment_order_path%>
+                    <% end %>
                 </dd>
             <% end %>
         <% end %>
