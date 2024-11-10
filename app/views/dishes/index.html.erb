@@ -12,8 +12,8 @@
 <% @dishes.each do |dish| %>
     <div>
         <%= image_tag(url_for(dish.picture), alt: 'Foto do prato', width: 200, height: 200) if dish.picture.attached? %>
-        <p><%= dish.translated_name %>: <%= link_to dish.name, establishment_dish_path(dish) %></p>
-        <p><%= dish.translated_description %>: <%= dish.description %></p>
+        <p><%= Dish.human_attribute_name(:name) %>: <%= link_to dish.name, establishment_dish_path(dish) %></p>
+        <p><%= Dish.human_attribute_name(:description) %>: <%= dish.description %></p>
         <p><%= t(:status) %>: <%= dish.translated_status %></p>
         <% if !dish.marker.nil? %>
             <p><%= dish.marker.description %></p>

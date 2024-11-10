@@ -5,10 +5,9 @@
     </div>
 
     <%= image_tag(url_for(@beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if @beverage.picture.attached? %>
-    <p><%= @beverage.translated_name %>: <%= @beverage.name %></p>
-    <p><%= @beverage.translated_description %>: <%= @beverage.description %></p>
-    <p><%= @beverage.translated_calorie %>: <%= @beverage.calorie %></p>
-    <p><%= @beverage.translated_calorie %>: <%= @beverage.calorie %></p>
+    <p><%= Beverage.human_attribute_name(:name) %>: <%= @beverage.name %></p>
+    <p><%= Beverage.human_attribute_name(:description) %>: <%= @beverage.description %></p>
+    <p><%= Beverage.human_attribute_name(:calorie) %>: <%= @beverage.calorie %></p>
     <div>
         <p><%= t(:status) %>: <%= @beverage.translated_status %></p>
 

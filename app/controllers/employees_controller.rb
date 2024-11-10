@@ -2,6 +2,11 @@ class EmployeesController < ApplicationController
   skip_before_action :authenticate_user!, only:[:registration, :complete_registration]
   skip_before_action :check_current_user_type_for_page, only:[:registration, :complete_registration]
 
+  def index
+    @employees_pre_register = Employee.where(establishment: current_establishment).pre_registration
+    @employees_complete_register = Employee.where(establishment: current_establishment).registration_complete
+  end
+
   def new
     @employee = Employee.new()
   end

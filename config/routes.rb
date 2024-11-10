@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       patch 'finalize', on: :member
     end
 
-    resources :employees, only: [:new, :create]
+    resources :employees, only: [:index, :new, :create]
   end
   
 end

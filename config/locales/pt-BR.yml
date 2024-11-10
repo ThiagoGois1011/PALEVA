@@ -49,3 +49,6 @@ pt-BR:
   finalize_order: 'Finalizar pedido'
   register_new_employee: 'Cadastrar novo Funcionário'
   register_employee: 'Cadastrar Funcionário'
+  employees: 'Funcionários'
+  pre_registration_employees: 'Funcionários do Pré Cadastro'
+  complete_registration_employees: 'Funcionários com Cadastro Completo'

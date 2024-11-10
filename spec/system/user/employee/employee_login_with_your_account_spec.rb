@@ -34,4 +34,15 @@ describe 'Funcionário faz o login' do
     
     expect(page).to have_content('Email ou senha inválidos.')
   end
+
+  it 'e não vê botão de cadastrar funcionários' do
+    owner = create_owner(name: 'André')
+    establishment = create_establishment_and_opening_hour(owner, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    employee = create_employee(establishment, name: 'João', email: 'joao@email.com', password: 'password9999')
+
+    login_as employee
+    visit establishment_menus_path
+
+    expect(page).not_to have_content('Cadastrar novo Funcionário')
+  end
 end

@@ -5,9 +5,9 @@
     </div>
 
     <%= image_tag(url_for(@dish.picture), alt: 'Foto do prato', width: 200, height: 200) if @dish.picture.attached? %>
-    <p><%= @dish.translated_name %>: <%= @dish.name %></p>
-    <p><%= @dish.translated_description %>: <%= @dish.description %></p>
-    <p><%= @dish.translated_calorie %>: <%= @dish.calorie %></p>
+    <p><%= Dish.human_attribute_name(:name) %>: <%= @dish.name %></p>
+    <p><%= Dish.human_attribute_name(:description) %>: <%= @dish.description %></p>
+    <p><%= Dish.human_attribute_name(:calorie) %>: <%= @dish.calorie %></p>
     <% if !@dish.marker.nil? %>
             <p><%= @dish.marker.description %></p>
     <% end %>

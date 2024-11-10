@@ -11,16 +11,4 @@ class Dish < ApplicationRecord
   def translated_status
     I18n.t("activerecord.attributes.dish.status.#{status}")
   end
-
-  def translated_name
-    I18n.t("activerecord.attributes.dish.name")
-  end
-
-  def translated_description
-    I18n.t("activerecord.attributes.dish.description")
-  end
-  
-  def translated_calorie
-    I18n.t("activerecord.attributes.dish.calorie")
-  end
 end

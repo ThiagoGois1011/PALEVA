@@ -1,9 +1,9 @@
-<h1><%= t('activerecord.models.establishment') %></h1>
+<h1><%= Establishment.model_name.human %></h1>
 
 <div>
-    <p><%= t('activerecord.attributes.establishment.brand_name')%>:  <%= @establishment.brand_name %></p>
-    <p><%= t('activerecord.attributes.establishment.email')%>: <%= @establishment.email %></p>
-    <p><%= t('activerecord.attributes.establishment.restration_number')%>: <%= @establishment.restration_number %></p>
+    <p><%= Establishment.human_attribute_name(:brand_name) %>:  <%= @establishment.brand_name %></p>
+    <p><%= Establishment.human_attribute_name(:email) %>: <%= @establishment.email %></p>
+    <p><%= Establishment.human_attribute_name(:restration_number) %>: <%= @establishment.restration_number %></p>
 </div>
 <div>
     <% @establishment.opening_hours.each do |day| %>

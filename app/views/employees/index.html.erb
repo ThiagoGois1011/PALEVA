@@ -1,0 +1,19 @@
+<h1><%= t(:employees)%></h1>
+
+<div>
+    <h2><%= t(:pre_registration_employees)%></h2>
+
+    <% @employees_pre_register.each do |employee| %>
+       <p><%= Employee.human_attribute_name(:email) %>: <%= employee.email %></p>
+       <p><%= Employee.human_attribute_name(:cpf) %>: <%= employee.cpf %></p>
+    <% end %>
+</div>
+
+<div>
+    <h2><%= t(:complete_registration_employees)%></h2>
+
+    <% @employees_complete_register.each do |employee| %>
+       <p><%= Employee.human_attribute_name(:name) %>: <%= employee.name %></p>
+       <p><%= Employee.human_attribute_name(:cpf) %>: <%= employee.cpf %></p>
+    <% end %>
+</div>
