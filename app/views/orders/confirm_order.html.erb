@@ -1,0 +1,26 @@
+<h1><%= t(:confirm_order)%></h1>
+
+<table>
+    <thead>
+        <tr>
+            <th><%= Order.human_attribute_name(:name) %></th>
+            <th><%= Portion.human_attribute_name(:description) %></th>
+            <th><%= Portion.human_attribute_name(:price) %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% current_order.portions.each do |portion| %>
+            <tr>
+                <td><%= portion.portionable.name %></td>
+                <td><%= portion.description %></td>
+                <td><%= number_to_currency(portion.price) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<div>
+    <p><%= t(:total_to_pay) %>: <%= number_to_currency(current_order.total_to_pay) %></p>
+    <%= button_to t(:finalize), finalize_establishment_orders_path, method: :patch %>
+</div>
+

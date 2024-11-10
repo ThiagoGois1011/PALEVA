@@ -10,6 +10,10 @@ class Order < ApplicationRecord
   def self.generate_code
     SecureRandom.alphanumeric(8).upcase
   end
+
+  def total_to_pay
+    self.portions.reduce(0) { |total, product| total + product.price }
+  end
   
   private 
 

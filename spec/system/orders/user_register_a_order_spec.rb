@@ -99,7 +99,7 @@ describe 'Usuário registra um pedido' do
     expect(page).to have_content(user.current_order.name)
   end
 
-  it 'depois de já ter outro registrado' do
+  it 'pela segunda vez' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
     products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
@@ -138,7 +138,7 @@ describe 'Usuário registra um pedido' do
     expect(page).to have_content(user.current_order.name)
   end
 
-  it 'e mais tarde seleciona esse pedido de novo' do
+  it 'e mais tarde seleciona esse mesmo pedido' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
     products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 

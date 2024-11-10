@@ -6,7 +6,7 @@ class OrderItemsController < ApplicationController
     @menu = params[:menu_id]
     @previous_url = request.referrer
     @portion = params[:portion_id]
-    @order = current_user.current_order.id
+    @order = current_order.id
   end
 
   def create

@@ -44,8 +44,10 @@ Rails.application.routes.draw do
     get 'continue_order', to: 'orders#continue_order'
     patch 'change_current_order', to: 'orders#change_current_order'
     resources :orders, only: [:new, :create] do
-      patch 'finalize', on: :member
+      get 'confirm_order', on: :collection
+      patch 'finalize', on: :collection
     end
+    
 
     resources :employees, only: [:index, :new, :create]
   end

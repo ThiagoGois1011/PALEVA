@@ -1,6 +1,6 @@
 <% if !current_order.nil? %>
     <p>Pedido Atual: <%= current_order.name %></p>
-    <%= button_to t(:finalize_order), finalize_establishment_order_path(current_order), method: :patch %>
+    <%= link_to t(:finalize_order), confirm_order_establishment_orders_path %>
 <% end %>
 
 <nav>

@@ -47,6 +47,7 @@ pt-BR:
   add_order: 'Adicionar ao pedido'
   add: 'Adicionar'
   finalize_order: 'Finalizar pedido'
+  finalize: 'Finalizar'
   register_new_employee: 'Cadastrar novo Funcionário'
   register_employee: 'Cadastrar Funcionário'
   employees: 'Funcionários'
@@ -55,3 +56,5 @@ pt-BR:
   continue_with_open_order: 'Continuar com pedido em aberto'
   select_order: 'Selecionar pedido'
   orders_list: 'Lista de pedidos'
+  confirm_order: 'Confirmar Pedido'
+  total_to_pay: 'Total a pagar'

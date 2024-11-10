@@ -23,9 +23,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirm_order
+  end
+
   def finalize
-    order = current_establishment.orders.find(params[:id])
-    order.update!(code: Order.generate_code, user_id: nil, status: :waiting_for_confirmation)
+    current_order.update!(code: Order.generate_code, user_id: nil, status: :waiting_for_confirmation)
     
     redirect_to establishment_menus_path
   end
