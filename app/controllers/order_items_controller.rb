@@ -14,6 +14,6 @@ class OrderItemsController < ApplicationController
 
     @order_item = OrderItem.create!(order_items_params)
 
-    redirect_to params[:order_item][:previous_url], notice: 'Porção adicionado com sucesso.'
+    redirect_to params[:order_item][:previous_url], notice: 'Porção adicionado ao pedido.'
   end
 end

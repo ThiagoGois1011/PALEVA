@@ -1,6 +1,35 @@
 require 'rails_helper'
 
 describe 'Usuário adiciona pedidos após criar pedido' do 
+  it 'e adicionar um pedido com observação' do
+    user = create_owner(name: 'Andre')
+    establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+    employee = create_employee(establishment, name: 'João')
+    products = create_dishes_with_portions(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                            dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                            dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+    products.concat create_beverages_with_portions(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                                 beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                                 beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
+    menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
+    products.each do |item|
+      menu.menu_items.create(item: item)
+    end
+    order = Order.create!(name: 'João Carlos', cpf: '48393555094', phone_number: '11988254174', email: 'joão@email.com', establishment: establishment, user: employee)
+
+    login_as employee
+    visit establishment_menu_path(menu)
+    within('#dish_3') do
+      click_on 'Adicionar ao pedido'
+    end
+    fill_in 'Observação', with: 'Sem cebola'
+    click_on 'Adicionar'
+
+    expect(page).to have_content('Porção adicionado ao pedido.')
+    expect(order.order_items[0].observation).to eq('Sem cebola')
+
+
+  end
   it 'e vai para a tela de confirmar pedido' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
@@ -28,6 +57,7 @@ describe 'Usuário adiciona pedidos após criar pedido' do
     within('#dish_3') do
       click_on 'Adicionar ao pedido'
     end
+    fill_in 'Observação', with: 'Sem cebola'
     click_on 'Adicionar'
     within('#beverage_1') do
       click_on 'Adicionar ao pedido'
@@ -40,12 +70,14 @@ describe 'Usuário adiciona pedidos após criar pedido' do
     expect(page).to have_content('Nome')
     expect(page).to have_content('Descrição')
     expect(page).to have_content('Preço')
+    expect(page).to have_content('Observação')
     expect(page).to have_content('Espaguete')
     expect(page).to have_content('500g')
     expect(page).to have_content('15,00')
     expect(page).to have_content('Bife Grelhado')
     expect(page).to have_content('300g')
     expect(page).to have_content('20,00')
+    expect(page).to have_content('Sem cebola')
     expect(page).to have_content('Suco de Laranja')
     expect(page).to have_content('1l')
     expect(page).to have_content('8,50')

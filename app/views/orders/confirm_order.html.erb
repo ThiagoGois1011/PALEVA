@@ -6,6 +6,7 @@
             <th><%= Order.human_attribute_name(:name) %></th>
             <th><%= Portion.human_attribute_name(:description) %></th>
             <th><%= Portion.human_attribute_name(:price) %></th>
+            <th><%= t(:observation) %></th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
                 <td><%= portion.portionable.name %></td>
                 <td><%= portion.description %></td>
                 <td><%= number_to_currency(portion.price) %></td>
+                <td><%= current_order.order_items.find_by(portion: portion).observation %></td>
             </tr>
         <% end %>
     </tbody>
