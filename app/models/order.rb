@@ -41,8 +41,4 @@ class Order < ApplicationRecord
       errors.add(:email, 'inválido') unless regra.match(email)
     end
   end
-
-  def generate_code
-    self.code = SecureRandom.alphanumeric(6).upcase
-  end
 end

@@ -14,7 +14,7 @@ describe 'Usuário vê o status da bebida' do
     expect(page).to have_content('Status: Ativo')
   end
 
-  it 'a partir da página do prato' do
+  it 'a partir da página da bebida' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', 
                                                           close_hour: '18:00')
