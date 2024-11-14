@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :establishments, param: :code, only: [] do
         resources :orders, param: :code, only: [:index, :show]
+        patch 'orders/:code/accept_order', to:'orders#accept_order'
       end
     end
   end

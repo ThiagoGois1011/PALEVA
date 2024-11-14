@@ -269,4 +269,39 @@ describe 'Order API' do
       expect(json_response["error"]).to eq('Pedido não encontrado.')
     end
   end
+
+  context 'PATCH /api/v1/establishments/:establishment_code/orders/:code/accept_order' do
+    it 'sucesso' do
+      user = create_owner(name: 'João')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', 
+                                                            open_hour: '08:00', close_hour: '18:00')
+      order = Order.create(name: 'Matheus', phone_number: '11988254174', email: 'matheus@email.com', 
+                           cpf: '97168422014', establishment: establishment, user: user, 
+                           code: Order.generate_code, status: :waiting_for_confirmation, creation_date: DateTime.now)
+
+      patch "/api/v1/establishments/#{establishment.code}/orders/#{order.code}/accept_order"
+
+      expect(response).to have_http_status(200)
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response["name"]).to eq('Matheus')
+      expect(json_response["status"]).to eq('in_preparation')
+    end
+
+    it 'com status diferente de "waiting_for_confirmation"' do
+      user = create_owner(name: 'João')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', 
+                                                            open_hour: '08:00', close_hour: '18:00')
+      order = Order.create(name: 'Matheus', phone_number: '11988254174', email: 'matheus@email.com', 
+                           cpf: '97168422014', establishment: establishment, user: user, 
+                           code: Order.generate_code, status: :ready, creation_date: DateTime.now)
+
+      patch "/api/v1/establishments/#{establishment.code}/orders/#{order.code}/accept_order"
+
+      expect(response).to have_http_status(403)
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response["error"]).to eq('Só é possível atualizar o status para "in_preparation" caso o status atual seja "waiting_for_confirmation"')
+    end
+  end
 end
