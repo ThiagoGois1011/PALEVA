@@ -1,6 +1,6 @@
 class Api::V1::ApiController < ActionController::API
   rescue_from ActiveRecord::ActiveRecordError, with: :return_500
-  rescue_from NoMethodError, with: :return_404
+  rescue_from ActiveRecord::RecordNotFound, with: :return_404
   
 
   private
@@ -9,7 +9,7 @@ class Api::V1::ApiController < ActionController::API
     render status: 500, json: "{}"
   end
 
-  def return_404
-    render status: 404, json: '{"error": "Estabelecimento não encontrado."}'
+  def return_404(exception)
+    render status: 404, json: { error: exception.message }
   end
 end

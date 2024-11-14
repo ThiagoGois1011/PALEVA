@@ -27,8 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    current_order.update!(code: Order.generate_code, user_id: nil, status: :waiting_for_confirmation)
-    
+    current_order.update!(code: Order.generate_code, user_id: nil, status: :waiting_for_confirmation, creation_date: DateTime.now)
     redirect_to establishment_menus_path
   end
 
