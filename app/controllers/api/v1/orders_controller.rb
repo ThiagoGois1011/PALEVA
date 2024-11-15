@@ -42,11 +42,17 @@ class Api::V1::OrdersController < Api::V1::ApiController
 
       render status: 200, json: @order
     else
-      return render status: 403, 
-                    json: { 
-                      error: 'Só é possível atualizar o status para "in_preparation" caso o status atual seja "waiting_for_confirmation"' 
-                    }if !@order.status.eql?('waiting_for_confirmation')
-      render status: 400, json: { error: 'Parâmetro status inválido ou vazio' }
+      render status: 403, json: { error: 'Só é possível atualizar o status para "in_preparation" caso o status atual seja "waiting_for_confirmation"'}
+    end
+  end
+
+  def ready
+    if @order.status.eql?('in_preparation')
+      @order.ready!
+
+      render status: 200, json: @order
+    else
+      return render status: 403, json: { error: 'Só é possível atualizar o status para "ready" caso o status atual seja "in_preparation"' }
     end
   end
 
