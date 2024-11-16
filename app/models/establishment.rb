@@ -2,7 +2,7 @@ class Establishment < ApplicationRecord
   belongs_to :user, class_name: 'Owner', foreign_key: 'user_id'
   validates :corporate_name, :brand_name, :restration_number,
   :full_address, :phone_number, :email, :code, :user_id, presence: true
-  validates :email, :phone_number, :restration_number, uniqueness: true
+  validates :email, :phone_number, :restration_number, :code,  uniqueness: true
   validate :validate_phone_number, :validate_cnpj, :validate_email
   before_validation :generate_code, on: :create
   has_many :opening_hours

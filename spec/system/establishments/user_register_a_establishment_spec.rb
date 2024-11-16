@@ -14,7 +14,7 @@ describe 'Usuário cadastra um estabelecimento' do
     fill_in 'Endereço', with: 'av presindete cabral'
     fill_in 'Telefone', with: '11981545874'
     fill_in 'Email', with: 'contato@ifood.com'
-    click_on 'Cadastrar Estabelecimento'
+    click_on 'Salvar'
 
     establishment = Establishment.last
     expect(current_path).to eq(new_establishment_opening_hour_path)
@@ -33,7 +33,7 @@ describe 'Usuário cadastra um estabelecimento' do
     fill_in 'Razão Social', with: ''
     fill_in 'CNPJ', with: ''
     fill_in 'Endereço', with: ''
-    click_on 'Cadastrar Estabelecimento'
+    click_on 'Salvar'
     
     expect(page).to have_content('O estabelecimento não foi cadastrado.')
     expect(page).to have_content('Nome Fantasia não pode ficar em branco')
@@ -54,7 +54,7 @@ describe 'Usuário cadastra um estabelecimento' do
     fill_in 'CNPJ', with: '66500520000171'
     fill_in 'Telefone', with: '11981545874'
     fill_in 'Email', with: 'contato@ifood.com'
-    click_on 'Cadastrar Estabelecimento'
+    click_on 'Salvar'
     
     expect(page).to have_content('O estabelecimento não foi cadastrado.')
     expect(page).to have_content('CNPJ já está em uso')

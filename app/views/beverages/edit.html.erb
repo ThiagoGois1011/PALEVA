@@ -1,3 +1,7 @@
+<h1><%= t(:edit_beverage) %></h1>
+
+<%= render 'layouts/error_list', model: @beverage %>
+
 <%= form_with model: @beverage , url: establishment_beverage_path(@beverage)  do |f| %>
     <div>
         <%= f.label :name %>

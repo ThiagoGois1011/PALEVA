@@ -15,7 +15,7 @@ describe 'Usuário cadastra um horário de funcionamento' do
       fill_in 'Endereço', with: 'av presindete cabral'
       fill_in 'Telefone', with: '11981545874'
       fill_in 'Email', with: 'contato@ifood.com'
-      click_on 'Cadastrar Estabelecimento'
+      click_on 'Salvar'
       within('.business_days') do
         fill_in 'Horário de abertura', with: '8:00'
         fill_in 'Horário de fechamento', with: '18:00'
@@ -53,7 +53,7 @@ describe 'Usuário cadastra um horário de funcionamento' do
       fill_in 'Endereço', with: 'av presindete cabral'
       fill_in 'Telefone', with: '11981545874'
       fill_in 'Email', with: 'contato@ifood.com'
-      click_on 'Cadastrar Estabelecimento'
+      click_on 'Salvar'
       check 'Configurar os dias separadamente'
       within('.monday') do
         fill_in 'Horário de abertura', with: '8:00'

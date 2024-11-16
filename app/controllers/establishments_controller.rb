@@ -13,12 +13,8 @@ class EstablishmentsController < ApplicationController
     @establishment = Establishment.new(establishment_params)
     @establishment.user_id = current_user.id
 
-    if @establishment.save
-      redirect_to new_establishment_opening_hour_path, notice: 'Estabelecimento cadastrado com sucesso.'
-    else
-      flash[:notice] = 'O estabelecimento não foi cadastrado.'
-      render :new
-    end
+    save_model(model: @establishment, notice_sucess: 'Estabelecimento cadastrado com sucesso.', 
+                notice_failure: 'O estabelecimento não foi cadastrado.', redirect_url: new_establishment_opening_hour_path)
   end
 
   def show

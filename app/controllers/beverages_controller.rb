@@ -14,8 +14,8 @@ class BeveragesController < ApplicationController
     @beverage = Beverage.new(beverage_params)
     @beverage.establishment = current_establishment
 
-    @beverage.save!
-    redirect_to establishment_beverage_path(@beverage), notice: 'Bebida cadastrada com sucesso.'
+    save_model(model: @beverage, notice_sucess: 'Bebida cadastrada com sucesso.', 
+               notice_failure: 'Bebida não cadastrada.', redirect_url: establishment_beverage_path(0))
   end
 
   def edit
@@ -25,8 +25,9 @@ class BeveragesController < ApplicationController
   def update
     beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture, :alcoholic)
     @beverage = current_establishment.beverages.find(params[:id])
-    @beverage.update(beverage_params)
-    redirect_to establishment_beverage_path(@beverage)
+
+    update_model(model: @beverage, update_params: beverage_params,  notice_sucess: 'Bebida editada com sucesso.', 
+                 notice_failure: 'Bebida não editada.', redirect_url: establishment_beverage_path(0))
   end
 
   def destroy

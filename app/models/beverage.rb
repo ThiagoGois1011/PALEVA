@@ -5,6 +5,7 @@ class Beverage < ApplicationRecord
   has_many :portions, as: :portionable
   has_many :menu_items, as: :item
   has_many :menus, through: :menu_items
+  validates :name, :description, presence: true
   
   def translated_status
     I18n.t("activerecord.attributes.beverage.status.#{status}")

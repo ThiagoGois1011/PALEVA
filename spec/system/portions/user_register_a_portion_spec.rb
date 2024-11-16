@@ -27,7 +27,7 @@ describe 'Usuário cadastra uma porção' do
 
     login_as user
     visit establishment_beverages_path
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
     click_on 'Cadastrar uma porção'
     fill_in 'Descrição', with: '250ml'
     fill_in 'Preço', with: '5.00'

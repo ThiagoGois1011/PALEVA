@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   def check_if_establishment_or_opening_hour_is_nil
     redirect_to new_establishment_path if user_signed_in? && current_establishment.nil?
     redirect_to new_establishment_opening_hour_path if user_signed_in? && 
-                                                                                      !current_establishment.nil? &&
-                                                                                      current_establishment.opening_hours.length < 6
+                                                       !current_establishment.nil? &&
+                                                       current_establishment.opening_hours.length < 6
   end
 
   def after_sign_in_path_for(resource)
@@ -47,5 +47,23 @@ class ApplicationController < ActionController::Base
 
   def not_found
     redirect_to request.referrer, notice: 'Objeto não existe.'
+  end
+
+  def save_model(model:, notice_sucess:, notice_failure:, redirect_url: )
+    if model.save
+      redirect_to redirect_url.sub('0', model.id.to_s), notice: notice_sucess
+    else
+      flash.now[:notice] = notice_failure
+      render :new
+    end
+  end
+
+  def update_model(model:, update_params:,  notice_sucess:, notice_failure:, redirect_url: )
+    if model.update(update_params)
+      redirect_to redirect_url.sub('0', model.id.to_s), notice: notice_sucess
+    else
+      flash.now[:notice] = notice_failure
+      render :edit
+    end
   end
 end

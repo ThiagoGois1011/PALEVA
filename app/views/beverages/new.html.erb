@@ -1,3 +1,7 @@
+<h1><%= t(:register_beverage) %></h1>
+
+<%= render 'layouts/error_list', model: @beverage %>
+
 <%= form_with model: @beverage, url: establishment_beverages_path do |f| %>
     <div>
         <%= f.label :name %>
@@ -20,5 +24,5 @@
         <%= f.check_box :alcoholic %>
     </div>
 
-    <%= f.submit t(:register_beverage) %>
+    <%= f.submit t(:save) %>
 <% end %>

@@ -1,10 +1,13 @@
+<h1><%= t(:beverages) %></h1>
+
 <%= link_to t(:register_beverage), new_establishment_beverage_path %>
 
 <% @beverages.each do |beverage| %>
     <div>
         <%= image_tag(url_for(beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if beverage.picture.attached? %>
-        <p><%= Beverage.human_attribute_name(:name) %>: <%= link_to beverage.name, establishment_beverage_path(beverage) %></p>
+        <p><%= Beverage.human_attribute_name(:name) %>: <%= beverage.name %></p>
         <p><%= Beverage.human_attribute_name(:description) %>: <%= beverage.description %></p>
         <p><%= t(:status) %>: <%= beverage.translated_status %></p>
+        <%= link_to t(:see_details), establishment_beverage_path(beverage) %>
     </div>
 <% end %>

@@ -22,7 +22,7 @@ describe 'Usuário vê o status da bebida' do
 
     login_as user 
     visit establishment_beverages_path
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
 
     expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Status: Ativo')
@@ -36,7 +36,7 @@ describe 'Usuário vê o status da bebida' do
 
     login_as user 
     visit establishment_beverages_path
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
     click_on 'Desativar'
 
     expect(page).to have_content('Nome: Suco de Laranja')
@@ -51,7 +51,7 @@ describe 'Usuário vê o status da bebida' do
 
     login_as user 
     visit establishment_beverages_path
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
     click_on 'Ativar'
 
     expect(page).to have_content('Nome: Suco de Laranja')

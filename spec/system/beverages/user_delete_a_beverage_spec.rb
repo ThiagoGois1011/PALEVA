@@ -10,7 +10,7 @@ describe 'Usuário deleta uma bebida' do
     login_as user
     visit root_path
     click_on 'Bebidas'
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
     click_on 'Deletar'
 
     expect(page).not_to have_content('Nome: Suco de Laranja')

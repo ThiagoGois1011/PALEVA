@@ -30,7 +30,7 @@ describe 'Usuário edita uma porção' do
 
     login_as user
     visit establishment_beverages_path
-    click_on 'Suco de Laranja'
+    click_on 'Ver detalhes'
     within('table') do
       click_on 'Editar'
     end

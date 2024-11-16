@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_142726) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_16_194742) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,11 +40,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_142726) do
   end
 
   create_table "beverages", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+    t.string "name", null: false
+    t.string "description", null: false
     t.integer "calorie"
     t.integer "establishment_id", null: false
-    t.boolean "alcoholic", default: false
+    t.boolean "alcoholic", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 2
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_142726) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_establishments_on_code", unique: true
     t.index ["email", "phone_number", "restration_number", "code"], name: "idx_on_email_phone_number_restration_number_code_7039483612", unique: true
     t.index ["email"], name: "index_establishments_on_email", unique: true
     t.index ["phone_number"], name: "index_establishments_on_phone_number", unique: true
