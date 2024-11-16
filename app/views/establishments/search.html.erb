@@ -1,12 +1,18 @@
-<% @result.each do |item| %>
-    <div>
-        <% if item.is_a?(Dish)%>
-            <%= image_tag(url_for(item.picture), alt: 'Foto do prato', width: 200, height: 200) if item.picture.attached? %>
-            <p><%= Dish.human_attribute_name(:name) %>: <%= link_to item.name, establishment_dish_path(item) %> </p>
-        <% else %>
-            <%= image_tag(url_for(item.picture), alt: 'Foto do produto', width: 200, height: 200) if item.picture.attached? %>
-            <p><%= Dish.human_attribute_name(:name) %>: <%= link_to item.name, establishment_beverage_path(item) %> </p>
-        <% end %>
-        <p><%= Dish.human_attribute_name(:description) %>: <%= item.description %> </p>
-    </div>
+<%= t(:search_result) %>
+
+<% if @result.any? %>
+    <% @result.each do |item| %>
+        <div>
+            <% if item.is_a?(Dish)%>
+                <%= image_tag(url_for(item.picture), alt: 'Foto do prato', width: 200, height: 200) if item.picture.attached? %>
+            <% else %>
+                <%= image_tag(url_for(item.picture), alt: 'Foto do produto', width: 200, height: 200) if item.picture.attached? %>
+            <% end %>
+            <p><%= Dish.human_attribute_name(:name) %>: <%= item.name %> </p>
+            <p><%= Dish.human_attribute_name(:description) %>: <%= item.description %> </p>
+            <%= link_to t(:see_details), establishment_dish_path(item) %>
+        </div>
+    <% end %>
+<% else %>
+    <p><%= t(:nothing_found) %></p>
 <% end %>
