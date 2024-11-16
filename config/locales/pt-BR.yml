@@ -59,3 +59,5 @@ pt-BR:
   confirm_order: 'Confirmar Pedido'
   total_to_pay: 'Total a pagar'
   observation: 'Observação'
+  affirmation: 'Sim'
+  negation: 'Não'

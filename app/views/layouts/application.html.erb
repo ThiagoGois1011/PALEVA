@@ -31,7 +31,7 @@
 
             <% if current_user.type == 'Owner' %>
               <%= link_to t(:register_new_employee), new_establishment_employee_path %> |
-              <%= link_to t(:employees), establishment_employees_path %>
+              <%= link_to t(:employees), establishment_employees_path %> |
             <% end %>
 
             <%= link_to t(:beverages), establishment_beverages_path %> |

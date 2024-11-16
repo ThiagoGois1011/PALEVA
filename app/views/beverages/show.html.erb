@@ -8,6 +8,7 @@
     <p><%= Beverage.human_attribute_name(:name) %>: <%= @beverage.name %></p>
     <p><%= Beverage.human_attribute_name(:description) %>: <%= @beverage.description %></p>
     <p><%= Beverage.human_attribute_name(:calorie) %>: <%= @beverage.calorie %></p>
+    <p><%= Beverage.human_attribute_name(:alcoholic) %>: <%= @beverage.alcoholic ? t(:affirmation) : t(:negation) %></p>
     <div>
         <p><%= t(:status) %>: <%= @beverage.translated_status %></p>
 

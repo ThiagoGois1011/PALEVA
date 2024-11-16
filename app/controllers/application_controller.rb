@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :check_current_user_type_for_page, unless: :devise_controller?
   helper_method :current_establishment, :current_order
+  # rescue_from   ActiveRecord::RecordNotFound, with: :not_found
 
   protected
 
@@ -42,5 +43,9 @@ class ApplicationController < ActionController::Base
 
   def check_current_user_type_for_page
     redirect_to establishment_menus_path, notice: 'Você não tem permissão de entrar nesta página.' unless current_user.type == 'Owner'
+  end
+
+  def not_found
+    redirect_to request.referrer, notice: 'Objeto não existe.'
   end
 end

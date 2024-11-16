@@ -1,4 +1,4 @@
-<%= form_with model: @beverage , url:establishment_beverage_path(@beverage.establishment.id)  do |f| %>
+<%= form_with model: @beverage , url: establishment_beverage_path(@beverage)  do |f| %>
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -14,6 +14,10 @@
     <div>
         <%= f.label :picture %>
         <%= f.file_field :picture %>
+    </div>
+    <div>
+        <%= f.label :alcoholic %>
+        <%= f.check_box :alcoholic %>
     </div>
 
     <%= f.submit t(:save) %>

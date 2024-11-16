@@ -14,10 +14,17 @@ describe 'Usuário cadastra uma bebida' do
     fill_in 'Descrição', with: 'Feito com laranjas orgânicas'
     fill_in 'Calorias', with: '400'
     attach_file 'Foto da bebida', Rails.root.join('spec', 'fixtures', 'suco de laranja.jpg')
+    check 'Alcoólico?'
     click_on "Cadastrar Bebida"
 
     expect(page).to have_content('Bebida cadastrada com sucesso.')
     expect(page).to have_content('Suco de Laranja')
     expect(page).to have_content('Feito com laranjas orgânicas')
+    
+    beverage = Beverage.last
+    expect(beverage.name).to eq('Suco de Laranja')
+    expect(beverage.description).to eq('Feito com laranjas orgânicas')
+    expect(beverage.calorie).to eq(400)
+    expect(beverage.alcoholic).to eq(true)
   end
 end

@@ -9,7 +9,7 @@ class BeveragesController < ApplicationController
   end
 
   def create
-    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture)
+    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture, :alcoholic)
 
     @beverage = Beverage.new(beverage_params)
     @beverage.establishment = current_establishment
@@ -23,8 +23,8 @@ class BeveragesController < ApplicationController
   end
 
   def update
-    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture)
-    @beverage = Beverage.find(params[:id])
+    beverage_params = params.require(:beverage).permit(:name, :description, :calorie, :picture, :alcoholic)
+    @beverage = current_establishment.beverages.find(params[:id])
     @beverage.update(beverage_params)
     redirect_to establishment_beverage_path(@beverage)
   end
@@ -40,7 +40,7 @@ class BeveragesController < ApplicationController
   end
 
   def status
-    beverage = Beverage.find(params[:id])
+    beverage = current_establishment.beverages.find(params[:id])
 
     if beverage.active?
       beverage.disabled!

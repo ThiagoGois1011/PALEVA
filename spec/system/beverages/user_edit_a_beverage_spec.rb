@@ -15,11 +15,13 @@ describe 'Usuário edita uma bebida' do
     fill_in 'Descrição', with: 'Feito com Tang de Laranja'
     fill_in 'Calorias', with: '400'
     attach_file 'Foto da bebida', Rails.root.join('spec', 'fixtures', 'suco de laranja.jpg')
+    check 'Alcoólico?'
     click_on 'Salvar'
 
 
     expect(page).to have_content('Nome: Suco de Laranja')
     expect(page).to have_content('Descrição: Feito com Tang de Laranja')
     expect(page).to have_content('Calorias: 400')
+    expect(page).to have_content('Alcoólico?: Sim')
   end
 end
