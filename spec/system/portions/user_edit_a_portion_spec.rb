@@ -9,7 +9,7 @@ describe 'Usuário edita uma porção' do
 
     login_as user
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     within('table') do
       click_on 'Editar'
     end

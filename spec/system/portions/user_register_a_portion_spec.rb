@@ -8,7 +8,7 @@ describe 'Usuário cadastra uma porção' do
 
     login_as user
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     click_on 'Cadastrar uma porção'
     fill_in 'Descrição', with: '1kg'
     fill_in 'Preço', with: '20.00'

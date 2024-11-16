@@ -1,3 +1,5 @@
+<h1><%= t(:dishes) %></h1>
+
 <%= link_to t(:register_dish), new_establishment_dish_path %>
 <%= link_to t(:register_marker), new_establishment_marker_path %>
 
@@ -12,11 +14,12 @@
 <% @dishes.each do |dish| %>
     <div>
         <%= image_tag(url_for(dish.picture), alt: 'Foto do prato', width: 200, height: 200) if dish.picture.attached? %>
-        <p><%= Dish.human_attribute_name(:name) %>: <%= link_to dish.name, establishment_dish_path(dish) %></p>
+        <p><%= Dish.human_attribute_name(:name) %>: <%= dish.name %></p>
         <p><%= Dish.human_attribute_name(:description) %>: <%= dish.description %></p>
         <p><%= t(:status) %>: <%= dish.translated_status %></p>
         <% if !dish.marker.nil? %>
             <p><%= dish.marker.description %></p>
         <% end %>
+        <%= link_to t(:see_details), establishment_dish_path(dish) %>
     </div>
 <% end %>

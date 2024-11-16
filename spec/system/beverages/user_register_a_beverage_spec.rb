@@ -18,14 +18,10 @@ describe 'Usuário cadastra uma bebida' do
     click_on "Salvar"
 
     expect(page).to have_content('Bebida cadastrada com sucesso.')
-    expect(page).to have_content('Suco de Laranja')
-    expect(page).to have_content('Feito com laranjas orgânicas')
-    
-    beverage = Beverage.last
-    expect(beverage.name).to eq('Suco de Laranja')
-    expect(beverage.description).to eq('Feito com laranjas orgânicas')
-    expect(beverage.calorie).to eq(400)
-    expect(beverage.alcoholic).to eq(true)
+    expect(page).to have_content('Nome: Suco de Laranja')
+    expect(page).to have_content('Descrição: Feito com laranjas orgânicas')
+    expect(page).to have_content('Calorias: 400')
+    expect(page).to have_content('Alcoólico?: Sim')
   end
 
   it 'com campos em branco' do 

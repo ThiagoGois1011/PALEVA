@@ -7,6 +7,7 @@ class Dish < ApplicationRecord
   enum :status, {disabled: 0, active: 2}
   has_many :menu_items, as: :item
   has_many :menus, through: :menu_items
+  validates :name, :description, presence: true
 
   def translated_status
     I18n.t("activerecord.attributes.dish.status.#{status}")

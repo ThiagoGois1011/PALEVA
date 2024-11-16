@@ -22,7 +22,7 @@ describe 'Usuário vê o status do prato' do
 
     login_as user 
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
 
     expect(page).to have_content('Nome: Miojo')
     expect(page).to have_content('Status: Ativo')
@@ -36,7 +36,7 @@ describe 'Usuário vê o status do prato' do
 
     login_as user 
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     click_on 'Desativar'
 
     expect(page).to have_content('Nome: Miojo')
@@ -51,7 +51,7 @@ describe 'Usuário vê o status do prato' do
 
     login_as user 
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     click_on 'Ativar'
 
     expect(page).to have_content('Nome: Miojo')

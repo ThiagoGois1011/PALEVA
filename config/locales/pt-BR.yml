@@ -12,6 +12,7 @@ pt-BR:
   beverages: 'Bebidas'
   register_dish: 'Cadastrar Prato'
   register_beverage: 'Cadastrar Bebida'
+  edit_dish: 'Editar Prato'
   edit_beverage: 'Editar Bebida'
   see_details: 'Ver detalhes'
   edit: 'Editar'

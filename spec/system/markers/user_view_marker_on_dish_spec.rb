@@ -30,7 +30,7 @@ describe 'Usuario vê um marcador' do
     fill_in 'Calorias', with: '400'
     select 'Alto em sódio', from: 'Marcador'
     attach_file 'Foto do prato', Rails.root.join('spec', 'fixtures', 'miojo.jpg')
-    click_on 'Cadastrar Prato'
+    click_on 'Salvar'
 
     expect(page).to have_content('Alto em sódio')
   end
@@ -49,7 +49,7 @@ describe 'Usuario vê um marcador' do
     fill_in 'Calorias', with: '400'
     fill_in 'Criar Marcador', with: 'Alto em sódio'
     attach_file 'Foto do prato', Rails.root.join('spec', 'fixtures', 'miojo.jpg')
-    click_on 'Cadastrar Prato'
+    click_on 'Salvar'
 
     expect(page).to have_content('Alto em sódio')
   end
@@ -63,7 +63,7 @@ describe 'Usuario vê um marcador' do
 
     login_as user
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     click_on 'Editar'
     fill_in 'Nome', with: 'Miojo premium'
     fill_in 'Descrição', with: 'Feito da marca talharim'
@@ -83,7 +83,7 @@ describe 'Usuario vê um marcador' do
 
     login_as user
     visit establishment_dishes_path
-    click_on 'Miojo'
+    click_on 'Ver detalhes'
     click_on 'Editar'
     fill_in 'Nome', with: 'Miojo premium'
     fill_in 'Descrição', with: 'Feito da marca talharim'
@@ -110,7 +110,7 @@ describe 'Usuario vê um marcador' do
     fill_in 'Calorias', with: '400'
     select 'Alto em sódio', from: 'Marcador'
     attach_file 'Foto do prato', Rails.root.join('spec', 'fixtures', 'miojo.jpg')
-    click_on 'Cadastrar Prato'
+    click_on 'Salvar'
 
     expect(page).to have_content('Alto em sódio')
   end

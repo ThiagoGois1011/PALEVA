@@ -1,4 +1,8 @@
-<%= form_with model: @dish , url:establishment_dish_path(@dish.establishment.id)  do |f| %>
+<h1><%= t(:edit_dish) %></h1>
+
+<%= render 'layouts/error_list', model: @dish %>
+
+<%= form_with model: @dish , url: establishment_dish_path  do |f| %>
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -15,10 +19,12 @@
         <%= f.label :picture %>
         <%= f.file_field :picture %>
     </div>
-    <div>
-        <%= f.label :marker_select, t(:marker) %>
-        <%= f.collection_select :marker_select, @markers, :id, :description %>
-    </div> 
+    <% if @markers %>
+        <div>
+            <%= f.label :marker_select, t(:marker) %>
+            <%= f.collection_select :marker_select, @markers, :id, :description, { include_blank: "Selecione um marcador" } %>
+        </div>
+    <% end %> 
     <div>
         <%= f.label :marker_create, t(:create_marker) %>
         <%= f.text_field :marker_create%>

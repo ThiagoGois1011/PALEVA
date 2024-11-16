@@ -30,8 +30,8 @@ class DishesController < ApplicationController
       @dish.marker = Marker.create!(description: create_value)
     end
 
-    @dish.save!
-    redirect_to establishment_dish_path(@dish), notice: 'Prato cadastrado com sucesso.'
+    save_model(model: @dish, notice_sucess: 'Prato cadastrado com sucesso.', 
+               notice_failure: 'Prato não cadastrado.', redirect_url: establishment_dish_path(0))
   end
 
   def edit
@@ -50,8 +50,9 @@ class DishesController < ApplicationController
     else
       dish_params[:marker] = Marker.create!(description: create_value)
     end
-    @dish.update(dish_params)
-    redirect_to establishment_dish_path( id: @dish.id )
+
+    update_model(model: @dish, update_params: dish_params,  notice_sucess: 'Prato editado com sucesso.', 
+                 notice_failure: 'Prato não editado.', redirect_url: establishment_dish_path(0))
   end
 
   def destroy
@@ -65,7 +66,7 @@ class DishesController < ApplicationController
   end
 
   def status
-    dish = Dish.find(params[:id])
+    dish = current_establishment.dishes.find(params[:id])
 
     if dish.active?
       dish.disabled!
