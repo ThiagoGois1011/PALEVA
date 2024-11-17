@@ -28,8 +28,8 @@ describe 'Usuário vê o histórico de uma porção' do
     click_on 'Ver Histórico'
 
     expect(current_path).to eq(establishment_dish_portion_historicals_path(dish, portion)) 
-    expect(page).to have_content('30.00')
-    expect(page).to have_content('40.00')
+    expect(page).to have_content('R$ 30,00')
+    expect(page).to have_content('R$ 40,00')
   end
 
   it 'depois de editar a porção da bebida várias vezes' do
@@ -59,7 +59,7 @@ describe 'Usuário vê o histórico de uma porção' do
     click_on 'Ver Histórico'
 
     expect(current_path).to eq(establishment_beverage_portion_historicals_path(beverage, portion)) 
-    expect(page).to have_content('30.00')
-    expect(page).to have_content('40.00')
+    expect(page).to have_content('R$ 30,00')
+    expect(page).to have_content('R$ 40,00')
   end
 end

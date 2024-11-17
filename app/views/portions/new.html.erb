@@ -1,11 +1,15 @@
-<%= form_with model: [@establishment, @product, @portion] do |f| %>
+<h1><%= t(:register_portion) %></h1>
+
+<%= render 'layouts/error_list', model: @portion %>
+
+<%= form_with model: @portion, url: params[:dish_id] ? establishment_dish_portions_path(@product) : establishment_beverage_portions_path(@product) do |f| %>
     <div>
         <%= f.label :description %>
         <%= f.text_field :description %>
     </div>
     <div>
         <%= f.label :price %>
-        <%= f.text_field :price %>
+        <%= f.number_field :price %>
     </div>
     <%= f.submit t(:save)%>
 <% end %>

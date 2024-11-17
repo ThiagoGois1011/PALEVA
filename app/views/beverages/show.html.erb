@@ -39,8 +39,8 @@
             <% @portions.each do |p| %>
                 <tr>
                     <td><%= p.description %></td>
-                    <td><%= format("%.2f", p.price) %></td>
-                    <td><%= link_to t(:edit),  edit_establishment_beverage_portion_path(@beverage) %></td>
+                    <td><%= number_to_currency(p.price) %></td>
+                    <td><%= link_to t(:edit),  edit_establishment_beverage_portion_path(@beverage, p) %></td>
                     <% if p.historicals.any?%>
                         <td><%= link_to t(:view_historical),  establishment_beverage_portion_historicals_path(@beverage, p)%></td>
                     <% end %>

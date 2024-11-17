@@ -24,6 +24,7 @@ pt-BR:
   register_opening_hour: 'Cadastrar Horário de Funcionamento'
   status: 'Status'
   register_portion: 'Cadastrar uma porção'
+  edit_portion: 'Editar uma porção'
   portions: 'Porções'
   description: 'Descrição'
   price: 'Preço'

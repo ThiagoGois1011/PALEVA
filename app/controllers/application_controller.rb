@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :check_current_user_type_for_page, unless: :devise_controller?
   helper_method :current_establishment, :current_order
-  # rescue_from   ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from   ActiveRecord::RecordNotFound, with: :not_found
 
   protected
 
@@ -46,7 +46,14 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    redirect_to request.referrer, notice: 'Objeto não existe.'
+    value_for_redirect = nil
+
+    if request.referrer
+      value_for_redirect = request.referrer
+    else
+      value_for_redirect = establishment_menus_path
+    end
+    redirect_to value_for_redirect, notice: 'Objeto não encontrado.'
   end
 
   def save_model(model:, notice_sucess:, notice_failure:, redirect_url: )
