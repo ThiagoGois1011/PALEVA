@@ -38,13 +38,17 @@ class OrdersController < ApplicationController
   end
 
   def change_current_order
-    if !current_order.nil?
-      current_order.update(user: nil)
-    end
     
-    order = Order.find(params[:open_orders])
-    order.update(user: current_user)
+    unless params[:open_orders].empty?
+      if !current_order.nil?
+        current_order.update(user: nil)
+      end
 
-    redirect_to params[:previous_url], notice: 'Pedido selecionado com sucesso.'
+      order = current_establishment.orders.find(params[:open_orders])
+      order.update(user: current_user)
+      redirect_to params[:previous_url], notice: 'Pedido selecionado com sucesso.'
+    else
+      redirect_to params[:previous_url], notice: 'Pedido não encontrado.'
+    end
   end
 end

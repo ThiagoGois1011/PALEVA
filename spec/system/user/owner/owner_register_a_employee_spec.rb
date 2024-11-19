@@ -7,10 +7,11 @@ describe 'O dono do estabelecimento faz o pré cadastro do funcionário' do
 
     login_as user
     visit root_path
+    click_on 'Funcionários'
     click_on 'Cadastrar novo Funcionário'
     fill_in 'CPF', with: '01962810089'
     fill_in 'Email', with: 'juninho@email.com'
-    click_on 'Cadastrar Funcionário'
+    click_on 'Salvar'
 
     new_employee = Employee.last
     expect(page).to have_content('Novo funcionário cadastrado com sucesso.')
@@ -24,10 +25,11 @@ describe 'O dono do estabelecimento faz o pré cadastro do funcionário' do
 
     login_as user
     visit root_path
+    click_on 'Funcionários'
     click_on 'Cadastrar novo Funcionário'
     fill_in 'CPF', with: '01962810089'
     fill_in 'Email', with: 'juninho@email.com'
-    click_on 'Cadastrar Funcionário'
+    click_on 'Salvar'
 
     new_employee = Employee.last
     expect(page).to have_content('Funcionário não cadastrado.')
@@ -41,10 +43,11 @@ describe 'O dono do estabelecimento faz o pré cadastro do funcionário' do
 
     login_as user
     visit root_path
+    click_on 'Funcionários'
     click_on 'Cadastrar novo Funcionário'
     fill_in 'CPF', with: ''
     fill_in 'Email', with: ''
-    click_on 'Cadastrar Funcionário'
+    click_on 'Salvar'
 
     new_employee = Employee.last
     expect(page).to have_content('Funcionário não cadastrado.')
@@ -58,10 +61,11 @@ describe 'O dono do estabelecimento faz o pré cadastro do funcionário' do
 
     login_as user
     visit root_path
+    click_on 'Funcionários'
     click_on 'Cadastrar novo Funcionário'
     fill_in 'CPF', with: '99999999'
     fill_in 'Email', with: 'juninho@@email'
-    click_on 'Cadastrar Funcionário'
+    click_on 'Salvar'
 
     new_employee = Employee.last
     expect(page).to have_content('Funcionário não cadastrado.')

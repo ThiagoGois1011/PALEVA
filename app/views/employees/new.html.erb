@@ -1,17 +1,8 @@
 <h1><%= t(:register_new_employee)%></h1>
 
-<% if @employee.errors.any? %>
-<p>Verifique os erros abaixo:</p>
+<%= render 'layouts/error_list', model: @employee %>
 
-<ul>
-    <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-    <% end %>
-</ul>
-
-<% end %>
-
-<%= form_with model: [current_establishment, @employee] do |f| %>
+<%= form_with model: @employee, url: establishment_employees_path do |f| %>
     <div>
         <%= f.label :cpf %>
         <%= f.number_field :cpf %>
@@ -20,5 +11,5 @@
         <%= f.label :email %>
         <%= f.email_field :email %>
     </div>
-    <%= f.submit t(:register_employee) %>
+    <%= f.submit t(:save) %>
 <% end %>

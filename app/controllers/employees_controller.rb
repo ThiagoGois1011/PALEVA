@@ -19,7 +19,7 @@ class EmployeesController < ApplicationController
     @employee.configurate_employee
 
     if @employee.save
-      redirect_to  establishment_menus_path ,notice: 'Novo funcionário cadastrado com sucesso.'
+      redirect_to  establishment_employees_path ,notice: 'Novo funcionário cadastrado com sucesso.'
     else
       flash.now[:notice] = 'Funcionário não cadastrado.'
       render :new
@@ -38,7 +38,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find_by(email: employee_params_search[:email], cpf: employee_params_search[:cpf])
     if @employee.nil?
       @employee = Employee.new(employee_params.merge(employee_params_search))
-      flash.now[:notice] = 'Email ou CPF incorreto'
+      flash.now[:notice] = 'Email ou CPF incorreto. Corrija o erro ou entre em contato com o dono do estabelecimento para fazer o pré cadastro.'
       return render :registration
     end
 

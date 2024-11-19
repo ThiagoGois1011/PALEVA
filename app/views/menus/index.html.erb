@@ -1,6 +1,9 @@
 <h1><%= t(:list_menu) %></h1>
 
-<%= link_to t(:create_new_menu), new_establishment_menu_path %>
+<% if current_user.type == 'Owner' %>
+    <%= link_to t(:create_new_menu), new_establishment_menu_path %>
+<% end %>
+
 
 <div>
     <% @menus.each do |menu|%>
