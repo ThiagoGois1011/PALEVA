@@ -22,7 +22,7 @@
     <% if @markers %>
         <div>
             <%= f.label :marker_select, t(:marker) %>
-            <%= f.collection_select :marker_select, @markers, :id, :description, { include_blank: "Selecione um marcador", selected: @dish.marker_id } %>
+            <%= f.collection_select :marker_select, @markers, :id, :description, { include_blank: t(:select_a_marker), selected: @dish.marker_id } %>
         </div>
     <% end %> 
     

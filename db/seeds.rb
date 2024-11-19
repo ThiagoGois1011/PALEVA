@@ -40,7 +40,7 @@ portions << beverage_3.portions.create(description: '500ml', price: 10)
 
 5.downto(0) do |index|
   order = Order.create!(name: 'Thiago', phone_number: '11987759974', email: 'thiago@email.com', 
-                           cpf: '81296399044', establishment: establishment, user: owner, 
+                           cpf: '81296399044', establishment: establishment,
                            code: Order.generate_code, status: :in_preparation, creation_date:  DateTime.new(2024, 11, 16, index, 0, 0))
   6.times do |index_portion| 
     order.order_items.create(portion: portions[index_portion], observation: 'Sem açúcar adicional')
@@ -49,7 +49,7 @@ end
 
 5.downto(0) do |index|
   order = Order.create!(name: 'Matheus', phone_number: '11988254174', email: 'matheus@email.com', 
-                           cpf: '97168422014', establishment: establishment, user: owner, 
+                           cpf: '97168422014', establishment: establishment,
                            code: Order.generate_code, status: :waiting_for_confirmation, creation_date: DateTime.new(2024, 11, 14, index, 0, 0))
 
   3.times do |index_portion| 
@@ -59,7 +59,7 @@ end
 
 5.downto(0) do |index|
   order = Order.create!(name: 'André', phone_number: '11987754174', email: 'andre@email.com', 
-                           cpf: '39421497023', establishment: establishment, user: owner, 
+                           cpf: '39421497023', establishment: establishment, 
                            code: Order.generate_code, status: :in_preparation, creation_date:  DateTime.new(2024, 11, 15, index, 0, 0))
   4.times do |index_portion| 
     order.order_items.create(portion: portions[index_portion], observation: 'Sem glúten  ')

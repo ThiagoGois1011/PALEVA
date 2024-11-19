@@ -1,4 +1,8 @@
-<%= form_with model: [@establishment, @menu] do |f| %>
+<h1><%= t(:create_menu) %></h1>
+
+<%= render 'layouts/error_list', model: @menu %>
+
+<%= form_with model: @menu, url: establishment_menus_path do |f| %>
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
@@ -12,7 +16,7 @@
         </div>
     </div>
 
-    <%= f.submit t(:create_menu)%>
+    <%= f.submit t(:save) %>
 <% end %>
 
 <script>

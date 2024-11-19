@@ -22,9 +22,10 @@ describe 'Usuário cria um menu' do
     select 'Bife Grelhado', from: 'produto_2'
     click_on 'Adicionar Produto'
     select 'Coca Cola', from: 'produto_3'
-    click_on 'Criar Cardápio'
+    click_on 'Salvar'
 
     expect(current_path).to eq(establishment_menu_path(Menu.last))
+    expect(page).to have_content('Cardápio cadastrado com sucesso.')
     expect(page).to have_content('Almoço')
     expect(page).to have_content('Espaguete')
     expect(page).to have_content('Bife Grelhado')
@@ -52,8 +53,9 @@ describe 'Usuário cria um menu' do
     select 'Bife Grelhado', from: 'produto_2'
     click_on 'Adicionar Produto'
     select 'Coca Cola', from: 'produto_3'
-    click_on 'Criar Cardápio'
+    click_on 'Salvar'
 
+    expect(page).to have_content('Cardápio não foi cadastrado.')
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
@@ -79,8 +81,38 @@ describe 'Usuário cria um menu' do
     select 'Bife Grelhado', from: 'produto_2'
     click_on 'Adicionar Produto'
     select 'Coca Cola', from: 'produto_3'
-    click_on 'Criar Cardápio'
+    click_on 'Salvar'
 
+    expect(page).to have_content('Cardápio não foi cadastrado.')
     expect(page).to have_content('Nome já está em uso')
   end
+
+  it 'com produtos duplicados', js: true do
+    user = create_owner(name: 'Andre')
+     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+     create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                   dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                   dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+     create_beverages(establishment, beverage_1: {name: 'Suco de Laranja', description: 'Feito com laranjas orgânicas'},                 
+                      beverage_2: {name: 'Coca Cola', description: 'Refrigerante'},
+                      beverage_3: {name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\''})
+ 
+     login_as user
+     visit root_path
+     click_on 'Cardápios'
+     click_on 'Criar novo cardápio'
+     fill_in 'Nome', with: 'Almoço'
+     click_on 'Adicionar Produto'
+     select 'Espaguete', from: 'produto_1'
+     click_on 'Adicionar Produto'
+     select 'Espaguete', from: 'produto_1'
+     click_on 'Adicionar Produto'
+     select 'Espaguete', from: 'produto_1'
+     click_on 'Salvar'
+                        
+     menu = Menu.last
+     expect(page).to have_content('Cardápio cadastrado com sucesso.')
+     expect(menu.name).to have_content('Almoço')
+     expect(menu.menu_items.length).to eq(1)
+   end
 end

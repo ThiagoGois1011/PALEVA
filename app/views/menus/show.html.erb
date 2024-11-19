@@ -19,7 +19,7 @@
                 <% item.portions.each do |portion| %>
                     <dd id="<%= dom_id(item) %>">
                         <p><%= t(:description) %>:<%= portion.description %></p>
-                        <p><%= t(:price) %>:<%= portion.price %></p>
+                        <p><%= t(:price) %>:<%= number_to_currency(portion.price) %></p>
                         <% if !current_order.nil?%>
                             <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
                         <% else %>
@@ -41,7 +41,7 @@
             <% item.portions.each do |portion| %>
                 <dd id="<%= dom_id(item) %>">
                     <p><%= t(:description) %>:<%= portion.description %></p>
-                    <p><%= t(:price) %>:<%= portion.price %></p>
+                    <p><%= t(:price) %>:<%= number_to_currency(portion.price) %></p>
                     <% if !current_order.nil?%>
                         <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
                     <% else %>

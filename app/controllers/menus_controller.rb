@@ -15,23 +15,24 @@ class MenusController < ApplicationController
 
   def create
     params_menu = params[:menu]
-    @establishment = current_establishment
-    @menu = Menu.new(name: params_menu[:name], establishment: @establishment)
+    @menu = Menu.new(name: params_menu[:name], establishment: current_establishment)
 
     if @menu.save
       params_menu[:select_items].each do |chave, valor|
         valor_dividido = valor.split('_')
-        @menu.menu_items.create(item_type: valor_dividido[0] , item_id: valor_dividido[1])
+        if !MenuItem.find_by(menu: @menu, item_type: valor_dividido[0], item_id: valor_dividido[1])
+          @menu.menu_items.create(item_type: valor_dividido[0] , item_id: valor_dividido[1])
+        end
       end
 
-      redirect_to establishment_menu_path(@menu)
+      redirect_to establishment_menu_path(@menu), notice: 'Cardápio cadastrado com sucesso.'
     else
-      flash.now[:notice] = @menu.errors.full_messages[0]
+      flash.now[:notice] = 'Cardápio não foi cadastrado.'
       render :new
     end
   end
 
   def show
-    @menu = Menu.find(params[:id])
+    @menu = current_establishment.menus.find(params[:id])
   end
 end

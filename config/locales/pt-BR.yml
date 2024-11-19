@@ -69,3 +69,7 @@ pt-BR:
   nothing_found: 'Não foi encontrado nada correspondente'
   create_marker: 'Criar Marcador'
   result: 'Resultado'
+  list_menu: 'Lista de Cardápios'
+  select_a_order: 'Selecione um pedido'
+  select_order: 'Selecionar Pedido'
+  select_a_marker: 'Selecione um marcador'

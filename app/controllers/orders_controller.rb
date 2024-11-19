@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to params[:order][:previous_url], notice: 'Pedido registrado com sucesso.'
     else
+      @previous_url = params[:order][:previous_url]
       flash.now[:notice] = 'Pedido não registrado'
       render :new
     end
