@@ -5,7 +5,7 @@
 <%= form_with model: @portion, url: params[:dish_id] ? establishment_dish_portion_path(@product) : establishment_beverage_portion_path(@product) do |f| %>
     <div>
         <%= f.label :price %>
-        <%= f.number_field :price %>
+        <%= f.number_field :price, step: :any %>
     </div>
     <%= f.submit t(:save)%>
 <% end %>

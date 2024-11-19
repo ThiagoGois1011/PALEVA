@@ -13,7 +13,7 @@
     </div>
     <div>
         <%= f.label :calorie %>
-        <%= f.text_field :calorie %>
+        <%= f.number_field :calorie %>
     </div>
     <div>
         <%= f.label :picture %>
@@ -22,14 +22,42 @@
     <% if @markers %>
         <div>
             <%= f.label :marker_select, t(:marker) %>
-            <%= f.collection_select :marker_select, @markers, :id, :description, { include_blank: "Selecione um marcador" } %>
+            <%= f.collection_select :marker_select, @markers, :id, :description, { include_blank: "Selecione um marcador", selected: @dish.marker_id } %>
         </div>
     <% end %> 
+    
     <div>
+         <%= f.label :marker_create_check_box, t(:create_marker) %>
+         <%= f.check_box :marker_create_check_box %>
+    </div>
+
+    <div id="input__create__marker">
         <%= f.label :marker_create, t(:create_marker) %>
         <%= f.text_field :marker_create%>
-        <p>Caso não for criar, deixe em branco</p>
     </div>  
      
     <%= f.submit t(:save) %>
 <% end %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const divInput = document.getElementById("input__create__marker");
+        const check_box = document.getElementById("dish_marker_create_check_box");
+        const input = divInput.querySelector('input')
+        
+        divInput.style.display = "none";
+        input.disabled = true;
+
+        check_box.addEventListener("click", () => {
+            if (check_box.checked) {
+                divInput.style.display = "block";
+                input.disabled = false;
+        
+            } else {
+                divInput.style.display = "none";
+                input.disabled = true;
+            }
+        });
+    });
+</script>

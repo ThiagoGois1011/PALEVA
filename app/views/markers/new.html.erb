@@ -1,4 +1,8 @@
-<%= form_with model: [@establishment, @marker] do |f| %>
+<h1><%= t(:create_marker) %></h1>
+
+<%= render 'layouts/error_list', model: @marker %>
+
+<%= form_with model: @marker, url: establishment_markers_path do |f| %>
     <div>
         <%= f.label :description, t(:description) %>
         <%= f.text_field :description %>

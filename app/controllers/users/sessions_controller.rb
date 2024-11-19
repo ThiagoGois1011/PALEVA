@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: params[:user][:email])
 
-    if user.pre_registration_status != 'pre_registration'
+    if user.present? && user.pre_registration_status != 'pre_registration'
       super
     else
       flash[:alert] = 'Email ou senha inválidos.'

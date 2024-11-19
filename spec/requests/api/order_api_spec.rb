@@ -190,7 +190,7 @@ describe 'Order API' do
       user = create_owner(name: 'João')
       establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', 
                                                             open_hour: '08:00', close_hour: '18:00')
-      marker = Marker.create!(description: 'Alto em sódio')
+      marker = Marker.create!(description: 'Alto em sódio', establishment: establishment)
       dish = Dish.create!(name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída', establishment: establishment, marker: marker)
       portion = dish.portions.create(description: '500g', price: 15)
       date_time = DateTime.now

@@ -18,8 +18,8 @@ establishment = Establishment.create!(corporate_name: 'Distribuidora Alimentíci
   OpeningHour.create!(establishment: establishment, open_hour: '08:00', close_hour: '18:00', day_of_week: day)               
 end
 
-marker_1 = Marker.create!(description: 'Alto em sódio')
-marker_2 = Marker.create!(description: 'Contém Lactose')
+marker_1 = Marker.create!(description: 'Alto em sódio', establishment: establishment)
+marker_2 = Marker.create!(description: 'Contém Lactose', establishment: establishment)
 
 dish_1 = Dish.create!(name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída', establishment: establishment, marker: marker_1)
 dish_2 = Dish.create!(name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho', establishment: establishment, marker: marker_2)

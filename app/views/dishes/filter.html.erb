@@ -4,7 +4,9 @@
         <%= f.collection_select :marker, @markers, :id, :description %>
     </div>
     <%= f.submit t(:filter) %>
-<% end %>   
+<% end %>
+
+<h1><%= t(:result) %></h1>
 
 <% @dishes.each do |dish| %>
     <div>

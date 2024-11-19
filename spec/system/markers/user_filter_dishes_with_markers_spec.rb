@@ -5,7 +5,7 @@ describe 'Usuario filtra os pratos' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', 
                                                           close_hour: '18:00')
-    marker = Marker.create!(description: 'Alto em sódio')
+    marker = Marker.create!(description: 'Alto em sódio', establishment: establishment)
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment, marker_id: marker.id)
 
     login_as user
@@ -22,9 +22,9 @@ describe 'Usuario filtra os pratos' do
     user = create_owner(name: 'Andre')
     establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', 
                                                           close_hour: '18:00')
-    marker1 = Marker.create!(description: 'Alto em sódio')
-    marker2 = Marker.create!(description: 'Alto em açucar adicional')
-    marker3 = Marker.create!(description: 'Alto em gordura')
+    marker1 = Marker.create!(description: 'Alto em sódio', establishment: establishment)
+    marker2 = Marker.create!(description: 'Alto em açucar adicional', establishment: establishment)
+    marker3 = Marker.create!(description: 'Alto em gordura', establishment: establishment)
     Dish.create!(name: 'Miojo', description: 'Da Nissin', establishment: establishment, marker_id: marker1.id)
     Dish.create!(name: 'Brigadeiro', description: 'Feito com cacau natural', establishment: establishment, marker_id: marker2.id)
     Dish.create!(name: 'Mocotó', description: 'prato feito a partir das patas do boi', establishment: establishment, marker_id: marker3.id)
