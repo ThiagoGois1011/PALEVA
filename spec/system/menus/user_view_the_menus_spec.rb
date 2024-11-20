@@ -25,10 +25,9 @@ describe 'Usuário vê os cardápios' do
     visit new_user_session_path
     fill_in 'Email', with: 'andre@email.com'
     fill_in 'Senha', with: 'password1234'
-    within('form') do
+    within('form.new_user') do
       click_on 'Entrar'
     end
-
     expect(current_path).to eq(establishment_menus_path)
     expect(page).to have_content('Café da Manhã')
     expect(page).to have_content('Almoço')
@@ -114,6 +113,21 @@ describe 'Usuário vê os cardápios' do
       expect(page).to have_content('Espaguete')
       expect(page).not_to have_content('Estrogonofe')
       expect(page).to have_content('Bife Grelhado')
+    end
+
+    it 'e não tem nenhuma porção' do
+      user = create_owner(name: 'Andre')
+      establishment = create_establishment_and_opening_hour(user, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+      products = create_dishes(establishment, dish_1: {name: 'Espaguete', description: 'Macarrão ao molho com pedaços de carne moída'},                 
+                              dish_2: {name: 'Estrogonofe', description: 'Frango cortado em cubos ao molho'},
+                              dish_3: {name: 'Bife Grelhado', description: 'Carne bovina grelhada'})
+      menu = Menu.create!(name: 'Café da Manhã', establishment: establishment)
+      
+      login_as user
+      visit establishment_menus_path
+      click_on 'Café da Manhã'
+  
+      expect(page).to have_content('Nenhum produto neste cardápio')
     end
   end
 end

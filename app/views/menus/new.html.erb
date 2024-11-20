@@ -12,7 +12,8 @@
         <div>
             <button id="add_product"><%= t(:add_product) %></button>
         </div>
-        <div id="select_container">
+        <div class="content" id="select_container">
+            <p class="no_content"><%= t(:no_products_added)%></p>
         </div>
     </div>
 
@@ -25,12 +26,20 @@
         const selectContainer = document.getElementById("select_container");
         let countSelects = 1;
         const itemsData = <%= @product.to_json.html_safe %>;
-        
+        const textContent = document.querySelector(".no_content");
+
         addProduct.addEventListener('click', (event)=>{
             event.preventDefault();
+            textContent.style.display = 'none'
             const newSelect = document.createElement("select");
             const pratos = document.createElement("optgroup");
             const bebidas = document.createElement("optgroup");
+            const button = document.createElement("button")
+            const div = document.createElement("div")
+
+            newSelect.classList.add('select_product')
+            div.classList.add('select_container')
+            button.innerText = 'Excluir'
 
             pratos.label = "<%= t(:dishes) %>";
             bebidas.label = "<%= t(:beverages) %>";
@@ -52,9 +61,19 @@
                 bebidas.appendChild(option);
             });
 
+            button.addEventListener('click' , ()=> {
+                div.remove()
+                
+                if (selectContainer.children.length == 1){
+                    textContent.style.display = 'block'
+                }
+            })
+
             newSelect.appendChild(pratos);
             newSelect.appendChild(bebidas);
-            selectContainer.appendChild(newSelect)
+            div.appendChild(newSelect)
+            div.appendChild(button)
+            selectContainer.appendChild(div)
         })
     }); 
 </script>

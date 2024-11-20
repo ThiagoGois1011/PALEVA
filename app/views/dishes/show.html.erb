@@ -1,24 +1,22 @@
 <div>
-    <div>
-        <%= link_to t(:edit), edit_establishment_dish_path(@dish) %>
-        <%= button_to t(:delete), establishment_dish_path(@dish), method: :delete %>
-    </div>
-
     <%= image_tag(url_for(@dish.picture), alt: 'Foto do prato', width: 200, height: 200) if @dish.picture.attached? %>
-    <p><%= Dish.human_attribute_name(:name) %>: <%= @dish.name %></p>
-    <p><%= Dish.human_attribute_name(:description) %>: <%= @dish.description %></p>
-    <p><%= Dish.human_attribute_name(:calorie) %>: <%= @dish.calorie %></p>
+    <p><strong><%= Dish.human_attribute_name(:name) %>:</strong> <%= @dish.name %></p>
+    <p><strong><%= Dish.human_attribute_name(:description) %>:</strong> <%= @dish.description %></p>
+    <p><strong><%= Dish.human_attribute_name(:calorie) %>:</strong> <%= @dish.calorie %></p>
     <% if !@dish.marker.nil? %>
-            <p><%= @dish.marker.description %></p>
+            <p><strong><%= @dish.marker.description %></strong></p>
     <% end %>
-    <div>
-        <p><%= t(:status) %>: <%= @dish.translated_status %></p>
+    <p><strong><%= t(:status) %>:</strong> <%= @dish.translated_status %></p>
 
+    <div class="container_product">
         <% if @dish.active?%>
-            <%= button_to 'Desativar', status_establishment_dish_path(@dish) %>
+            <%= button_to 'Desativar', status_establishment_dish_path(@dish), class: 'button_horizontal' %>
         <% else %>
-            <%= button_to 'Ativar', status_establishment_dish_path(@dish) %>
+            <%= button_to 'Ativar', status_establishment_dish_path(@dish), class: 'button_horizontal' %>
         <% end %>
+
+        <%= link_to t(:edit), edit_establishment_dish_path(@dish), class: 'button button_horizontal' %>
+        <%= button_to t(:delete), establishment_dish_path(@dish), method: :delete, class: 'button_horizontal' %>
     </div>
 
 </div>
@@ -28,13 +26,14 @@
         <h3><%= t(:portions) %></h3>
         <%= link_to t(:register_portion), new_establishment_dish_portion_path(@dish) %>
     </div>
+    <br>
     <table class="hitorical_table">
         <thead>
             <tr>
                 <th><%= t(:description) %></th>
                 <th><%= t(:price) %></th>
-                <th></th>
-                <th></th>
+                <th><%= t(:edition) %></th>
+                <th><%= t(:historical) %></th>
             </tr>
         </thead>
         <tbody>

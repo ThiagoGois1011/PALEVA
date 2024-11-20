@@ -5,17 +5,24 @@
 <div>
     <h2><%= t(:pre_registration_employees)%></h2>
 
-    <% @employees_pre_register.each do |employee| %>
-       <p><%= Employee.human_attribute_name(:email) %>: <%= employee.email %></p>
-       <p><%= Employee.human_attribute_name(:cpf) %>: <%= employee.cpf %></p>
-    <% end %>
+   <div class="container_product">
+        <% @employees_pre_register.each do |employee| %>
+            <div class="container_item">
+                <p><strong><%= Employee.human_attribute_name(:email) %>:</strong> <%= employee.email %></p>
+                <p><strong><%= Employee.human_attribute_name(:cpf) %>:</strong> <%= employee.cpf %></p>
+            </div>
+        <% end %>
+   </div>
 </div>
 
 <div>
     <h2><%= t(:complete_registration_employees)%></h2>
-
-    <% @employees_complete_register.each do |employee| %>
-       <p><%= Employee.human_attribute_name(:name) %>: <%= employee.name %></p>
-       <p><%= Employee.human_attribute_name(:cpf) %>: <%= employee.cpf %></p>
-    <% end %>
+    <div class="container_product">
+        <% @employees_complete_register.each do |employee| %>
+            <div class="container_item">
+                <p><strong><%= Employee.human_attribute_name(:name) %>:</strong> <%= employee.name %></p>
+                <p><strong><%= Employee.human_attribute_name(:cpf) %>:</strong> <%= employee.cpf %></p>
+            </div>
+        <% end %>
+    </div>
 </div>

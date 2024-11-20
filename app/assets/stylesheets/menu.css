@@ -1,0 +1,26 @@
+.content {
+    margin: 20px 0;
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(175, 190, 159);
+    flex-direction: column;
+    width: 50vw;
+}
+
+.select_container{
+    margin-bottom: 10px;
+}
+
+.select_product{
+    margin-right: 20px;
+}
+
+.menu_nav{
+    margin-top: 10px;
+}
+
+
+.menu_nav a{
+    margin-right: 20px;
+}

@@ -16,7 +16,7 @@ describe 'Funcionário cadastra sua conta' do
     fill_in 'Email', with: 'juninho@gmail.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    within('form') do
+    within('main form') do
       click_on 'Cadastrar'
     end
 
@@ -43,7 +43,7 @@ describe 'Funcionário cadastra sua conta' do
     fill_in 'Email', with: 'cleito@gmail.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    within('form') do
+    within('main form') do
       click_on 'Cadastrar'
     end
 
@@ -65,7 +65,7 @@ describe 'Funcionário cadastra sua conta' do
     fill_in 'Email', with: 'juninho@gmail.com'
     fill_in 'Senha', with: 'password1234'
     fill_in 'Confirme sua senha', with: 'password1234'
-    within('form') do
+    within('main form') do
       click_on 'Cadastrar'
     end
 
@@ -87,7 +87,7 @@ describe 'Funcionário cadastra sua conta' do
     fill_in 'Email', with: 'juninho@gmail.com'
     fill_in 'Senha', with: ''
     fill_in 'Confirme sua senha', with: ''
-    within('form') do
+    within('main form') do
       click_on 'Cadastrar'
     end
 

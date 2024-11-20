@@ -1,22 +1,20 @@
 <div>
-    <div>
-        <%= link_to t(:edit), edit_establishment_beverage_path(@beverage) %>
-        <%= button_to t(:delete), establishment_beverage_path(@beverage), method: :delete %>
-    </div>
-
     <%= image_tag(url_for(@beverage.picture), alt: 'Foto da bebida', width: 200, height: 200) if @beverage.picture.attached? %>
-    <p><%= Beverage.human_attribute_name(:name) %>: <%= @beverage.name %></p>
-    <p><%= Beverage.human_attribute_name(:description) %>: <%= @beverage.description %></p>
-    <p><%= Beverage.human_attribute_name(:calorie) %>: <%= @beverage.calorie %></p>
-    <p><%= Beverage.human_attribute_name(:alcoholic) %>: <%= @beverage.alcoholic ? t(:affirmation) : t(:negation) %></p>
-    <div>
-        <p><%= t(:status) %>: <%= @beverage.translated_status %></p>
+    <p><strong><%= Beverage.human_attribute_name(:name) %>:</strong> <%= @beverage.name %></p>
+    <p><strong><%= Beverage.human_attribute_name(:description) %>:</strong> <%= @beverage.description %></p>
+    <p><strong><%= Beverage.human_attribute_name(:calorie) %>:</strong> <%= @beverage.calorie %></p>
+    <p><strong><%= Beverage.human_attribute_name(:alcoholic) %>:</strong> <%= @beverage.alcoholic ? t(:affirmation) : t(:negation) %></p>
+    <p><strong><%= t(:status) %>:</strong> <%= @beverage.translated_status %></p>
 
+    <div class="container_product">
         <% if @beverage.active?%>
-            <%= button_to 'Desativar', status_establishment_beverage_path(@beverage) %>
+            <%= button_to 'Desativar', status_establishment_beverage_path(@beverage), class: 'button_horizontal' %>
         <% else %>
-            <%= button_to 'Ativar', status_establishment_beverage_path(@beverage) %>
+            <%= button_to 'Ativar', status_establishment_beverage_path(@beverage), class: 'button_horizontal' %>
         <% end %>
+
+        <%= link_to t(:edit), edit_establishment_beverage_path(@beverage), class: 'button button_horizontal' %>
+        <%= button_to t(:delete), establishment_beverage_path(@beverage), method: :delete, class: 'button_horizontal' %>
     </div>
 
 </div>
@@ -26,13 +24,14 @@
         <h3><%= t(:portions) %></h3>
         <%= link_to t(:register_portion), new_establishment_beverage_portion_path(@beverage) %>
     </div>
+    <br>
     <table class="hitorical_table">
         <thead>
             <tr>
                 <th><%= t(:description) %></th>
                 <th><%= t(:price) %></th>
-                <th></th>
-                <th></th>
+                <th><%= t(:edition) %></th>
+                <th><%= t(:historical) %></th>
             </tr>
         </thead>
         <tbody>

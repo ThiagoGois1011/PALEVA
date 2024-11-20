@@ -10,42 +10,55 @@
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/icon_restaurant.png" type="image/png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
     <header>
-      <nav>
+      <nav class="menu-nav">
         <% if user_signed_in? %>
-          <%= button_to t(:logout), destroy_user_session_path, method: :delete %>|
+          <%= button_to t(:logout), destroy_user_session_path, method: :delete %>
 
           <% if current_establishment.nil? %>
-            <%= link_to t('activerecord.models.establishment'), new_establishment_path %>
+            <%= link_to Establishment.model_name.human, new_establishment_path %>
           <% else %>
-          
-            <%= link_to t('activerecord.models.establishment'), establishment_path %> |
+            <%= link_to Establishment.model_name.human, establishment_path %> 
             <%= link_to t(:menus), establishment_menus_path %>
 
             <% if current_user.type == 'Owner' %>
-              | <%= link_to t(:employees), establishment_employees_path %> |
-              <%= link_to t(:beverages), establishment_beverages_path %> |
+              <%= link_to t(:employees), establishment_employees_path %> 
+              <%= link_to t(:beverages), establishment_beverages_path %> 
               <%= link_to t(:dishes), establishment_dishes_path %>
             <% end %>
           <% end %>
+          
+        <% else %>
+          <%= link_to t(:register_as_an_employee), employees_registration_path %> 
+          <%= link_to t(:register), new_user_registration_path %>
+          <%= link_to t(:login), new_user_session_path %>
+        <% end %>
+      </nav>
+
+       <div class="secondary_menu">
+        <% if !current_user.nil? && current_user.type == 'Owner' %>
           <%= form_with url: search_establishment_path, method: :get do |f| %>
           <%= f.label :search, t(:search) %>
           <%= f.text_field :search %>
           <%= f.submit t(:search) %>
+          <% end %>
         <% end %>
-        <% else %>
-          <%= link_to t(:register_as_an_employee), employees_registration_path %> |
-          <%= link_to t(:register), new_user_registration_path %> |
-          <%= link_to t(:login), new_user_session_path %> 
-        <% end %>
-      </nav>
+
+        <div>
+          <% if !current_order.nil? %>
+              <p><strong><%= t(:current_order) %>:</strong> <%= current_order.name %></p>
+              <p><strong><%= t(:product_length) %>:</strong> <%= current_order.portions.length %></p>
+              <%= link_to t(:finalize_order), confirm_order_establishment_orders_path %>
+          <% end %>
+        </div>
+
+        
+       </div>
     </header>
     <main>
       <p class="notice"><%= notice %></p>

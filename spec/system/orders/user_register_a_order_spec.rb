@@ -25,6 +25,7 @@ describe 'Usuário registra um pedido' do
     fill_in 'CPF', with: '48393555094'
     click_on 'Criar pedido'
 
+    user.reload
     expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido registrado com sucesso.')
     expect(user.current_order.name).to eq('João Carlos')
@@ -90,6 +91,7 @@ describe 'Usuário registra um pedido' do
     fill_in 'CPF', with: '48393555094'
     click_on 'Criar pedido'
 
+    user.reload
     expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido registrado com sucesso.')
     expect(user.current_order.name).to eq('João Carlos')
@@ -129,6 +131,7 @@ describe 'Usuário registra um pedido' do
     fill_in 'CPF', with: '86601882097'
     click_on 'Criar pedido'
 
+    user.reload
     expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido registrado com sucesso.')
     expect(user.current_order.name).to eq('Thiago Andrade')
@@ -161,6 +164,7 @@ describe 'Usuário registra um pedido' do
     select 'João Carlos', from: 'Lista de pedidos'
     click_on 'Salvar'
 
+    user.reload
     expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido selecionado com sucesso.')
     expect(user.current_order.name).to eq('João Carlos')
@@ -198,7 +202,8 @@ describe 'Usuário registra um pedido' do
     fill_in 'Email', with: 'joão@email.com'
     fill_in 'CPF', with: '48393555094'
     click_on 'Criar pedido'
-
+    
+    user.reload
     expect(current_path).to eq(establishment_menu_path(menu))
     expect(page).to have_content('Pedido registrado com sucesso.')
     expect(page).to have_content(user.current_order.name)

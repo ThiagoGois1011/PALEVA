@@ -73,3 +73,8 @@ pt-BR:
   select_a_order: 'Selecione um pedido'
   select_order: 'Selecionar Pedido'
   select_a_marker: 'Selecione um marcador'
+  no_products_added: 'Nenhum produto adicionado'
+  no_products_in_this_menu: 'Nenhum produto neste cardápio'
+  edition: 'Edição'
+  current_order: 'Pedido Atual'
+  product_length: 'Quantidade de produtos'

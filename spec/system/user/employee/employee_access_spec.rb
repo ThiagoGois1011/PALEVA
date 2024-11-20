@@ -102,6 +102,18 @@ describe 'Funcionário acessa uma página' do
   expect(current_path).to eq(establishment_menus_path)
  end
 
+ it 'e não vê o campo de pesquisa' do
+  owner = create_owner(name: 'André')
+  establishment = create_establishment_and_opening_hour(owner, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')
+  employee = create_employee(establishment, name: 'João', email: 'joao@email.com', password: 'password9999')
+  menu = Menu.create!(name: 'Almoço', establishment: establishment)
+
+  login_as employee
+  visit root_path
+
+  expect(page).not_to have_content('Pesquisar')
+ end
+
  it 'de um cardápios' do
   owner = create_owner(name: 'André')
   establishment = create_establishment_and_opening_hour(owner, corporate_name: 'Distribuidora Alimentícia Ifood', open_hour: '08:00', close_hour: '18:00')

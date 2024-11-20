@@ -9,7 +9,7 @@ describe 'Funcionário faz o login' do
     visit new_user_session_path
     fill_in 'Email', with: 'joao@email.com'
     fill_in 'Senha', with: 'password9999'
-    within('form') do
+    within('form.new_user') do
       click_on 'Entrar'
     end
 
@@ -27,7 +27,7 @@ describe 'Funcionário faz o login' do
     visit new_user_session_path
     fill_in 'Email', with: 'juninho@gmail.com'
     fill_in 'Senha', with: 'password_pre_register'
-    within('form') do
+    within('form.new_user') do
       click_on 'Entrar'
     end
 

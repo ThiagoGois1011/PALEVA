@@ -13,3 +13,120 @@
  *= require_tree .
  *= require_self
  */
+
+html,
+body {
+   margin: 0;
+}
+
+a,
+p {
+   font-size: 1rem;
+}
+
+button, input[type=submit], .button {
+   background-color: rgb(37, 160, 12);
+   border: none;
+   border-radius: 14px;
+   padding: 10px 20px;
+   text-decoration: none;
+}
+
+
+.link_devise{
+   display: flex;
+   flex-direction: column;
+}
+
+.button_horizontal{
+   margin: 0 15px 0 0;
+}
+
+.container_link{
+   margin-bottom: 20px;
+}
+
+.link_horizontal{
+   margin: 0 20px 20px 0;
+}
+
+input[type=submit]{
+   margin-top: 20px;
+}
+
+button:hover,
+input[type=submit]:hover, .button:hover {
+   background-color: rgb(18, 82, 6);
+   color: white;
+}
+
+header {
+   background-color: rgb(54, 54, 54);
+   padding: 20px;
+}
+
+.menu-nav {
+   display: flex;
+   margin-bottom: 20px;
+   align-items: center;
+}
+
+.menu-nav a {
+   margin-left: 20px;
+   text-decoration: none;
+   color: white;
+}
+
+.menu-nav a:hover {
+   color: rgb(37, 160, 12);
+   text-decoration: underline;
+}
+
+.secondary_menu{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   color: white;
+}
+
+.secondary_menu a{
+   color: white;
+}
+
+main {
+   margin: 40px 10vw;
+}
+
+a {
+   margin: 10px 0;
+   color: black;
+}
+
+a:hover {
+   color: rgb(102, 102, 102);
+}
+
+table, td, th{
+   border: 1px solid black;
+   border-collapse: collapse;
+}
+
+td, th{
+   padding: 5px;
+}
+
+.container_product{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-items: flex-start;
+   margin-top: 20px;
+}
+
+.container_item{
+   background-color: rgb(175, 190, 159);
+   border-radius: 20px;
+   padding: 20px;
+   margin: 0 4vw 4vw 0;
+   width: 20vw;
+}

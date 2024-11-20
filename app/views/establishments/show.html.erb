@@ -1,16 +1,16 @@
 <h1><%= Establishment.model_name.human %></h1>
 
 <div>
-    <p><%= Establishment.human_attribute_name(:brand_name) %>:  <%= @establishment.brand_name %></p>
-    <p><%= Establishment.human_attribute_name(:email) %>: <%= @establishment.email %></p>
-    <p><%= Establishment.human_attribute_name(:restration_number) %>: <%= @establishment.restration_number %></p>
+    <p><strong><%= Establishment.human_attribute_name(:brand_name) %>:</strong>  <%= @establishment.brand_name %></p>
+    <p><strong><%= Establishment.human_attribute_name(:email) %>:</strong> <%= @establishment.email %></p>
+    <p><strong><%= Establishment.human_attribute_name(:restration_number) %>:</strong> <%= @establishment.restration_number %></p>
 </div>
 <div>
     <% @establishment.opening_hours.each do |day| %>
         <% if day.open_hour.nil? || day.close_hour.nil? %>
-            <p><%= day.translated_day_of_week %>: <%= t(:closed) %></p>
+            <p><strong><%= day.translated_day_of_week %>:</strong> <%= t(:closed) %></p>
         <% else %>
-            <p><%= day.translated_day_of_week %>: <%= day.open_hour.strftime("%H:%M") %> - <%= day.close_hour.strftime("%H:%M") %></p>
+            <p><strong><%= day.translated_day_of_week %>:</strong> <%= day.open_hour.strftime("%H:%M") %> - <%= day.close_hour.strftime("%H:%M") %></p>
         <% end %>
     <% end %> 
 </div>

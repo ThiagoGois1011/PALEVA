@@ -38,7 +38,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    current_user.current_order
+    if !current_user.nil?
+      current_user.current_order
+    end
   end
 
   def check_current_user_type_for_page

@@ -1,54 +1,63 @@
-<% if !current_order.nil? %>
-    <p>Pedido Atual: <%= current_order.name %></p>
-    <%= link_to t(:finalize_order), confirm_order_establishment_orders_path %>
-<% end %>
+<h1><%= @menu.name %></h1>
 
-<nav>
+<nav class="menu_nav">
     <%= link_to t(:create_new_order), new_establishment_order_path %>
     <%= link_to t(:continue_with_open_order), continue_order_establishment_path %>
 </nav>
 
-<h1><%= @menu.name %></h1>
 
-<div>
-    <h2><% t(:dishes) %></h2>
-    <dl>
-        <% @menu.dishes.active.each do |item| %>
-            <dt><%= item.name %></dt>
-            <% if item.portions.any? %>
-                <% item.portions.each do |portion| %>
-                    <dd id="<%= dom_id(item) %>">
-                        <p><%= t(:description) %>:<%= portion.description %></p>
-                        <p><%= t(:price) %>:<%= number_to_currency(portion.price) %></p>
-                        <% if !current_order.nil?%>
-                            <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
-                        <% else %>
-                            <%= link_to t(:add_order),  new_establishment_order_path%>
-                        <% end %>
-                    </dd>
-                <% end %>
-            <% else %>
-                <dd><%= t(:dont_have_portions) %></dd>
-            <% end %>
-        <% end %>
-    </dl>
-</div>
-<div>
-    <h2><% t(:beverages) %></h2>
-    <dl>
-        <% @menu.beverages.active.each do |item| %>
-            <dt><%= item.name %></dt>
-            <% item.portions.each do |portion| %>
-                <dd id="<%= dom_id(item) %>">
-                    <p><%= t(:description) %>:<%= portion.description %></p>
-                    <p><%= t(:price) %>:<%= number_to_currency(portion.price) %></p>
-                    <% if !current_order.nil?%>
-                        <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
-                    <% else %>
-                        <%= link_to t(:add_order),  new_establishment_order_path%>
+<% if @menu.dishes.active.any?%>
+    <div>
+        <h2><%= t(:dishes) %></h2>
+        <div class="container_product">
+            <% @menu.dishes.active.each do |item| %>
+                <div class="container_item">
+                    <h3><%= item.name %></h3>
+                    <% if item.portions.any? %>
+                        <% item.portions.each do |portion| %>
+                            <div id="<%= dom_id(item) %>">
+                                <p><strong><%= t(:description) %>: </strong><%= portion.description %></p>
+                                <p><strong><%= t(:price) %>: </strong><%= number_to_currency(portion.price) %></p>
+                                <% if !current_order.nil?%>
+                                    <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
+                                <% else %>
+                                    <%= link_to t(:add_order),  new_establishment_order_path%>
+                                <% end %>
+                            </div>
                     <% end %>
-                </dd>
+                </div>
+                    <% else %>
+                    <p><%= t(:dont_have_portions) %></p>
+                    <% end %>
             <% end %>
-        <% end %>
-    </dl>
-</div>
+        </div>
+    </div>
+<% end %>
+
+<% if @menu.beverages.active.any? %>
+    <div>
+        <h2><%= t(:beverages) %></h2>
+        <div class="container_product">
+            <% @menu.beverages.active.each do |item| %>
+                <div class="container_item">
+                    <h3><%= item.name %></h3>
+                    <% item.portions.each do |portion| %>
+                        <div id="<%= dom_id(item) %>">
+                            <p><strong><%= t(:description) %>: </strong><%= portion.description %></p>
+                            <p><strong><%= t(:price) %>: </strong><%= number_to_currency(portion.price) %></p>
+                            <% if !current_order.nil?%>
+                                <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
+                            <% else %>
+                                <%= link_to t(:add_order),  new_establishment_order_path%>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
+<% if !@menu.dishes.active.any? && !@menu.beverages.active.any? %>
+    <p><%= t(:no_products_in_this_menu) %><p>
+<% end %>
