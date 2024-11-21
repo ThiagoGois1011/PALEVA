@@ -17,11 +17,11 @@ describe 'Usuário cria um menu' do
     click_on 'Criar novo cardápio'
     fill_in 'Nome', with: 'Almoço'
     click_on 'Adicionar Produto'
-    select 'Espaguete', from: 'produto_1'
+    select 'Espaguete', from: 'product_1'
     click_on 'Adicionar Produto'
-    select 'Bife Grelhado', from: 'produto_2'
+    select 'Bife Grelhado', from: 'product_2'
     click_on 'Adicionar Produto'
-    select 'Coca Cola', from: 'produto_3'
+    select 'Coca Cola', from: 'product_3'
     click_on 'Salvar'
 
     expect(current_path).to eq(establishment_menu_path(Menu.last))
@@ -48,11 +48,11 @@ describe 'Usuário cria um menu' do
     click_on 'Criar novo cardápio'
     fill_in 'Nome', with: ''
     click_on 'Adicionar Produto'
-    select 'Espaguete', from: 'produto_1'
+    select 'Espaguete', from: 'product_1'
     click_on 'Adicionar Produto'
-    select 'Bife Grelhado', from: 'produto_2'
+    select 'Bife Grelhado', from: 'product_2'
     click_on 'Adicionar Produto'
-    select 'Coca Cola', from: 'produto_3'
+    select 'Coca Cola', from: 'product_3'
     click_on 'Salvar'
 
     expect(page).to have_content('Cardápio não foi cadastrado.')
@@ -76,11 +76,11 @@ describe 'Usuário cria um menu' do
     click_on 'Criar novo cardápio'
     fill_in 'Nome', with: 'Almoço'
     click_on 'Adicionar Produto'
-    select 'Espaguete', from: 'produto_1'
+    select 'Espaguete', from: 'product_1'
     click_on 'Adicionar Produto'
-    select 'Bife Grelhado', from: 'produto_2'
+    select 'Bife Grelhado', from: 'product_2'
     click_on 'Adicionar Produto'
-    select 'Coca Cola', from: 'produto_3'
+    select 'Coca Cola', from: 'product_3'
     click_on 'Salvar'
 
     expect(page).to have_content('Cardápio não foi cadastrado.')
@@ -103,11 +103,11 @@ describe 'Usuário cria um menu' do
      click_on 'Criar novo cardápio'
      fill_in 'Nome', with: 'Almoço'
      click_on 'Adicionar Produto'
-     select 'Espaguete', from: 'produto_1'
+     select 'Espaguete', from: 'product_1'
      click_on 'Adicionar Produto'
-     select 'Espaguete', from: 'produto_1'
+     select 'Espaguete', from: 'product_1'
      click_on 'Adicionar Produto'
-     select 'Espaguete', from: 'produto_1'
+     select 'Espaguete', from: 'product_1'
      click_on 'Salvar'
                         
      menu = Menu.last

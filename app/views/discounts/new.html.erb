@@ -1,14 +1,30 @@
-<h1><%= t(:create_menu) %></h1>
+<h1><%= t(:create_discount) %></h1>
 
-<%= render 'layouts/error_list', model: @menu %>
+<%= render 'layouts/error_list', model: @discount %>
 
-<%= form_with model: @menu, url: establishment_menus_path do |f| %>
+<%= form_with model: @discount, url: establishment_discounts_path do |f| %>
     <div>
         <%= f.label :name %>
         <%= f.text_field :name %>
     </div>
     <div>
-        <h2><%= t(:menu_product) %></h2>
+        <%= f.label :discount_percentage %>
+        <%= f.text_field :discount_percentage %>
+    </div>
+    <div>
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date %>
+    </div>
+    <div>
+        <%= f.label :end_date %>
+        <%= f.date_field :end_date %>
+    </div>
+    <div>
+        <%= f.label :limit %>
+        <%= f.text_field :limit %>
+    </div>
+    <div>
+        <h2><%= t(:discount_product) %></h2>
         <div>
             <button id="add_product"><%= t(:add_product) %></button>
         </div>
@@ -44,19 +60,19 @@
             pratos.label = "<%= t(:dishes) %>";
             bebidas.label = "<%= t(:beverages) %>";
             newSelect.id = "product_" + countSelects;
-            newSelect.name = `menu[select_items][select_${countSelects}]`;
+            newSelect.name = `discount[select_items][select_${countSelects}]`;
             countSelects++;
 
             itemsData.dishes.forEach(element => {
                 const option = document.createElement("option");
-                option.value = "Dish_" + element.id; 
+                option.value = element.id; 
                 option.textContent = element.name;
                 pratos.appendChild(option);
             });
 
             itemsData.beverages.forEach(element => {
                 const option = document.createElement("option");
-                option.value = "Beverage_" + element.id; 
+                option.value = element.id; 
                 option.textContent = element.name;
                 bebidas.appendChild(option);
             });

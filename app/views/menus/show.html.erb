@@ -11,23 +11,27 @@
         <h2><%= t(:dishes) %></h2>
         <div class="container_product">
             <% @menu.dishes.active.each do |item| %>
-                <div class="container_item">
-                    <h3><%= item.name %></h3>
                     <% if item.portions.any? %>
                         <% item.portions.each do |portion| %>
-                            <div id="<%= dom_id(item) %>">
-                                <p><strong><%= t(:description) %>: </strong><%= portion.description %></p>
-                                <p><strong><%= t(:price) %>: </strong><%= number_to_currency(portion.price) %></p>
-                                <% if !current_order.nil?%>
-                                    <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
-                                <% else %>
-                                    <%= link_to t(:add_order),  new_establishment_order_path%>
-                                <% end %>
+                            <div class="container_item">
+                                <h3><%= item.name %></h3>
+
+                                <div id="<%= dom_id(item) %>">
+                                    <p><strong><%= t(:description) %>: </strong><%= portion.description %></p>
+                                    <p><strong><%= t(:price) %>: </strong><%= number_to_currency(portion.price) %></p>
+                                    <% if !current_order.nil?%>
+                                        <%= link_to t(:add_order),  new_establishment_menu_order_item_path(@menu, portion_id: portion.id)%>
+                                    <% else %>
+                                        <%= link_to t(:add_order),  new_establishment_order_path%>
+                                    <% end %>
+                                </div>
                             </div>
-                    <% end %>
-                </div>
+                        <% end %>
                     <% else %>
-                    <p><%= t(:dont_have_portions) %></p>
+                        <div class="container_item">
+                            <h3><%= item.name %></h3>
+                            <p><%= t(:dont_have_portions) %></p>
+                        </div>
                     <% end %>
             <% end %>
         </div>

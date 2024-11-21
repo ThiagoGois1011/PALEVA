@@ -48,8 +48,9 @@ Rails.application.routes.draw do
       patch 'finalize', on: :collection
     end
     
-
     resources :employees, only: [:index, :new, :create]
+
+    resources :discounts, only: [:index, :show, :new, :create]
   end
 
   namespace :api do

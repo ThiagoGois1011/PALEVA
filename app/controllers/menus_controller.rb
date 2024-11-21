@@ -9,7 +9,7 @@ class MenusController < ApplicationController
     @menu = Menu.new
     dishes = current_establishment.dishes
     beverages = current_establishment.beverages
-    @product = { dishes: dishes, beverages: beverages}
+    @products = { dishes: dishes, beverages: beverages}
   end
 
   def create

@@ -29,6 +29,7 @@ beverage_1 = Beverage.create!(name: 'Suco de Laranja', description: 'Feito com l
 beverage_2 = Beverage.create!(name: 'Coca Cola', description: 'Refrigerante', establishment: establishment)
 beverage_3 = Beverage.create!(name: 'Suco de Maracujá', description: 'Feito com \'maracujá do mato\'', establishment: establishment)
 
+
 portions = []
 portions << dish_1.portions.create(description: '500g', price: 15)
 portions << dish_2.portions.create(description: '300g', price: 20)

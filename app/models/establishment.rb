@@ -12,6 +12,7 @@ class Establishment < ApplicationRecord
   has_many :orders
   has_many :employees
   has_many :markers
+  has_many :discounts
 
   private 
 

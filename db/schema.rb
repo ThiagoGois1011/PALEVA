@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_21_175619) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,6 +49,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 2
     t.index ["establishment_id"], name: "index_beverages_on_establishment_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "discount_percentage", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.integer "limit"
+    t.integer "establishment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["establishment_id"], name: "index_discounts_on_establishment_id"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -128,6 +140,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
     t.index ["establishment_id"], name: "index_opening_hours_on_establishment_id"
   end
 
+  create_table "order_discounts", force: :cascade do |t|
+    t.integer "discount_id", null: false
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discount_id"], name: "index_order_discounts_on_discount_id"
+    t.index ["order_id"], name: "index_order_discounts_on_order_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "portion_id", null: false
     t.integer "order_id", null: false
@@ -152,6 +173,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
     t.datetime "creation_date"
     t.index ["establishment_id"], name: "index_orders_on_establishment_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "portion_discounts", force: :cascade do |t|
+    t.integer "discount_id", null: false
+    t.integer "portion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discount_id"], name: "index_portion_discounts_on_discount_id"
+    t.index ["portion_id"], name: "index_portion_discounts_on_portion_id"
   end
 
   create_table "portions", force: :cascade do |t|
@@ -187,6 +217,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "beverages", "establishments"
+  add_foreign_key "discounts", "establishments"
   add_foreign_key "dishes", "establishments"
   add_foreign_key "dishes", "markers"
   add_foreign_key "establishments", "users"
@@ -195,9 +226,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_18_132211) do
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menus", "establishments"
   add_foreign_key "opening_hours", "establishments"
+  add_foreign_key "order_discounts", "discounts"
+  add_foreign_key "order_discounts", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "portions"
   add_foreign_key "orders", "establishments"
   add_foreign_key "orders", "users"
+  add_foreign_key "portion_discounts", "discounts"
+  add_foreign_key "portion_discounts", "portions"
   add_foreign_key "users", "establishments"
 end

@@ -1,0 +1,33 @@
+<h1><%= t(:discount) %></h1>
+
+<div>
+    <p><strong><%= Discount.human_attribute_name(:name) %>:</strong> <%= @discount.name %></p>
+    <p><strong><%= Discount.human_attribute_name(:start_date) %>:</strong> <%= l(@discount.start_date) %></p>
+    <p><strong><%= Discount.human_attribute_name(:end_date) %>:</strong> <%= l(@discount.end_date) %></p>
+    <p><strong><%= Discount.human_attribute_name(:discount_percentage) %>:</strong> <%= @discount.discount_percentage %>%</p>
+    <p><strong><%= Discount.human_attribute_name(:limit) %>:</strong> <%= @discount.limit %></p>
+    <p><strong><%= t(:validity) %>:</strong> <%= @discount.valid_date ? t(:valid) : t(:invalid) %></p>
+</div>
+
+<div>
+    <h2><%= t(:portions) %></h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th><%= Dish.human_attribute_name(:name) %></th>
+                <th><%= Portion.human_attribute_name(:description) %></th>
+                <th><%= Portion.human_attribute_name(:price) %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @discount.portions.each do |p| %>
+                <tr>
+                    <td><%= p.portionable.name %></td>
+                    <td><%= p.description %></td>
+                    <td><%= number_to_currency(p.price) %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
