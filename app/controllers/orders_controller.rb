@@ -28,6 +28,20 @@ class OrdersController < ApplicationController
   end
 
   def finalize
+    current_order.portions.each do |portion|
+      bigger_discount_value = 0 
+      bigger_discount = nil
+      portion.discounts.each do |discount|
+        if discount.valid_date(Date.today) && discount.discount_percentage > bigger_discount_value  && discount.limit > discount.order_discounts.length
+          bigger_discount_value = discount.discount_percentage
+          bigger_discount = discount
+        end
+      end
+
+      if bigger_discount.present?
+        bigger_discount.order_discounts.create!(order: current_order)
+      end
+    end
     current_order.update!(code: Order.generate_code, user_id: nil, status: :waiting_for_confirmation, creation_date: DateTime.now)
     redirect_to establishment_menus_path
   end

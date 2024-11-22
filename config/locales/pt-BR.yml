@@ -62,6 +62,7 @@ pt-BR:
   orders_list: 'Lista de pedidos'
   confirm_order: 'Confirmar Pedido'
   total_to_pay: 'Total a pagar'
+  total_to_pay_with_discount: 'Total a pagar com desconto'
   observation: 'Observação'
   affirmation: 'Sim'
   negation: 'Não'
@@ -86,3 +87,5 @@ pt-BR:
   discount_product: 'Produtos do Desconto'
   valid: 'Válido'
   invalid: 'Inválido'
+  price_with_discount: 'Preço com Desconto'
+  order_that_used: 'Pedidos que Usaram'

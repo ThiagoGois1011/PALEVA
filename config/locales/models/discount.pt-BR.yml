@@ -9,3 +9,4 @@ pt-BR:
         start_date: 'Data de Início'
         end_date: 'Data Final'
         limit: 'Limite de Pedidos'
+        establishment: 'Estabelecimento'

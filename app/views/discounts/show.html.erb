@@ -31,3 +31,28 @@
         </tbody>
     </table>
 </div>
+
+<div>
+    <h2><%= t(:order_that_used) %></h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th><%= Order.human_attribute_name(:name) %></th>
+                <th><%= Order.human_attribute_name(:cpf) %></th>
+                <th><%= Order.human_attribute_name(:phone_number) %></th>
+                <th><%= Order.human_attribute_name(:email) %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @discount.orders.each do |o| %>
+                <tr>
+                    <td><%= o.name %></td>
+                    <td><%= o.cpf %></td>
+                    <td><%= o.phone_number %></td>
+                    <td><%= o.email %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

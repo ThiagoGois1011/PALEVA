@@ -1,16 +1,18 @@
 <h1><%= t(:discounts) %></h1>
 
-<%= link_to t(:register_new_discount), new_establishment_discount_path, class: 'button' %>
+<%= link_to t(:register_new_discount), new_establishment_discount_path, class: 'button container_link' %>
 
-<div class="content_product">
+<div class="container_product">
     <% @discounts.each do |discount| %>
-        <div class="content_item">
+        <div class="container_item">
             <h3><%= t(:discount) %><h3>
                 
             <p><strong><%= Discount.human_attribute_name(:name) %>:</strong> <%= discount.name %></p>
-            <p><strong><%= Discount.human_attribute_name(:start_date) %>:</strong> <%= discount.start_date %></p>
-            <p><strong><%= Discount.human_attribute_name(:end_date) %>:</strong> <%= discount.end_date %></p>
-            <p><strong><%= t(:validity) %>:</strong> <%= discount.validity %></p>
+            <p><strong><%= Discount.human_attribute_name(:start_date) %>:</strong> <%= l(discount.start_date) %></p>
+            <p><strong><%= Discount.human_attribute_name(:end_date) %>:</strong> <%= l(discount.end_date) %></p>
+            <p><strong><%= t(:validity) %>:</strong> <%= discount.valid_date ? t(:valid) : t(:invalid) %></p>
+
+            <%= link_to t(:see_details), establishment_discount_path(discount) %>
         </div>
     <% end %>
 </div>

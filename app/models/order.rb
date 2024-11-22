@@ -14,6 +14,13 @@ class Order < ApplicationRecord
   def total_to_pay
     self.portions.reduce(0) { |total, product| total + product.price }
   end
+
+  def total_to_pay_with_discount
+    self.portions.reduce(0) do |total, product|
+      next total + product.get_discount if product.get_discount > 0
+      total + product.price 
+    end
+  end
   
   private 
 

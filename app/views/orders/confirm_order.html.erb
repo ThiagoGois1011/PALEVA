@@ -6,6 +6,7 @@
             <th><%= Order.human_attribute_name(:name) %></th>
             <th><%= Portion.human_attribute_name(:description) %></th>
             <th><%= Portion.human_attribute_name(:price) %></th>
+            <th><%= t(:price_with_discount) %></th>
             <th><%= t(:observation) %></th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
                 <td><%= portion.portionable.name %></td>
                 <td><%= portion.description %></td>
                 <td><%= number_to_currency(portion.price) %></td>
+                <td><%= number_to_currency(portion.get_discount) %></td>
                 <td><%= current_order.order_items.find_by(portion: portion).observation %></td>
             </tr>
         <% end %>
@@ -23,6 +25,7 @@
 
 <div>
     <p><%= t(:total_to_pay) %>: <%= number_to_currency(current_order.total_to_pay) %></p>
+    <p><%= t(:total_to_pay_with_discount) %>: <%= number_to_currency(current_order.total_to_pay_with_discount) %></p>
     <%= button_to t(:finalize), finalize_establishment_orders_path, method: :patch %>
 </div>
 

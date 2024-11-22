@@ -66,3 +66,6 @@ end
     order.order_items.create(portion: portions[index_portion], observation: 'Sem glúten  ')
   end
 end
+
+
+  
