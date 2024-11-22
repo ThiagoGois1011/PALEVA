@@ -14,8 +14,8 @@ establishment = Establishment.create!(corporate_name: 'Distribuidora Alimentíci
                                       restration_number: '66500520000171', full_address: 'Av Presindete Cabral', 
                                       phone_number: '11981545874', email: 'contato@ifood.com', user: owner)
 
-Employee.create!(name: 'Andre', last_name: 'Almeida', cpf: '09094018020', email: 'andre@email.com', password: 'password9999' 
-                         pre_registration_status: :registration_complete, establishment: establishment)
+Employee.create!(name: 'Andre', last_name: 'Almeida', cpf: '09094018020', email: 'andre@email.com', password: 'password9999' ,
+                 pre_registration_status: :registration_complete, establishment: establishment)
 
 pre_registration = Employee.new(email: 'juninho@gmail.com', cpf: '99621154006', establishment: establishment)
 pre_registration.configurate_employee
@@ -83,7 +83,7 @@ discount.portion_discounts.create(portion: portions[3])
 
 order_thiago = Order.create!(name: 'Thiago', phone_number: '11987759974', email: 'thiago@email.com', 
               cpf: '81296399044', establishment: establishment, code: Order.generate_code, 
-              status: :in_preparation, creation_date:  DateTime.new(2024, 11, 16, 11, 0, 0))
+              status: :in_preparation, creation_date: DateTime.new(2024, 11, 16, 11, 0, 0) )
 3.times do |index_portion| 
   order_thiago.order_items.create(portion: portions[index_portion], observation: 'Não coloca muito sal')
 end
@@ -92,23 +92,23 @@ order_matheus = Order.create!(name: 'Matheus', email: 'matheus@email.com', estab
 4.times do |index_portion| 
   order_matheus.order_items.create(portion: portions[index_portion], observation: 'Não coloca muito Açúcar')
 end
-order_joao = Order.create!(name: 'João', email: 'joao@email.com', cpf: CPF.generate establishment: establishment, 
-                              code: Order.generate_code,status: :waiting_for_confirmation, creation_date:  DateTime.new(2024, 11, 18, 14, 0, 0))
+order_joao = Order.create!(name: 'João', email: 'joao@email.com', cpf: CPF.generate, establishment: establishment, 
+                              code: Order.generate_code, status: :waiting_for_confirmation, creation_date:  DateTime.new(2024, 11, 18, 14, 0, 0))
 5.times do |index_portion| 
   order_joao.order_items.create(portion: portions[index_portion])
 end
-order_pedro = Order.create!(name: 'Pedro', email: 'pedro@email.com', cpf: CPF.generate establishment: establishment, 
-                              code: Order.generate_code,status: :waiting_for_confirmation, creation_date:  DateTime.new(2024, 11, 18, 11, 0, 0))
+order_pedro = Order.create!(name: 'Pedro', email: 'pedro@email.com', cpf: CPF.generate, establishment: establishment, 
+                              code: Order.generate_code, status: :waiting_for_confirmation, creation_date:  DateTime.new(2024, 11, 18, 11, 0, 0))
 4.times do |index_portion| 
   order_pedro.order_items.create(portion: portions[index_portion])
 end
-order_william = Order.create!(name: 'William', email: 'wiliam@email.com', cpf: CPF.generate establishment: establishment, 
-                              code: Order.generate_code,status: :ready, creation_date:  DateTime.new(2024, 11, 19, 15, 0, 0))
+order_william = Order.create!(name: 'William', email: 'wiliam@email.com', cpf: CPF.generate, establishment: establishment, 
+                              code: Order.generate_code, status: :ready, creation_date:  DateTime.new(2024, 11, 19, 15, 0, 0))
 6.times do |index_portion| 
   order_william.order_items.create(portion: portions[index_portion])
 end
-order_jose = Order.create!(name: 'José', email: 'jose@email.com', cpf: CPF.generate establishment: establishment, 
-                              code: Order.generate_code,status: :ready, creation_date:  DateTime.new(2024, 11, 18, 20, 0, 0))
+order_jose = Order.create!(name: 'José', email: 'jose@email.com', cpf: CPF.generate, establishment: establishment, 
+                              code: Order.generate_code, status: :ready, creation_date:  DateTime.new(2024, 11, 18, 20, 0, 0))
 6.times do |index_portion| 
   order_jose.order_items.create(portion: portions[index_portion])
 end
@@ -120,6 +120,47 @@ discount.order_discounts.create(order: order_pedro)
 discount.order_discounts.create(order: order_william)
 discount.order_discounts.create(order: order_jose)
 
+sleep(2)
+
+dish_1.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'miojo.jpg')),
+  filename: 'miojo.jpg',
+  content_type: 'image/jpeg'
+)
+
+dish_2.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'estrogonofe.jpeg')),
+  filename: 'estrogonofe.jpeg',
+  content_type: 'image/jpeg'
+)
+
+sleep(2)
+
+dish_3.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'bife.jpg')),
+  filename: 'bife.jpg',
+  content_type: 'image/jpeg'
+)
+
+beverage_1.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'suco de laranja.jpg')),
+  filename: 'suco de laranja.jpg',
+  content_type: 'image/jpeg'
+)
+
+sleep(2)
+
+beverage_2.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'coca.jpeg')),
+  filename: 'coca.jpeg',
+  content_type: 'image/jpeg'
+)
+
+beverage_3.picture.attach(
+  io: File.open(Rails.root.join('spec', 'fixtures', 'suco_de_maracuja.jpg')),
+  filename: 'suco_de_maracuja.jpg',
+  content_type: 'image/jpeg'
+)
 
 
 
